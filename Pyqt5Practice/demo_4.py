@@ -28,7 +28,7 @@ class simple1(QWidget):
         self.initUI()
 
     def initUI(self):
-        self.resize(250, 150)
+        self.resize(300, 200)
         self.center()
         self.setWindowTitle('居中')
         self.show()
