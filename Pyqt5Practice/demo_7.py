@@ -68,7 +68,7 @@ class simple_3(QMainWindow):
         self.show()
 
     def buttonClicked(self):
-        #获得信号源对象
+        #获得信号源本身对象
         sender = self.sender()
         print(sender.width())
         self.statusBar().showMessage(sender.text() + ' was pressed')
@@ -104,5 +104,3 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     w = simple_4()
     sys.exit(app.exec_())
-
-
