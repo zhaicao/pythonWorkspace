@@ -11,7 +11,7 @@ class simple_1(QWidget):
         #self.initUI()
         #self.initUI_1()
         #self.initUI_2()
-        self.initUI_3()
+        self.initUI_1()
 
     def initUI(self):
         lbl1 = QLabel('Zetcode', self)
