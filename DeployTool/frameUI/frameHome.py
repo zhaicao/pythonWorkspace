@@ -12,17 +12,25 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(436, 587)
+        # QVBoxLayout
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
+
+        # tabWidget
         self.tabWidget = QtWidgets.QTabWidget(Form)
         self.tabWidget.setObjectName("tabWidget")
+
+        # tab_1的Qwidget
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
+
+        # tab_1中布局
         self.gridLayoutWidget = QtWidgets.QWidget(self.tab)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(20, 10, 371, 481))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
+
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setContentsMargins(40, 10, 40, 10)
         self.gridLayout.setObjectName("gridLayout")
@@ -56,9 +64,13 @@ class Ui_Form(object):
         self.label_2 = QtWidgets.QLabel(self.gridLayoutWidget)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
+        #将tab_1的Qwidget加到tabWidget中
         self.tabWidget.addTab(self.tab, "")
+
+        # tab_2的Qwidget
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
+        # tab_2中内容
         self.gridLayoutWidget_2 = QtWidgets.QWidget(self.tab_2)
         self.gridLayoutWidget_2.setGeometry(QtCore.QRect(20, 10, 371, 491))
         self.gridLayoutWidget_2.setObjectName("gridLayoutWidget_2")
@@ -95,12 +107,17 @@ class Ui_Form(object):
         self.lineEdit_9 = QtWidgets.QLineEdit(self.gridLayoutWidget_2)
         self.lineEdit_9.setObjectName("lineEdit_9")
         self.gridLayout_2.addWidget(self.lineEdit_9, 4, 1, 1, 1)
+
         self.tabWidget.addTab(self.tab_2, "")
+
+        # tab_3的Qwidget
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
+        # tab_3的内容
         self.groupBox = QtWidgets.QGroupBox(self.tab_3)
         self.groupBox.setGeometry(QtCore.QRect(20, 20, 371, 151))
         self.groupBox.setObjectName("groupBox")
+        self.groupBox.setStyleSheet("QGroupBox {border-radius: 10px;border: 1px solid #BFBFBF;}")
         self.formLayoutWidget = QtWidgets.QWidget(self.groupBox)
         self.formLayoutWidget.setGeometry(QtCore.QRect(30, 14, 311, 131))
         self.formLayoutWidget.setObjectName("formLayoutWidget")
@@ -215,35 +232,47 @@ class Ui_Form(object):
         self.lineEdit_24 = QtWidgets.QLineEdit(self.formLayoutWidget_3)
         self.lineEdit_24.setObjectName("lineEdit_24")
         self.formLayout_3.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.lineEdit_24)
+
         self.tabWidget.addTab(self.tab_3, "")
+
+        # tab_4的QWidget
         self.tab_4 = QtWidgets.QWidget()
         self.tab_4.setObjectName("tab_4")
+        # tab_4的内容
         self.widget = QtWidgets.QWidget(self.tab_4)
         self.widget.setGeometry(QtCore.QRect(20, 20, 371, 461))
         self.widget.setObjectName("widget")
         self.textEdit = QtWidgets.QTextEdit(self.widget)
         self.textEdit.setGeometry(QtCore.QRect(30, 120, 311, 191))
         self.textEdit.setObjectName("textEdit")
+
         self.tabWidget.addTab(self.tab_4, "")
+
         self.verticalLayout.addWidget(self.tabWidget)
         self.verticalLayout_2.addLayout(self.verticalLayout)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
+        # Netx按钮
         self.pushButton_2 = QtWidgets.QPushButton(Form)
         self.pushButton_2.setObjectName("pushButton_2")
         self.horizontalLayout.addWidget(self.pushButton_2)
+        # Cancel按钮
         self.pushButton = QtWidgets.QPushButton(Form)
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout.addWidget(self.pushButton)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
         self.retranslateUi(Form)
+        # tabWidget第一格tab选中
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
+        # 定义Next按钮信号槽
+        self.pushButton_2.clicked.connect(lambda: self.nextClicked(self.tabWidget.currentIndex(), self.tabWidget))
+        # Cancel按钮信号绑定退出槽函数
+        self.pushButton.clicked.connect(Form.close)
 
-        self.pushButton_2.clicked.connect(lambda: self.buttonClicked(self.tabWidget.currentIndex()))
-
+    # 组件命名
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
@@ -287,8 +316,8 @@ class Ui_Form(object):
         self.pushButton_2.setText(_translate("Form", "Next"))
         self.pushButton.setText(_translate("Form", "Cancel"))
 
-
-    def buttonClicked(self, pos):
+    def nextClicked(self, pos, obj):
+        print(obj.currentWidget())
         if(pos < 3):
             if(pos == 0):
                 print('业务库')
@@ -298,8 +327,7 @@ class Ui_Form(object):
                 print('工艺参数库')
             else:
                 print('历史库')
-            self.tabWidget.setCurrentIndex(self.tabWidget.currentIndex() + 1)
+            obj.setCurrentIndex(pos + 1)
         else:
             print('完成')
-
 
