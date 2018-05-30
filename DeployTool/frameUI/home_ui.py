@@ -34,9 +34,9 @@ class UI_homeWidget(object):
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         #Next&finish按钮
-        self.confimBtn = QtWidgets.QPushButton(mainWidget)
-        self.confimBtn.setObjectName("pushButton_2")
-        self.horizontalLayout.addWidget(self.confimBtn)
+        self.confirmBtn = QtWidgets.QPushButton(mainWidget)
+        self.confirmBtn.setObjectName("pushButton_2")
+        self.horizontalLayout.addWidget(self.confirmBtn)
         #取消按钮
         self.cancelBtn = QtWidgets.QPushButton(mainWidget)
         self.cancelBtn.setObjectName("pushButton")
@@ -186,7 +186,7 @@ class UI_homeWidget(object):
         self.lineEdit_66.setItemText(0, _translate("mainWidget", "过滤"))
         self.lineEdit_66.setItemText(1, _translate("mainWidget", "不过滤"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabStep_5), _translate("mainWidget", "Step5.工厂定制"))
-        self.confimBtn.setText(_translate("mainWidget", "Next"))
+        self.confirmBtn.setText(_translate("mainWidget", "Next"))
         self.cancelBtn.setText(_translate("mainWidget", "Cancel"))
 
 
@@ -1233,16 +1233,16 @@ class UI_homeWidget(object):
         # 绑定切换页签的信号槽
         self.tabWidget.currentChanged[int].connect(self.buttonChange)
         # 定义Next按钮信号槽
-        self.confimBtn.clicked.connect(lambda: self.nextClicked(self.tabWidget.currentIndex(), self.tabWidget))
+        self.confirmBtn.clicked.connect(lambda: self.nextClicked(self.tabWidget.currentIndex(), self.tabWidget))
         # Cancel按钮信号绑定退出槽函数
         self.cancelBtn.clicked.connect(mainWidget.close)
 
     #更改Next按钮显示的槽函数
     def buttonChange(self, pos):
         if (pos > (self.tabWidget.count() - 2) ):
-            self.confimBtn.setText('完成')
+            self.confirmBtn.setText('完成')
         else:
-            self.confimBtn.setText('Next')
+            self.confirmBtn.setText('Next')
 
     #下一步切换tab的槽函数
     def nextClicked(self, pos, tabObj):

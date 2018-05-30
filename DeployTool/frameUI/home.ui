@@ -29,7 +29,7 @@
         <attribute name="title">
          <string>Step1.数据库</string>
         </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
+        <layout class="QVBoxLayout" name="verticalLayout_3" stretch="3,4,4,3">
          <item>
           <widget class="QGroupBox" name="group_1">
            <property name="title">
@@ -65,14 +65,14 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_1">
+               <widget class="QLineEdit" name="input_1">
                 <property name="text">
                  <string>192.168.227.139</string>
                 </property>
                </widget>
               </item>
               <item row="1" column="4">
-               <widget class="QLabel" name="label_74">
+               <widget class="QLabel" name="help_2">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -91,7 +91,7 @@
                </widget>
               </item>
               <item row="2" column="4">
-               <widget class="QLabel" name="label_75">
+               <widget class="QLabel" name="help_3">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -140,7 +140,7 @@
                </widget>
               </item>
               <item row="0" column="4">
-               <widget class="QLabel" name="label_79">
+               <widget class="QLabel" name="help_1">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -159,20 +159,20 @@
                </widget>
               </item>
               <item row="0" column="3">
-               <widget class="QLineEdit" name="lineEdit_2">
+               <widget class="QLineEdit" name="input_2">
                 <property name="text">
                  <string>1433</string>
                 </property>
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_3"/>
+               <widget class="QLineEdit" name="input_3"/>
               </item>
               <item row="1" column="3">
-               <widget class="QLineEdit" name="lineEdit_4"/>
+               <widget class="QLineEdit" name="input_4"/>
               </item>
               <item row="2" column="1" colspan="3">
-               <widget class="QComboBox" name="lineEdit_5">
+               <widget class="QComboBox" name="input_5">
                 <item>
                  <property name="text">
                   <string>请选择业务库</string>
@@ -210,7 +210,7 @@
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_7">
+               <widget class="QLineEdit" name="input_7">
                 <property name="text">
                  <string>192.168.227.139</string>
                 </property>
@@ -227,7 +227,7 @@
                </widget>
               </item>
               <item row="2" column="1">
-               <widget class="QLineEdit" name="lineEdit_9"/>
+               <widget class="QLineEdit" name="input_9"/>
               </item>
               <item row="1" column="0">
                <widget class="QLabel" name="label_86">
@@ -240,7 +240,7 @@
                </widget>
               </item>
               <item row="3" column="4">
-               <widget class="QLabel" name="label_83">
+               <widget class="QLabel" name="help_7">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -259,7 +259,7 @@
                </widget>
               </item>
               <item row="1" column="4">
-               <widget class="QLabel" name="label_87">
+               <widget class="QLabel" name="help_5">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -278,17 +278,17 @@
                </widget>
               </item>
               <item row="1" column="3">
-               <widget class="QLineEdit" name="lineEdit_8">
+               <widget class="QLineEdit" name="input_8">
                 <property name="text">
                  <string>1433</string>
                 </property>
                </widget>
               </item>
               <item row="2" column="3">
-               <widget class="QLineEdit" name="lineEdit_10"/>
+               <widget class="QLineEdit" name="input_10"/>
               </item>
               <item row="2" column="4">
-               <widget class="QLabel" name="label_82">
+               <widget class="QLabel" name="help_6">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -327,7 +327,7 @@
                </widget>
               </item>
               <item row="0" column="0" colspan="4">
-               <widget class="QCheckBox" name="lineEdit_6">
+               <widget class="QCheckBox" name="input_6">
                 <property name="text">
                  <string>是否抽取历史库</string>
                 </property>
@@ -337,7 +337,7 @@
                </widget>
               </item>
               <item row="0" column="4">
-               <widget class="QLabel" name="label">
+               <widget class="QLabel" name="help_4">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -356,12 +356,206 @@
                </widget>
               </item>
               <item row="3" column="1" colspan="3">
-               <widget class="QComboBox" name="lineEdit_11">
+               <widget class="QComboBox" name="input_11">
                 <item>
                  <property name="text">
                   <string>请选择历史库</string>
                  </property>
                 </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="group_8">
+           <property name="title">
+            <string>BI库</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_13">
+            <item>
+             <layout class="QGridLayout" name="gridLayout_14" rowstretch="0,0,0,0" columnstretch="0,3,1,3,0" columnminimumwidth="0,0,0,0,0">
+              <property name="leftMargin">
+               <number>10</number>
+              </property>
+              <property name="rightMargin">
+               <number>10</number>
+              </property>
+              <item row="0" column="4">
+               <widget class="QLabel" name="help_8">
+                <property name="maximumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="3">
+               <widget class="QLineEdit" name="input_13">
+                <property name="text">
+                 <string>1433</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="label_116">
+                <property name="text">
+                 <string>密码</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="label_117">
+                <property name="text">
+                 <string>端口</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="4">
+               <widget class="QLabel" name="help_9">
+                <property name="maximumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="4">
+               <widget class="QLabel" name="help_10">
+                <property name="maximumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="input_12">
+                <property name="text">
+                 <string>192.168.227.139</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_120">
+                <property name="text">
+                 <string>账号</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_121">
+                <property name="text">
+                 <string>数据库</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_122">
+                <property name="text">
+                 <string>地址</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1" colspan="3">
+               <widget class="QLineEdit" name="input_16"/>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="input_14"/>
+              </item>
+              <item row="1" column="3">
+               <widget class="QLineEdit" name="input_15"/>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_123">
+                <property name="text">
+                 <string>数据源编号</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLineEdit" name="input_17"/>
+              </item>
+              <item row="3" column="2">
+               <widget class="QLabel" name="label_124">
+                <property name="text">
+                 <string>数据源名称</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="3">
+               <widget class="QLineEdit" name="input_18"/>
+              </item>
+              <item row="3" column="4">
+               <widget class="QLabel" name="help_11">
+                <property name="maximumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
              </layout>
@@ -404,14 +598,14 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_12">
+               <widget class="QLineEdit" name="input_19">
                 <property name="text">
                  <string>192.168.227.139</string>
                 </property>
                </widget>
               </item>
               <item row="1" column="4">
-               <widget class="QLabel" name="label_66">
+               <widget class="QLabel" name="help_13">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -430,7 +624,7 @@
                </widget>
               </item>
               <item row="2" column="4">
-               <widget class="QLabel" name="label_67">
+               <widget class="QLabel" name="help_14">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -479,7 +673,7 @@
                </widget>
               </item>
               <item row="0" column="4">
-               <widget class="QLabel" name="label_71">
+               <widget class="QLabel" name="help_12">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -498,20 +692,20 @@
                </widget>
               </item>
               <item row="0" column="3">
-               <widget class="QLineEdit" name="lineEdit_13">
+               <widget class="QLineEdit" name="input_20">
                 <property name="text">
                  <string>1433</string>
                 </property>
                </widget>
               </item>
               <item row="2" column="1" colspan="3">
-               <widget class="QLineEdit" name="lineEdit_16"/>
+               <widget class="QLineEdit" name="input_23"/>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_14"/>
+               <widget class="QLineEdit" name="input_21"/>
               </item>
               <item row="1" column="3">
-               <widget class="QLineEdit" name="lineEdit_15"/>
+               <widget class="QLineEdit" name="input_22"/>
               </item>
              </layout>
             </item>
@@ -522,51 +716,25 @@
        </widget>
        <widget class="QWidget" name="tabStep_2">
         <attribute name="title">
-         <string>Step2.数据仓库</string>
+         <string>Step2.工艺参数</string>
         </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,2">
+        <layout class="QVBoxLayout" name="verticalLayout_4" stretch="4,6">
          <item>
-          <widget class="QGroupBox" name="group_4">
+          <widget class="QGroupBox" name="group_14">
            <property name="title">
-            <string>BI库</string>
+            <string>工艺参数</string>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <layout class="QHBoxLayout" name="horizontalLayout_14">
             <item>
-             <layout class="QGridLayout" name="gridLayout_5" rowstretch="0,0,0,0" columnstretch="0,3,1,3,0" columnminimumwidth="0,0,0,0,0">
+             <layout class="QGridLayout" name="gridLayout_5" columnstretch="1,3,1,0,0">
               <property name="leftMargin">
                <number>10</number>
               </property>
               <property name="rightMargin">
                <number>10</number>
               </property>
-              <item row="0" column="4">
-               <widget class="QLabel" name="label_46">
-                <property name="maximumSize">
-                 <size>
-                  <width>20</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
-                </property>
-                <property name="scaledContents">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="3">
-               <widget class="QLineEdit" name="lineEdit_18">
-                <property name="text">
-                 <string>1433</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="2">
-               <widget class="QLabel" name="label_41">
+              <item row="3" column="2">
+               <widget class="QLabel" name="label_126">
                 <property name="text">
                  <string>密码</string>
                 </property>
@@ -575,37 +743,8 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="2">
-               <widget class="QLabel" name="label_35">
-                <property name="text">
-                 <string>端口</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="4">
-               <widget class="QLabel" name="label_38">
-                <property name="maximumSize">
-                 <size>
-                  <width>20</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
-                </property>
-                <property name="scaledContents">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
               <item row="2" column="4">
-               <widget class="QLabel" name="label_42">
+               <widget class="QLabel" name="help_17">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -623,15 +762,8 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_17">
-                <property name="text">
-                 <string>192.168.227.139</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_43">
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_38">
                 <property name="text">
                  <string>账号</string>
                 </property>
@@ -641,62 +773,87 @@
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="label_44">
+               <widget class="QLabel" name="label_41">
                 <property name="text">
-                 <string>数据库</string>
+                 <string>映射目录</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_45">
+              <item row="3" column="4">
+               <widget class="QLabel" name="help_18">
+                <property name="maximumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="text">
-                 <string>地址</string>
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_43">
+                <property name="text">
+                 <string>映射地址</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="2" column="1" colspan="3">
-               <widget class="QLineEdit" name="lineEdit_21"/>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_19"/>
-              </item>
-              <item row="1" column="3">
-               <widget class="QLineEdit" name="lineEdit_20"/>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_20">
-                <property name="text">
-                 <string>数据源编号</string>
+              <item row="1" column="4">
+               <widget class="QLabel" name="help_16">
+                <property name="maximumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
                 </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
               <item row="3" column="1">
-               <widget class="QLineEdit" name="lineEdit_22"/>
+               <widget class="QLineEdit" name="input_27"/>
               </item>
-              <item row="3" column="2">
-               <widget class="QLabel" name="label_21">
+              <item row="3" column="3">
+               <widget class="QLineEdit" name="input_28"/>
+              </item>
+              <item row="1" column="1" colspan="3">
+               <widget class="QLineEdit" name="input_25"/>
+              </item>
+              <item row="2" column="1" colspan="3">
+               <widget class="QLineEdit" name="input_26"/>
+              </item>
+              <item row="0" column="0" colspan="4">
+               <widget class="QCheckBox" name="input_24">
                 <property name="text">
-                 <string>数据源名称</string>
+                 <string>是否启用工艺参数</string>
                 </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
-              <item row="3" column="3">
-               <widget class="QLineEdit" name="lineEdit_23"/>
-              </item>
-              <item row="3" column="4">
-               <widget class="QLabel" name="label_22">
+              <item row="0" column="4">
+               <widget class="QLabel" name="help_15">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -734,7 +891,7 @@
                <number>10</number>
               </property>
               <item row="3" column="1" colspan="3">
-               <widget class="QLineEdit" name="lineEdit_29"/>
+               <widget class="QLineEdit" name="input_34"/>
               </item>
               <item row="3" column="0">
                <widget class="QLabel" name="label_55">
@@ -787,7 +944,7 @@
                </widget>
               </item>
               <item row="0" column="4">
-               <widget class="QLabel" name="label_54">
+               <widget class="QLabel" name="help_19">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -806,7 +963,7 @@
                </widget>
               </item>
               <item row="0" column="3">
-               <widget class="QLineEdit" name="lineEdit_25">
+               <widget class="QLineEdit" name="input_30">
                 <property name="text">
                  <string>1433</string>
                 </property>
@@ -823,13 +980,13 @@
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_26"/>
+               <widget class="QLineEdit" name="input_31"/>
               </item>
               <item row="1" column="3">
-               <widget class="QLineEdit" name="lineEdit_27"/>
+               <widget class="QLineEdit" name="input_32"/>
               </item>
               <item row="1" column="4">
-               <widget class="QLabel" name="label_49">
+               <widget class="QLabel" name="help_20">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -848,17 +1005,17 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_24">
+               <widget class="QLineEdit" name="input_29">
                 <property name="text">
                  <string>192.168.227.139</string>
                 </property>
                </widget>
               </item>
               <item row="2" column="1" colspan="3">
-               <widget class="QLineEdit" name="lineEdit_28"/>
+               <widget class="QLineEdit" name="input_33"/>
               </item>
               <item row="2" column="4">
-               <widget class="QLabel" name="label_50">
+               <widget class="QLabel" name="help_21">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -897,16 +1054,16 @@
                </widget>
               </item>
               <item row="4" column="1">
-               <widget class="QLineEdit" name="lineEdit_30"/>
+               <widget class="QLineEdit" name="input_35"/>
               </item>
               <item row="4" column="3">
-               <widget class="QLineEdit" name="lineEdit_31"/>
+               <widget class="QLineEdit" name="input_36"/>
               </item>
               <item row="5" column="1">
-               <widget class="QLineEdit" name="lineEdit_32"/>
+               <widget class="QLineEdit" name="input_37"/>
               </item>
               <item row="5" column="3">
-               <widget class="QLineEdit" name="lineEdit_33"/>
+               <widget class="QLineEdit" name="input_38"/>
               </item>
               <item row="4" column="2">
                <widget class="QLabel" name="label_58">
@@ -929,7 +1086,7 @@
                </widget>
               </item>
               <item row="3" column="4">
-               <widget class="QLabel" name="label_60">
+               <widget class="QLabel" name="help_22">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -948,7 +1105,7 @@
                </widget>
               </item>
               <item row="4" column="4">
-               <widget class="QLabel" name="label_61">
+               <widget class="QLabel" name="help_23">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -967,7 +1124,7 @@
                </widget>
               </item>
               <item row="5" column="4">
-               <widget class="QLabel" name="label_62">
+               <widget class="QLabel" name="help_24">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -1012,7 +1169,7 @@
                <number>10</number>
               </property>
               <item row="2" column="2">
-               <widget class="QLabel" name="label_14">
+               <widget class="QLabel" name="help_27">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -1051,7 +1208,7 @@
                </widget>
               </item>
               <item row="1" column="2">
-               <widget class="QLabel" name="label_17">
+               <widget class="QLabel" name="help_26">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -1080,7 +1237,7 @@
                </widget>
               </item>
               <item row="0" column="2">
-               <widget class="QLabel" name="label_19">
+               <widget class="QLabel" name="help_25">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -1099,13 +1256,13 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_34"/>
+               <widget class="QLineEdit" name="input_39"/>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_35"/>
+               <widget class="QLineEdit" name="input_40"/>
               </item>
               <item row="2" column="1">
-               <widget class="QLineEdit" name="lineEdit_36"/>
+               <widget class="QLineEdit" name="input_41"/>
               </item>
              </layout>
             </item>
@@ -1127,7 +1284,7 @@
                <number>10</number>
               </property>
               <item row="2" column="2">
-               <widget class="QLabel" name="label_2">
+               <widget class="QLabel" name="help_30">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -1156,13 +1313,13 @@
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_38"/>
+               <widget class="QLineEdit" name="input_43"/>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_37"/>
+               <widget class="QLineEdit" name="input_42"/>
               </item>
               <item row="2" column="1">
-               <widget class="QLineEdit" name="lineEdit_39"/>
+               <widget class="QLineEdit" name="input_44"/>
               </item>
               <item row="2" column="0">
                <widget class="QLabel" name="label_5">
@@ -1175,7 +1332,7 @@
                </widget>
               </item>
               <item row="1" column="2">
-               <widget class="QLabel" name="label_7">
+               <widget class="QLabel" name="help_29">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -1204,7 +1361,7 @@
                </widget>
               </item>
               <item row="0" column="2">
-               <widget class="QLabel" name="label_6">
+               <widget class="QLabel" name="help_28">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -1242,7 +1399,7 @@
                <number>10</number>
               </property>
               <item row="2" column="2">
-               <widget class="QLabel" name="label_8">
+               <widget class="QLabel" name="help_33">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -1271,13 +1428,13 @@
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_41"/>
+               <widget class="QLineEdit" name="input_46"/>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_40"/>
+               <widget class="QLineEdit" name="input_45"/>
               </item>
               <item row="2" column="1">
-               <widget class="QLineEdit" name="lineEdit_42"/>
+               <widget class="QLineEdit" name="input_47"/>
               </item>
               <item row="2" column="0">
                <widget class="QLabel" name="label_10">
@@ -1290,7 +1447,7 @@
                </widget>
               </item>
               <item row="1" column="2">
-               <widget class="QLabel" name="label_11">
+               <widget class="QLabel" name="help_32">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -1319,7 +1476,7 @@
                </widget>
               </item>
               <item row="0" column="2">
-               <widget class="QLabel" name="label_13">
+               <widget class="QLabel" name="help_31">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -1348,15 +1505,15 @@
         <attribute name="title">
          <string>Step4.系统配置</string>
         </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_8" stretch="1,4,3,4">
+        <layout class="QVBoxLayout" name="verticalLayout_6" stretch="1,4,7">
          <item>
           <widget class="QGroupBox" name="group_9">
            <property name="title">
             <string>基础配置</string>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_7">
+           <layout class="QHBoxLayout" name="horizontalLayout_12">
             <item>
-             <layout class="QGridLayout" name="gridLayout_12" columnstretch="1,7,1">
+             <layout class="QGridLayout" name="gridLayout_12" columnstretch="1,3,1">
               <property name="leftMargin">
                <number>10</number>
               </property>
@@ -1374,167 +1531,10 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_43"/>
+               <widget class="QLineEdit" name="input_48"/>
               </item>
               <item row="0" column="2">
-               <widget class="QLabel" name="label_96">
-                <property name="maximumSize">
-                 <size>
-                  <width>20</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
-                </property>
-                <property name="scaledContents">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QGroupBox" name="group_10">
-           <property name="title">
-            <string>工艺参数</string>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_10">
-            <item>
-             <layout class="QGridLayout" name="gridLayout_4" columnstretch="1,3,1,0,0">
-              <property name="leftMargin">
-               <number>10</number>
-              </property>
-              <property name="rightMargin">
-               <number>10</number>
-              </property>
-              <item row="3" column="2">
-               <widget class="QLabel" name="label_89">
-                <property name="text">
-                 <string>密码</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="4">
-               <widget class="QLabel" name="label_26">
-                <property name="maximumSize">
-                 <size>
-                  <width>20</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
-                </property>
-                <property name="scaledContents">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_27">
-                <property name="text">
-                 <string>账号</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_25">
-                <property name="text">
-                 <string>映射目录</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="4">
-               <widget class="QLabel" name="label_23">
-                <property name="maximumSize">
-                 <size>
-                  <width>20</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
-                </property>
-                <property name="scaledContents">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_24">
-                <property name="text">
-                 <string>映射地址</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="4">
-               <widget class="QLabel" name="label_28">
-                <property name="maximumSize">
-                 <size>
-                  <width>20</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
-                </property>
-                <property name="scaledContents">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLineEdit" name="lineEdit_46"/>
-              </item>
-              <item row="3" column="3">
-               <widget class="QLineEdit" name="lineEdit_47"/>
-              </item>
-              <item row="1" column="1" colspan="3">
-               <widget class="QLineEdit" name="lineEdit_44"/>
-              </item>
-              <item row="2" column="1" colspan="3">
-               <widget class="QLineEdit" name="lineEdit_45"/>
-              </item>
-              <item row="0" column="0" colspan="4">
-               <widget class="QCheckBox" name="checkBox_2">
-                <property name="text">
-                 <string>是否启用工艺参数网络映射</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="4">
-               <widget class="QLabel" name="label_90">
+               <widget class="QLabel" name="help_34">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -1562,35 +1562,31 @@
            <property name="title">
             <string>单点登录</string>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_6">
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
             <item>
-             <layout class="QGridLayout" name="gridLayout_10">
+             <layout class="QGridLayout" name="gridLayout_4" columnstretch="1,3,1">
               <property name="leftMargin">
                <number>10</number>
               </property>
               <property name="rightMargin">
                <number>10</number>
               </property>
-              <item row="2" column="2">
-               <widget class="QLabel" name="label_32">
+              <item row="0" column="2">
+               <widget class="QLabel" name="help_35">
+                <property name="maximumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="text">
-                 <string>接口端口</string>
+                 <string/>
                 </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                <property name="pixmap">
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QLineEdit" name="lineEdit_50"/>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_31">
-                <property name="text">
-                 <string>页面端口</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                <property name="scaledContents">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -1604,11 +1600,21 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="3">
-               <widget class="QLineEdit" name="lineEdit_51"/>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="input_50"/>
               </item>
-              <item row="2" column="4">
-               <widget class="QLabel" name="label_33">
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_31">
+                <property name="text">
+                 <string>页面端口</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="help_36">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -1626,8 +1632,11 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="4">
-               <widget class="QLabel" name="label_34">
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="input_51"/>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLabel" name="help_37">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -1645,27 +1654,21 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="4">
-               <widget class="QLabel" name="label_91">
-                <property name="maximumSize">
-                 <size>
-                  <width>20</width>
-                  <height>20</height>
-                 </size>
-                </property>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_32">
                 <property name="text">
-                 <string/>
+                 <string>接口端口</string>
                 </property>
-                <property name="pixmap">
-                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
-                </property>
-                <property name="scaledContents">
-                 <bool>true</bool>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="0" column="0" colspan="4">
-               <widget class="QCheckBox" name="lineEdit_48">
+              <item row="3" column="1">
+               <widget class="QLineEdit" name="input_52"/>
+              </item>
+              <item row="0" column="0" colspan="2">
+               <widget class="QCheckBox" name="input_49">
                 <property name="text">
                  <string>是否启用单点登录</string>
                 </property>
@@ -1674,8 +1677,24 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="1" colspan="3">
-               <widget class="QLineEdit" name="lineEdit_49"/>
+              <item row="3" column="2">
+               <widget class="QLabel" name="help_38">
+                <property name="maximumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -1687,16 +1706,16 @@
            <property name="title">
             <string>ETL配置</string>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
-             <layout class="QGridLayout" name="gridLayout_11" rowstretch="0,0,0,0" columnstretch="2,4,2,4,0">
+             <layout class="QGridLayout" name="gridLayout_10" columnstretch="1,3,1">
               <property name="leftMargin">
                <number>10</number>
               </property>
               <property name="rightMargin">
                <number>10</number>
               </property>
-              <item row="3" column="0">
+              <item row="5" column="0">
                <widget class="QLabel" name="label_93">
                 <property name="text">
                  <string>账号</string>
@@ -1706,11 +1725,18 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
-               <widget class="QLineEdit" name="lineEdit_57"/>
+              <item row="4" column="0" colspan="2">
+               <widget class="QCheckBox" name="input_57">
+                <property name="text">
+                 <string>是否启用登录</string>
+                </property>
+               </widget>
               </item>
-              <item row="2" column="4">
-               <widget class="QLabel" name="label_36">
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="input_54"/>
+              </item>
+              <item row="4" column="2">
+               <widget class="QLabel" name="help_43">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -1729,70 +1755,16 @@
                </widget>
               </item>
               <item row="0" column="0">
-               <widget class="QLabel" name="label_37">
+               <widget class="QLabel" name="label_30">
                 <property name="text">
-                 <string>ETL端口</string>
+                 <string>工艺参数抽取目录</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_39">
-                <property name="text">
-                 <string>JVM(MB)</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="4">
-               <widget class="QLabel" name="label_88">
-                <property name="maximumSize">
-                 <size>
-                  <width>20</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
-                </property>
-                <property name="scaledContents">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="4">
-               <widget class="QLabel" name="label_40">
-                <property name="maximumSize">
-                 <size>
-                  <width>20</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
-                </property>
-                <property name="scaledContents">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_55"/>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_53"/>
-              </item>
-              <item row="1" column="2">
+              <item row="3" column="0">
                <widget class="QLabel" name="label_92">
                 <property name="text">
                  <string>抽取抽取频率(分钟)</string>
@@ -1802,7 +1774,99 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="2">
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="input_55"/>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLineEdit" name="input_58"/>
+              </item>
+              <item row="6" column="1">
+               <widget class="QLineEdit" name="input_59"/>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLabel" name="help_41">
+                <property name="maximumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="help_40">
+                <property name="maximumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_39">
+                <property name="text">
+                 <string>JVM(MB)</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_37">
+                <property name="text">
+                 <string>ETL端口</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLineEdit" name="input_56"/>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="help_39">
+                <property name="maximumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="input_53"/>
+              </item>
+              <item row="6" column="0">
                <widget class="QLabel" name="label_94">
                 <property name="text">
                  <string>密码</string>
@@ -1812,31 +1876,46 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="3">
-               <widget class="QLineEdit" name="lineEdit_52"/>
-              </item>
-              <item row="0" column="2">
-               <widget class="QLabel" name="label_30">
+              <item row="3" column="2">
+               <widget class="QLabel" name="help_42">
+                <property name="maximumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="text">
-                 <string>工艺参数抽取目录</string>
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
-              <item row="0" column="3">
-               <widget class="QLineEdit" name="lineEdit_54"/>
-              </item>
-              <item row="1" column="3">
-               <widget class="QLineEdit" name="lineEdit_56"/>
-              </item>
-              <item row="2" column="0" colspan="4">
-               <widget class="QCheckBox" name="checkBox_4">
+              <item row="5" column="2">
+               <widget class="QLabel" name="help_44">
+                <property name="maximumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="text">
-                 <string>是否启用登录</string>
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
-              <item row="3" column="4">
-               <widget class="QLabel" name="label_63">
+              <item row="6" column="2">
+               <widget class="QLabel" name="help_45">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -1887,7 +1966,7 @@
                <number>10</number>
               </property>
               <item row="6" column="1">
-               <widget class="QComboBox" name="lineEdit_64">
+               <widget class="QComboBox" name="input_66">
                 <item>
                  <property name="text">
                   <string>停用</string>
@@ -1901,7 +1980,7 @@
                </widget>
               </item>
               <item row="7" column="1">
-               <widget class="QComboBox" name="lineEdit_65">
+               <widget class="QComboBox" name="input_67">
                 <item>
                  <property name="text">
                   <string>停用</string>
@@ -1915,7 +1994,7 @@
                </widget>
               </item>
               <item row="2" column="1">
-               <widget class="QComboBox" name="lineEdit_60">
+               <widget class="QComboBox" name="input_62">
                 <item>
                  <property name="text">
                   <string>停用</string>
@@ -1929,7 +2008,7 @@
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QComboBox" name="lineEdit_59">
+               <widget class="QComboBox" name="input_61">
                 <item>
                  <property name="text">
                   <string>停用</string>
@@ -1953,7 +2032,7 @@
                </widget>
               </item>
               <item row="3" column="1">
-               <widget class="QComboBox" name="lineEdit_61">
+               <widget class="QComboBox" name="input_63">
                 <item>
                  <property name="text">
                   <string>停用</string>
@@ -1967,7 +2046,7 @@
                </widget>
               </item>
               <item row="5" column="1">
-               <widget class="QComboBox" name="lineEdit_63">
+               <widget class="QComboBox" name="input_65">
                 <item>
                  <property name="text">
                   <string>停用</string>
@@ -1981,7 +2060,7 @@
                </widget>
               </item>
               <item row="4" column="1">
-               <widget class="QComboBox" name="lineEdit_62">
+               <widget class="QComboBox" name="input_64">
                 <item>
                  <property name="text">
                   <string>停用</string>
@@ -2075,7 +2154,7 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QComboBox" name="lineEdit_58">
+               <widget class="QComboBox" name="input_60">
                 <item>
                  <property name="text">
                   <string>重构后</string>
@@ -2089,7 +2168,7 @@
                </widget>
               </item>
               <item row="8" column="1">
-               <widget class="QComboBox" name="lineEdit_66">
+               <widget class="QComboBox" name="input_68">
                 <item>
                  <property name="text">
                   <string>过滤</string>
@@ -2103,7 +2182,7 @@
                </widget>
               </item>
               <item row="0" column="2">
-               <widget class="QLabel" name="label_106">
+               <widget class="QLabel" name="help_46">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -2122,7 +2201,7 @@
                </widget>
               </item>
               <item row="1" column="2">
-               <widget class="QLabel" name="label_107">
+               <widget class="QLabel" name="help_47">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -2141,7 +2220,7 @@
                </widget>
               </item>
               <item row="2" column="2">
-               <widget class="QLabel" name="label_108">
+               <widget class="QLabel" name="help_48">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -2160,7 +2239,7 @@
                </widget>
               </item>
               <item row="3" column="2">
-               <widget class="QLabel" name="label_109">
+               <widget class="QLabel" name="help_49">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -2179,7 +2258,7 @@
                </widget>
               </item>
               <item row="4" column="2">
-               <widget class="QLabel" name="label_110">
+               <widget class="QLabel" name="help_50">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -2198,7 +2277,7 @@
                </widget>
               </item>
               <item row="5" column="2">
-               <widget class="QLabel" name="label_111">
+               <widget class="QLabel" name="help_51">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -2217,7 +2296,7 @@
                </widget>
               </item>
               <item row="6" column="2">
-               <widget class="QLabel" name="label_112">
+               <widget class="QLabel" name="help_52">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -2236,7 +2315,7 @@
                </widget>
               </item>
               <item row="7" column="2">
-               <widget class="QLabel" name="label_113">
+               <widget class="QLabel" name="help_53">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>
@@ -2255,7 +2334,7 @@
                </widget>
               </item>
               <item row="8" column="2">
-               <widget class="QLabel" name="label_114">
+               <widget class="QLabel" name="help_54">
                 <property name="maximumSize">
                  <size>
                   <width>20</width>

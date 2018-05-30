@@ -3,7 +3,8 @@ __author__='zhaicao'
 
 import sys
 from PyQt5 import QtWidgets
-from DeployTool.frameUI import home
+from DeployTool.frameUI import home_ui
+from mainUI import Ui_mainWidget
 
 #对QWidget重写方法
 class QWidget(QtWidgets.QWidget):
@@ -22,7 +23,7 @@ if __name__ == '__main__':
         app = QtWidgets.QApplication(sys.argv)
         #定义为重写后的QWidget
         w = QWidget()
-        ui = home.UI_homeWidget()
+        ui = Ui_mainWidget()
         ui.setupUi(w)
         w.show()
         sys.exit(app.exec_())
