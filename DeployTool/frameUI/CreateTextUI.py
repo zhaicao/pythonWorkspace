@@ -1,10 +1,20 @@
+# -*- coding: utf-8 -*-
 
+# 窗口的所有控件的中文名、帮助提示及默认值生成的模块
+
+__author__='zhaicao'
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class TextUI(object):
+class CreateTextUI(object):
     def __init__(self):
         pass
+
+    #统一生成控件显示文字
+    def createTabTexts(self):
+        self.retranslateUi()
+        self.helpToolTip()
+        self.defaultVal()
 
     #显示Lable控件文字
     def retranslateUi(self):
@@ -17,6 +27,7 @@ class TextUI(object):
         self.label_78.setText(_translate("mainWidget", "地址"))
 
         self.input_5.setItemText(0, _translate("mainWidget", "请选择业务库"))
+        self.getDBBtn_1.setText(_translate("mainWidget", "测试"))
         self.group_2.setTitle(_translate("mainWidget", "历史库"))
         self.label_85.setText(_translate("mainWidget", "数据库"))
 
@@ -27,6 +38,7 @@ class TextUI(object):
         self.label_80.setText(_translate("mainWidget", "端口"))
         self.input_6.setText(_translate("mainWidget", "是否抽取历史库"))
         self.input_11.setItemText(0, _translate("mainWidget", "请选择历史库"))
+        self.getDBBtn_2.setText(_translate("mainWidget", "测试"))
         self.group_8.setTitle(_translate("mainWidget", "BI库"))
 
         self.label_116.setText(_translate("mainWidget", "密码"))

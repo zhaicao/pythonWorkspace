@@ -3,7 +3,6 @@ __author__='zhaicao'
 
 import sys
 from PyQt5 import QtWidgets
-from DeployTool.frameUI import home_ui
 from mainUI import Ui_mainWidget
 
 #对QWidget重写方法
