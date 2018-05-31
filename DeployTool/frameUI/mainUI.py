@@ -100,6 +100,8 @@ class Ui_mainWidget(ControlsUI, CreateTextUI):
             'input_68': QtWidgets.QComboBox,
         }
 
+        self.configs = dict()
+
     # 初始化UI
     def setupUi(self, mainWidget):
         #相关图标
@@ -154,11 +156,13 @@ class Ui_mainWidget(ControlsUI, CreateTextUI):
         # 初始化控件库
         self.objsDict = GetObject(mainWidget, self.controlsDict)
 
+        self._action = defindeActions()
+
 
     # 控件信号槽
     def connectSignal(self, mainWidget):
         # 定义事件类
-        _action = defindeActions()
+
         # 绑定切换页签的信号槽
         self.tabWidget.currentChanged[int].connect(self.buttonChange)
         # 定义Next按钮信号槽
@@ -166,31 +170,31 @@ class Ui_mainWidget(ControlsUI, CreateTextUI):
         # Cancel按钮信号绑定退出槽函数
         self.cancelBtn.clicked.connect(mainWidget.close)
         # 是否抽历史库checkbox绑定信号槽
-        self.input_6.stateChanged.connect(lambda: _action.cbSetEnabledSlot(self.objsDict, 'his'))
+        self.input_6.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self.objsDict, 'his'))
         # 是否抽工艺参数checkbox绑定信号槽
-        self.input_24.stateChanged.connect(lambda: _action.cbSetEnabledSlot(self.objsDict, 'pp'))
+        self.input_24.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self.objsDict, 'pp'))
         # 是否启用单点登录绑定信号槽
-        self.input_49.stateChanged.connect(lambda: _action.cbSetEnabledSlot(self.objsDict, 'login'))
+        self.input_49.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self.objsDict, 'login'))
 
         # 获取业务库，联动
         # 业务库测试绑定信号槽
-        self.getDBBtn_1.clicked.connect(lambda: _action.getComboBoxDB(self.objsDict, 'bus'))
+        self.getDBBtn_1.clicked.connect(lambda: self._action.getComboBoxDB(self.objsDict, 'bus'))
 
         # 输入框修改初始化下拉框数据
-        self.input_1.textChanged.connect(lambda: _action.initComboBoxDB(self.objsDict, 'bus'))
-        self.input_2.textChanged.connect(lambda: _action.initComboBoxDB(self.objsDict, 'bus'))
-        self.input_3.textChanged.connect(lambda: _action.initComboBoxDB(self.objsDict, 'bus'))
-        self.input_4.textChanged.connect(lambda: _action.initComboBoxDB(self.objsDict, 'bus'))
+        self.input_1.textChanged.connect(lambda: self._action.initComboBoxDB(self.objsDict, 'bus'))
+        self.input_2.textChanged.connect(lambda: self._action.initComboBoxDB(self.objsDict, 'bus'))
+        self.input_3.textChanged.connect(lambda: self._action.initComboBoxDB(self.objsDict, 'bus'))
+        self.input_4.textChanged.connect(lambda: self._action.initComboBoxDB(self.objsDict, 'bus'))
 
         # 获取历史库，联动
         # 历史库测试绑定信号槽
-        self.getDBBtn_2.clicked.connect(lambda: _action.getComboBoxDB(self.objsDict, 'his'))
+        self.getDBBtn_2.clicked.connect(lambda: self._action.getComboBoxDB(self.objsDict, 'his'))
 
         # 输入框修改初始化下拉框数据
-        self.input_7.textChanged.connect(lambda: _action.initComboBoxDB(self.objsDict, 'his'))
-        self.input_8.textChanged.connect(lambda: _action.initComboBoxDB(self.objsDict, 'his'))
-        self.input_9.textChanged.connect(lambda: _action.initComboBoxDB(self.objsDict, 'his'))
-        self.input_10.textChanged.connect(lambda: _action.initComboBoxDB(self.objsDict, 'his'))
+        self.input_7.textChanged.connect(lambda: self._action.initComboBoxDB(self.objsDict, 'his'))
+        self.input_8.textChanged.connect(lambda: self._action.initComboBoxDB(self.objsDict, 'his'))
+        self.input_9.textChanged.connect(lambda: self._action.initComboBoxDB(self.objsDict, 'his'))
+        self.input_10.textChanged.connect(lambda: self._action.initComboBoxDB(self.objsDict, 'his'))
 
 
 
@@ -203,13 +207,12 @@ class Ui_mainWidget(ControlsUI, CreateTextUI):
 
     # 下一步切换tab的槽函数
     def nextClicked(self, pos, tabObj, widgetObj):
-
-        print(self.objsDict.getObjTextByName('input_1'))
         # 改变按钮显示
         self.buttonChange(pos)
         if (pos < (tabObj.count() - 1)):
             if (pos == 0):
-                print('抽取数据库完成')
+                print('1')
+                self._action.saveDBConf(self.objsDict, self.configs)
             elif (pos == 1):
                 print('系统数据库完成')
             elif (pos == 2):
@@ -219,5 +222,6 @@ class Ui_mainWidget(ControlsUI, CreateTextUI):
             else:
                 print('工厂定制配置完成')
             tabObj.setCurrentIndex(pos + 1)
+            print(self.configs)
         else:
             print('完成')

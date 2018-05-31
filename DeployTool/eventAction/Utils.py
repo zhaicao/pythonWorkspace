@@ -5,8 +5,8 @@
 __author__='zhaicao'
 
 
-import sys,pymssql
-from PyQt5 import QtCore, QtGui, QtWidgets
+import sys, pymssql
+from PyQt5.QtWidgets import QLineEdit, QComboBox
 
 class MSSQL:
     def __init__(self,**kwargs):
@@ -41,14 +41,24 @@ class GetObject(object):
         self.__widgetObj = widgetObj
         self.__objDict = objDict
 
+
     def getObjByName(self, objName):
         return self.__widgetObj.findChild(self.__objDict[objName], objName)
 
+
     def getObjTextByName(self, objName):
-        return self.__widgetObj.findChild(self.__objDict[objName], objName).text()
+        obj = self.__widgetObj.findChild(self.__objDict[objName], objName)
+        if isinstance(obj, QComboBox):
+            return obj.currentText()
+        elif isinstance(obj, QLineEdit):
+            return obj.text()
+        else:
+            return None
+
 
     def getWidgetObj(self):
         return self.__widgetObj
+
 
     def setObjEnabled(self, objName, state):
         self.__widgetObj.findChild(self.__objDict[objName], objName).setEnabled(state)
@@ -56,6 +66,7 @@ class GetObject(object):
 
 
 if __name__=='__main__':
+    pass
     # reslist = ()
     # try:
     #     ms = MSSQL(host = "1",user = "1", password = "1", login_timeout=3)
@@ -66,17 +77,3 @@ if __name__=='__main__':
     # except pymssql.OperationalError:
     #     print('数据库操作异常')
     # #reslist = ms.ExecQuery("SELECT Name FROM SysObjects Where XType='U' ORDER BY Name")
-    # for i in reslist:
-    #    print(i)
-    controlsDict = {
-        # 业务库Group
-        'input_1': QtWidgets.QLineEdit,
-        'input_2': QtWidgets.QLineEdit,
-        'input_3': QtWidgets.QLineEdit,
-        'input_4': QtWidgets.QLineEdit,
-        'input_5': QtWidgets.QComboBox
-    }
-    app = QtWidgets.QApplication(sys.argv)
-    # 定义为重写后的QWidget
-    w = QtWidgets.QWidget()
-    print(GetObject(w, controlsDict).getObjByName('input_1'));

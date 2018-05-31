@@ -59,3 +59,11 @@ class defindeActions(object):
 
         for name in nameList:
             objDict.setObjEnabled(name, state)
+
+
+    def saveDBConf(self, objDict, confs):
+        confs['ip'] = objDict.getObjTextByName('input_1')
+        confs['port'] = objDict.getObjTextByName('input_2')
+        confs['username'] = objDict.getObjTextByName('input_3')
+        confs['pwd'] = objDict.getObjTextByName('input_4')
+        confs['db'] = objDict.getObjTextByName('input_5')
