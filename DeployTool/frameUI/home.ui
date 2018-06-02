@@ -15,7 +15,8 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>C:/Users/slave/Desktop/logo.png</normaloff>C:/Users/slave/Desktop/logo.png</iconset>
+    <normaloff>C:/Users/slave/Desktop/logo.png</normaloff>
+    <normalon>../icon/logo.png</normalon>C:/Users/slave/Desktop/logo.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>

@@ -13,7 +13,8 @@ class Ui_mainWidget(object):
         mainWidget.setObjectName("mainWidget")
         mainWidget.resize(500, 640)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("C:/Users/slave/Desktop/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        #icon.addPixmap(QtGui.QPixmap("C:/Users/slave/Desktop/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("icon/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         mainWidget.setWindowIcon(icon)
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(mainWidget)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
@@ -927,7 +928,6 @@ class Ui_mainWidget(object):
         self.verticalLayout_6.setStretch(1, 4)
         self.verticalLayout_6.setStretch(2, 7)
         self.tabWidget.addTab(self.tabStep_4, "")
-
         self.tabStep_5 = QtWidgets.QWidget()
         self.tabStep_5.setObjectName("tabStep_5")
         self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.tabStep_5)
@@ -1070,7 +1070,6 @@ class Ui_mainWidget(object):
         self.horizontalLayout_11.addLayout(self.gridLayout_13)
         self.verticalLayout_9.addWidget(self.group_13)
         self.tabWidget.addTab(self.tabStep_5, "")
-
         self.verticalLayout.addWidget(self.tabWidget)
         self.verticalLayout_2.addLayout(self.verticalLayout)
         self.horizontalLayout = QtWidgets.QHBoxLayout()

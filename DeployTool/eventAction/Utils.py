@@ -8,7 +8,7 @@ __author__='zhaicao'
 import pymssql
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
-import copy
+import copy, winreg
 
 class MSSQL:
     def __init__(self,**kwargs):
@@ -41,9 +41,12 @@ class MSSQL:
 
 # 通过对象名找对象
 class GetObject(object):
-    def __init__(self, widgetObj, objDict):
+    def __init__(self, widgetObj, *objDict):
         self.__widgetObj = widgetObj
-        self.__objDict = objDict
+        self.__objDict = dict()
+        # dict取并集
+        for i in objDict:
+            self.__objDict = dict(self.__objDict,**i)
 
 
     def getObjByName(self, objName):
@@ -71,37 +74,22 @@ class GetObject(object):
     def setObjEnabled(self, objName, state):
         self.__widgetObj.findChild(self.__objDict[objName]['objType'], objName).setEnabled(state)
 
+    def getTextByObj(self, obj):
+        if isinstance(obj, QtWidgets.QComboBox):
+            return obj.currentText()
+        elif isinstance(obj, QtWidgets.QLineEdit):
+            return obj.text()
+        elif isinstance(obj, QtWidgets.QCheckBox):
+            return obj.checkState() == Qt.Checked
+        else:
+            return None
+
 # 提示消息
 def mesRemine(widgetObj, message, title = '提示'):
     QtWidgets.QMessageBox.information(widgetObj,
                                       title,
                                       message,
                                       QtWidgets.QMessageBox.Yes)
-
-# 通过类型获得配置文件的数据
-def getConfigByType(objDict, confType):
-    # 使用浅拷贝，复杂数据结果使用深拷贝
-    d = copy.copy(objDict)
-    if confType == 'deploy':
-        d.pop('input_24')
-        d.pop('input_49')
-        d.pop('getDBBtn_1')
-        d.pop('getDBBtn_2')
-        return list(d.values())[:-8]
-    elif confType == 'manifest':
-        l = list(d.values())[-8:]
-        l.append(d['input_24'])
-        l.append(d['input_49'])
-        return l
-    else:
-        return list(d.values())
-
-# 是否存Value空的情况
-def checkIsNull(confList):
-    for i in confList:
-        if 'value' not in i:
-            return False
-    return True
 
 # dict写文件
 def writeFile(filepath, fileData):
@@ -116,12 +104,20 @@ def writeFile(filepath, fileData):
         f.close()
     return True
 
+# 获得Win桌面路径
+def getWinDesktop():
+    key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, \
+                          r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', )
+    return winreg.QueryValueEx(key, "Desktop")[0]
+
+
 
 
 
 
 
 if __name__=='__main__':
+    print(getWinDesktop())
     pass
     # reslist = ()
     # try:

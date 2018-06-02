@@ -4,6 +4,7 @@ __author__='zhaicao'
 import sys
 from PyQt5 import QtWidgets
 from mainUI import Ui_mainWidget
+#from home import Ui_mainWidget
 
 #对QWidget重写方法
 class QWidget(QtWidgets.QWidget):

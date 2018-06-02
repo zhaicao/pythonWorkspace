@@ -4,6 +4,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
 from eventAction import Utils
+import copy
 
 __author__='zhaicao'
 
@@ -74,8 +75,6 @@ class defindeActions(object):
             text = objDict.getObjTextByName(i)
             if text.strip() == '' or text == '请选择业务库' or text == '请选择历史库':
                 return False
-            controlsDict[i]['value'] = text
-        controlsDict['input_6']['value'] = objDict.getObjTextByName('input_6')
         return True
 
     # 保存工艺参数
@@ -88,8 +87,6 @@ class defindeActions(object):
                 text = objDict.getObjTextByName(i)
                 if text.strip() == '':
                     return False
-                controlsDict[i]['value'] = text
-        controlsDict['input_24']['value'] = objDict.getObjTextByName('input_24')
         return True
 
     # 保存部署配置
@@ -101,7 +98,6 @@ class defindeActions(object):
             text = objDict.getObjTextByName(i)
             if text.strip() == '' or text == '请选择业务库' or text == '请选择历史库':
                 return False
-            controlsDict[i]['value'] = text
         return True
 
     # 保存系统配置
@@ -120,35 +116,58 @@ class defindeActions(object):
             text = objDict.getObjTextByName(i)
             if text.strip() == '' or text == '请选择业务库' or text == '请选择历史库':
                 return False
-            controlsDict[i]['value'] = text
-        controlsDict['input_49']['value'] = objDict.getObjTextByName('input_49')
-        controlsDict['input_57']['value'] = objDict.getObjTextByName('input_57')
-        return True
-
-    # 工厂定制配置
-    def saveConfStep_5(self, controlsDict, objDict):
-        item = ['input_60', 'input_61', 'input_62','input_63', 'input_64','input_65', 'input_66', 'input_67']
-        for i in item:
-            controlsDict[i]['value'] = objDict.getObjBoolByName(i)
         return True
 
 
     # 保存部署配置文件
-    def saveConfigFile(self, widgetObj, controlsDict, configType, title, fileType, defaultPath = 'C:/Users/slave/Desktop'):
-        itemList = Utils.getConfigByType(controlsDict, configType)
-        # 检查配置项是否有空
-        if (not Utils.checkIsNull(itemList)):
-            Utils.mesRemine(widgetObj, '请完成配置项')
-            return False
+    def saveConfItemsFile(self, widgetObj, configItem, title, fileType, defaultFilename, defaultPath = Utils.getWinDesktop()):
         deployFile = QtWidgets.QFileDialog.getSaveFileName(widgetObj,
                                                            title,
-                                                           defaultPath,
+                                                           defaultPath + '\\' + defaultFilename,
                                                            fileType)
 
         if (deployFile[0]):
-            if( not Utils.writeFile(deployFile[0], itemList) ):
+            if( not Utils.writeFile(deployFile[0], configItem) ):
                 Utils.mesRemine(widgetObj, '配置文件写入异常')
                 return False
             return True
         else:
             return False
+
+    # 保存并检查所有的部署配置项到dict中
+    def getDeployConfValue(self, confDict, objDict):
+        controls = copy.copy(confDict)
+        controls.pop('getDBBtn_1')
+        controls.pop('getDBBtn_2')
+        exceptControls = []
+        if (not objDict.getObjTextByName('input_6')):
+            exceptControls.extend(['input_7', 'input_8', 'input_9', 'input_10', 'input_11'])
+        if (not objDict.getObjTextByName('input_24')):
+            exceptControls.extend(['input_25', 'input_26', 'input_27', 'input_28', 'input_29', 'input_30', 'input_31',
+                                   'input_32', 'input_33', 'input_34', 'input_35', 'input_36', 'input_37', 'input_38'])
+        if (not objDict.getObjTextByName('input_49')):
+            exceptControls.extend(['input_50', 'input_51', 'input_52'])
+        if (not objDict.getObjTextByName('input_57')):
+            exceptControls.extend(['input_58', 'input_59'])
+
+        for i, k in controls.items():
+            obj = objDict.getObjByName(i)
+            if (i not in exceptControls):
+                text = objDict.getTextByObj(obj)
+                if (not isinstance(text, bool)):
+                    if text.strip() == '' or text == '请选择业务库' or text == '请选择历史库':
+                        return False
+                    else:
+                        controls[i]['value'] = text
+                else:
+                    controls[i]['value'] = text
+            else:
+                controls[i]['value'] = ''
+        return list(controls.values())
+
+    # 获得所有工厂定制配置项
+    def getManifestConfValue(self, confDict, objDict):
+        controls = copy.copy(confDict)
+        for i in controls:
+            controls[i]['value'] = objDict.getObjBoolByName(i)
+        return list(controls.values())

@@ -14,8 +14,8 @@ import copy
 
 class Ui_mainWidget(ControlsUI, CreateTextUI):
     def __init__(self):
-        # 定义空间类型和名称对应的字典
-        self.controlsDict = {
+        # 定义部署配置控件类型和名称对应的字典
+        self.deployConfItem = {
             # 业务库Group
             'input_1': {'objType': QtWidgets.QLineEdit, 'confItem': 'MIOT_Database_Host'},
             'input_2': {'objType': QtWidgets.QLineEdit, 'confItem': 'MIOT_Database_Port'},
@@ -88,8 +88,10 @@ class Ui_mainWidget(ControlsUI, CreateTextUI):
             'input_56': {'objType': QtWidgets.QLineEdit, 'confItem': 'biIncrementSchedule'},
             'input_57': {'objType': QtWidgets.QCheckBox, 'confItem': 'nifi_auth_enable'},
             'input_58': {'objType': QtWidgets.QLineEdit, 'confItem': 'nifi_username'},
-            'input_59': {'objType': QtWidgets.QLineEdit, 'confItem': 'nifi_password'},
-            # 工厂定制
+            'input_59': {'objType': QtWidgets.QLineEdit, 'confItem': 'nifi_password'}
+        }
+        # 定义工厂定制控件类型和名称对应的字典
+        self.manifestConfItem =  {
             'input_60': {'objType': QtWidgets.QComboBox, 'confItem': 'isOpDbBeforeRefact'},
             'input_61': {'objType': QtWidgets.QComboBox, 'confItem': 'supression'},
             'input_62': {'objType': QtWidgets.QComboBox, 'confItem': 'equipmentMaintenance'},
@@ -99,14 +101,11 @@ class Ui_mainWidget(ControlsUI, CreateTextUI):
             'input_66': {'objType': QtWidgets.QComboBox, 'confItem': 'linkRepair'},
             'input_67': {'objType': QtWidgets.QComboBox, 'confItem': 'isAutoOrderFiltered'}
         }
-
-        self.configs = dict()
-
     # 初始化UI
     def setupUi(self, mainWidget):
         #相关图标
         logoIcon = QtGui.QIcon()
-        logoIcon.addPixmap(QtGui.QPixmap("icon/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        logoIcon.addPixmap(QtGui.QPixmap("icon/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         self.helpIcon = QtGui.QPixmap("icon/help.png")
 
         mainWidget.setWindowTitle("追溯分析系统部署工具")
@@ -154,7 +153,7 @@ class Ui_mainWidget(ControlsUI, CreateTextUI):
         self.connectSignal(mainWidget)
 
         # 初始化控件库
-        self.objsDict = GetObject(mainWidget, self.controlsDict)
+        self.objsDict = GetObject(mainWidget, self.deployConfItem, self.manifestConfItem)
 
         self._action = defindeActions()
 
@@ -212,39 +211,40 @@ class Ui_mainWidget(ControlsUI, CreateTextUI):
         # 改变按钮显示
         self.buttonChange(pos)
         if (pos < (tabObj.count() - 1)):
-            # 数据库保存
+            # 数据库下一步Check
             if (pos == 0):
-                re = self._action.saveConfStep_1(self.controlsDict, self.objsDict)
-                if not re :
+                if not self._action.saveConfStep_1(self.deployConfItem, self.objsDict):
                     mesRemine(widgetObj, '输入\选择项不能为空，请输入')
                     return
+            # 工艺参数下一步Check
             elif (pos == 1):
-                re = self._action.saveConfStep_2(self.controlsDict, self.objsDict)
-                if not re:
+                if not self._action.saveConfStep_2(self.deployConfItem, self.objsDict):
                     mesRemine(widgetObj, '输入项不能为空，请输入')
                     return
             elif (pos == 2):
-                re = self._action.saveConfStep_3(self.controlsDict, self.objsDict)
-                if not re:
+                if not self._action.saveConfStep_3(self.deployConfItem, self.objsDict):
                     mesRemine(widgetObj, '输入项不能为空，请输入')
                     return
             elif (pos == 3):
-                re = self._action.saveConfStep_4(self.controlsDict, self.objsDict)
-                if not re:
+                if not self._action.saveConfStep_4(self.deployConfItem, self.objsDict):
                     mesRemine(widgetObj, '输入项不能为空，请输入')
                     return
             else:
                 print('配置完成')
+            # 切换下一个tab
             tabObj.setCurrentIndex(pos + 1)
         else:
-            self._action.saveConfStep_5(self.controlsDict, self.objsDict)
-            # 保存部署配置文件
-            deSave = self._action.saveConfigFile(widgetObj, self.controlsDict, 'deploy','请选择部署配置文件保存路径', 'YML Files(*.yml)')
-            if not deSave:
-                return
-            mesRemine(widgetObj, '部署配置文件保存成功，请选择工厂定制文件保存路径')
-            # 保存工厂定制文件
-            maSave = self._action.saveConfigFile(widgetObj, self.controlsDict, 'manifest', '请选择工厂定制文件保存路径', 'PROPERTIES Files(*.properties)')
-            if not maSave:
-                return
-            mesRemine(widgetObj, '保存成功')
+            # 保存检查部署配置文件
+            deployItems = self._action.getDeployConfValue(self.deployConfItem, self.objsDict)
+            if( not deployItems ):
+                mesRemine(widgetObj, '请完善配置项')
+            else:
+                manifestItems = self._action.getManifestConfValue(self.manifestConfItem, self.objsDict)
+                # 保存部署配置文件
+                if not self._action.saveConfItemsFile(widgetObj, deployItems, '请选择部署配置文件保存路径', 'YML Files(*.yml)', 'tracedeploy.yml'):
+                    return
+                mesRemine(widgetObj, '部署配置文件保存成功，请选择工厂定制文件保存路径')
+                # 保存工厂定制文件
+                if not self._action.saveConfItemsFile(widgetObj, manifestItems, '请选择工厂定制文件保存路径', 'PROPERTIES Files(*.properties)', 'manifest.properties'):
+                    return
+                mesRemine(widgetObj, '保存成功')
