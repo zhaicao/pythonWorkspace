@@ -4,14 +4,11 @@
 
 __author__='zhaicao'
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 
-class ControlsUI(object):
-    def __init__(self):
-        #self.helpIcon = QtGui.QPixmap("icon/logo.png")
-        pass
+class TraceControlsUI(object):
 
-    #统一生成控件
+    #统一生成Trace控件
     def createTabControls(self, tabObj):
         self.firstTabContol(tabObj)
         self.secondeTabContol(tabObj)

@@ -5,10 +5,12 @@
 __author__='zhaicao'
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from MainData import TraceItems
 
-class CreateTextUI(object):
+class TraceCreateTextUI(TraceItems):
     def __init__(self):
-        pass
+        # 继承对应的配置字典
+        super().TraceConfItems()
 
     #统一生成控件显示文字
     def createTabTexts(self):

@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 
-# 基础工具方法
+# 基础公共模块
 
 __author__='zhaicao'
-
 
 import pymssql
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
-import copy, winreg
+import winreg
 
+# SqlServer访问类
 class MSSQL:
     def __init__(self,**kwargs):
         self.dbInfo = kwargs
@@ -39,8 +39,8 @@ class MSSQL:
 
 
 
-# 通过对象名找对象
-class GetObject(object):
+# 对象库，封装对象的基本操作
+class ObjRepository(object):
     def __init__(self, widgetObj, *objDict):
         self.__widgetObj = widgetObj
         self.__objDict = dict()
@@ -84,48 +84,33 @@ class GetObject(object):
         else:
             return None
 
-# 提示消息
-def mesRemine(widgetObj, message, title = '提示'):
-    QtWidgets.QMessageBox.information(widgetObj,
+# 基础公用类
+class Util(object):
+    # 提示消息
+    @staticmethod
+    def mesRemine(widgetObj, message, title = '提示'):
+        QtWidgets.QMessageBox.information(widgetObj,
                                       title,
                                       message,
                                       QtWidgets.QMessageBox.Yes)
 
-# dict写文件
-def writeFile(filepath, fileData):
-    f = open(filepath, 'w')
-    try:
-        for i in fileData:
-            f.write('%s=%s' % (i['confItem'], i['value']) + '\n')
-    except Exception as e:
-        print(e)
-        return False
-    finally:
-        f.close()
-    return True
+    # dict写文件
+    @staticmethod
+    def writeFile(filepath, fileData):
+        f = open(filepath, 'w')
+        try:
+            for i in fileData:
+                f.write('%s=%s' % (i['confItem'], i['value']) + '\n')
+        except Exception as e:
+            print(e)
+            return False
+        finally:
+            f.close()
+        return True
 
-# 获得Win桌面路径
-def getWinDesktop():
-    key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, \
+    # 获得Win桌面路径
+    @staticmethod
+    def getWinDesktop():
+        key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, \
                           r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', )
-    return winreg.QueryValueEx(key, "Desktop")[0]
-
-
-
-
-
-
-
-if __name__=='__main__':
-    print(getWinDesktop())
-    pass
-    # reslist = ()
-    # try:
-    #     ms = MSSQL(host = "1",user = "1", password = "1", login_timeout=3)
-    #     reslist = ms.ExecQuery(
-    #         "SELECT name FROM  master..sysdatabases WHERE name NOT IN ( 'master', 'model', 'msdb', 'tempdb', 'northwind','pubs' )")
-    # except pymssql.InterfaceError:
-    #     print('数据库连接信息不正确')
-    # except pymssql.OperationalError:
-    #     print('数据库操作异常')
-    # #reslist = ms.ExecQuery("SELECT Name FROM SysObjects Where XType='U' ORDER BY Name")
+        return winreg.QueryValueEx(key, "Desktop")[0]

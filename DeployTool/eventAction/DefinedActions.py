@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# 定义窗口中所有事件的实现
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import Qt
-from eventAction import Utils
-import copy
+# 定义窗口/槽函数中所有动作的实现
 
 __author__='zhaicao'
 
-class defindeActions(object):
-    def __init__(self):
-        pass
+from PyQt5 import QtWidgets
+from eventAction.Utils import Util,MSSQL
+import copy
+
+class TraceActions(object):
 
     # 获得数据库的类方法,可使用@classmethod修饰
     def getComboBoxDB(self, objDict, group):
@@ -24,11 +22,11 @@ class defindeActions(object):
         if (ip and port and username and pwd):
             reslist = ()
             try:
-                ms = Utils.MSSQL(host=ip, port=port, user=username, password=pwd, login_timeout=3, timeout=3)
+                ms = MSSQL(host=ip, port=port, user=username, password=pwd, login_timeout=3, timeout=3)
                 reslist = ms.ExecQuery(
                     "SELECT name FROM  master..sysdatabases WHERE name NOT IN ( 'master', 'model', 'msdb', 'tempdb', 'northwind','pubs','ReportServer','ReportServerTempDB')")
             except:
-                Utils.mesRemine(objDict.getWidgetObj(), '数据库连接信息不正确')
+                Util.mesRemine(objDict.getWidgetObj(), '数据库连接信息不正确')
             if (reslist):
                 dbCb.clear()
                 for i in reslist:
@@ -61,7 +59,7 @@ class defindeActions(object):
         for name in nameList:
             objDict.setObjEnabled(name, state)
 
-    # 保存数据库配置
+    # 检查数据库配置
     def saveConfStep_1(self, controlsDict, objDict):
         item = ['input_1', 'input_2', 'input_3', 'input_4', 'input_5',
                 'input_12', 'input_13', 'input_14', 'input_15', 'input_16', 'input_17', 'input_18',
@@ -77,7 +75,7 @@ class defindeActions(object):
                 return False
         return True
 
-    # 保存工艺参数
+    # 检查工艺参数
     def saveConfStep_2(self, controlsDict, objDict):
         if ( objDict.getObjTextByName('input_24') ):
             item = ['input_25', 'input_26', 'input_27', 'input_28',
@@ -89,7 +87,7 @@ class defindeActions(object):
                     return False
         return True
 
-    # 保存部署配置
+    # 检查部署配置
     def saveConfStep_3(self, controlsDict, objDict):
         item = ['input_39', 'input_40', 'input_41',
                 'input_42', 'input_43', 'input_44',
@@ -100,8 +98,8 @@ class defindeActions(object):
                 return False
         return True
 
-    # 保存系统配置
-    def saveConfStep_4(self, controlsDict, objDict):
+    # 检查系统配置
+    def saveConfStep_4(self, objDict):
         item = ['input_48', 'input_53', 'input_54','input_55', 'input_56']
         loginItem = ['input_50', 'input_51', 'input_52']
         nifiLoginItem = ['input_59', 'input_58']
@@ -120,15 +118,15 @@ class defindeActions(object):
 
 
     # 保存部署配置文件
-    def saveConfItemsFile(self, widgetObj, configItem, title, fileType, defaultFilename, defaultPath = Utils.getWinDesktop()):
+    def saveConfItemsFile(self, widgetObj, configItem, title, fileType, defaultFilename, defaultPath = Util.getWinDesktop()):
         deployFile = QtWidgets.QFileDialog.getSaveFileName(widgetObj,
                                                            title,
                                                            defaultPath + '\\' + defaultFilename,
                                                            fileType)
 
         if (deployFile[0]):
-            if( not Utils.writeFile(deployFile[0], configItem) ):
-                Utils.mesRemine(widgetObj, '配置文件写入异常')
+            if( not Util.writeFile(deployFile[0], configItem) ):
+                Util.mesRemine(widgetObj, '配置文件写入异常')
                 return False
             return True
         else:
@@ -164,6 +162,7 @@ class defindeActions(object):
             else:
                 controls[i]['value'] = ''
         return list(controls.values())
+
 
     # 获得所有工厂定制配置项
     def getManifestConfValue(self, confDict, objDict):

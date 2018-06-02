@@ -1,10 +1,11 @@
 
+# 程序入口
+
 __author__='zhaicao'
 
 import sys
 from PyQt5 import QtWidgets
-from mainUI import Ui_mainWidget
-#from home import Ui_mainWidget
+from mainUI import TraceMainWidget
 
 #对QWidget重写方法
 class QWidget(QtWidgets.QWidget):
@@ -23,7 +24,7 @@ if __name__ == '__main__':
         app = QtWidgets.QApplication(sys.argv)
         #定义为重写后的QWidget
         w = QWidget()
-        ui = Ui_mainWidget()
+        ui = TraceMainWidget()
         ui.setupUi(w)
         w.show()
         sys.exit(app.exec_())
