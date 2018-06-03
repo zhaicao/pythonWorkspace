@@ -4,8 +4,8 @@
 
 __author__='zhaicao'
 
-from DefinedActions import TraceActions
-from Utils import  Util
+from DeployTool.eventAction.DefinedActions import TraceActions
+from DeployTool.eventAction.Utils import  Util
 
 class TraceSolot(object):
     def __init__(self):
@@ -27,20 +27,20 @@ class TraceSolot(object):
         if (pos < (tabCount - 1)):
             # 数据库下一步Check
             if (pos == 0):
-                if not self._action.saveConfStep_1(deployItems, objsDict):
+                if not self._action.saveConfStep_1(objsDict):
                     Util.mesRemine(mainWidgetObj, '输入\选择项不能为空，请输入')
                     return
             # 工艺参数下一步Check
             elif (pos == 1):
-                if not self._action.saveConfStep_2(deployItems, objsDict):
+                if not self._action.saveConfStep_2(objsDict):
                     Util.mesRemine(mainWidgetObj, '输入项不能为空，请输入')
                     return
             elif (pos == 2):
-                if not self._action.saveConfStep_3(deployItems, objsDict):
+                if not self._action.saveConfStep_3(objsDict):
                     Util.mesRemine(mainWidgetObj, '输入项不能为空，请输入')
                     return
             elif (pos == 3):
-                if not self._action.saveConfStep_4(deployItems, objsDict):
+                if not self._action.saveConfStep_4(objsDict):
                     Util.mesRemine(mainWidgetObj, '输入项不能为空，请输入')
                     return
             else:

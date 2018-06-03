@@ -5,20 +5,21 @@
 __author__='zhaicao'
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from CreateControls import TraceControlsUI
-from CreateTextUI import TraceCreateTextUI
-from DefinedActions import TraceActions
-from DefinedSolot import TraceSolot
-from eventAction.Utils import ObjRepository
-
+from DeployTool.frameUI.CreateControls import TraceControlsUI
+from DeployTool.frameUI.CreateTextUI import TraceCreateTextUI
+from DeployTool.eventAction.DefinedActions import TraceActions
+from DeployTool.eventAction.DefinedSolot import TraceSolot
+from DeployTool.eventAction.Utils import ObjRepository
+# 引入图标资源文件
+from DeployTool.frameUI import resoure_rc
 
 class TraceMainWidget(TraceControlsUI, TraceCreateTextUI):
     # 初始化窗口
     def setupUi(self, mainWidget):
-        #相关图标
+        #定义Logo和帮助图标
         logoIcon = QtGui.QIcon()
-        logoIcon.addPixmap(QtGui.QPixmap("icon/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        self.helpIcon = QtGui.QPixmap("icon/help.png")
+        logoIcon.addPixmap(QtGui.QPixmap(":/icon/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        self.helpIcon = QtGui.QPixmap(":/icon/help.png")
 
         mainWidget.setWindowTitle("追溯分析系统部署工具")
         mainWidget.setObjectName("mainWidget")
@@ -29,7 +30,6 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI):
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
 
-        self.helpIcon = QtGui.QPixmap("icon/help.png")
         self.tabWidget = QtWidgets.QTabWidget(mainWidget)
         self.tabWidget.setObjectName("tabWidget")
 

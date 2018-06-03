@@ -87,20 +87,20 @@ class ObjRepository(object):
 # 基础公用类
 class Util(object):
     # 提示消息
-    @staticmethod
-    def mesRemine(widgetObj, message, title = '提示'):
+    @classmethod
+    def mesRemine(cls, widgetObj, message, title = '提示'):
         QtWidgets.QMessageBox.information(widgetObj,
                                       title,
                                       message,
                                       QtWidgets.QMessageBox.Yes)
 
-    # dict写文件
-    @staticmethod
-    def writeFile(filepath, fileData):
+    # classmethod
+    @classmethod
+    def writeFile(cls, filepath, fileData):
         f = open(filepath, 'w')
         try:
             for i in fileData:
-                f.write('%s=%s' % (i['confItem'], i['value']) + '\n')
+                f.write('%s=%s' % (str(i['confItem']), str.lower(str(i['value']))) + '\n')
         except Exception as e:
             print(e)
             return False
@@ -109,8 +109,8 @@ class Util(object):
         return True
 
     # 获得Win桌面路径
-    @staticmethod
-    def getWinDesktop():
+    @classmethod
+    def getWinDesktop(cls):
         key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, \
                           r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', )
         return winreg.QueryValueEx(key, "Desktop")[0]

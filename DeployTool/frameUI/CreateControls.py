@@ -4,7 +4,7 @@
 
 __author__='zhaicao'
 
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtCore, QtWidgets, QtGui
 
 class TraceControlsUI(object):
 
@@ -1075,4 +1075,3 @@ class TraceControlsUI(object):
         self.horizontalLayout_11.addLayout(self.gridLayout_13)
         self.verticalLayout_9.addWidget(self.group_13)
         tabObj.addTab(self.tabStep_5, "")
-        

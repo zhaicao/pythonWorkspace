@@ -5,7 +5,7 @@
 __author__='zhaicao'
 
 from PyQt5 import QtWidgets
-from eventAction.Utils import Util,MSSQL
+from DeployTool.eventAction.Utils import Util,MSSQL
 import copy
 
 class TraceActions(object):
@@ -60,7 +60,7 @@ class TraceActions(object):
             objDict.setObjEnabled(name, state)
 
     # 检查数据库配置
-    def saveConfStep_1(self, controlsDict, objDict):
+    def saveConfStep_1(self, objDict):
         item = ['input_1', 'input_2', 'input_3', 'input_4', 'input_5',
                 'input_12', 'input_13', 'input_14', 'input_15', 'input_16', 'input_17', 'input_18',
                 'input_19', 'input_20', 'input_21', 'input_22', 'input_23']
@@ -76,7 +76,7 @@ class TraceActions(object):
         return True
 
     # 检查工艺参数
-    def saveConfStep_2(self, controlsDict, objDict):
+    def saveConfStep_2(self, objDict):
         if ( objDict.getObjTextByName('input_24') ):
             item = ['input_25', 'input_26', 'input_27', 'input_28',
                     'input_29', 'input_30', 'input_31', 'input_32', 'input_33', 'input_34', 'input_35',
@@ -88,13 +88,13 @@ class TraceActions(object):
         return True
 
     # 检查部署配置
-    def saveConfStep_3(self, controlsDict, objDict):
+    def saveConfStep_3(self, objDict):
         item = ['input_39', 'input_40', 'input_41',
                 'input_42', 'input_43', 'input_44',
                 'input_45', 'input_46', 'input_47']
         for i in item:
             text = objDict.getObjTextByName(i)
-            if text.strip() == '' or text == '请选择业务库' or text == '请选择历史库':
+            if text.strip() == '':
                 return False
         return True
 
@@ -112,7 +112,7 @@ class TraceActions(object):
 
         for i in item:
             text = objDict.getObjTextByName(i)
-            if text.strip() == '' or text == '请选择业务库' or text == '请选择历史库':
+            if text.strip() == '':
                 return False
         return True
 

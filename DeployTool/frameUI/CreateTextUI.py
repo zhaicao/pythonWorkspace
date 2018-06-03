@@ -5,7 +5,7 @@
 __author__='zhaicao'
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from MainData import TraceItems
+from DeployTool.frameUI.MainData import TraceItems
 
 class TraceCreateTextUI(TraceItems):
     def __init__(self):
