@@ -5,13 +5,13 @@
 __author__='zhaicao'
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from DeployTool.frameUI.CreateControls import TraceControlsUI
-from DeployTool.frameUI.CreateTextUI import TraceCreateTextUI
-from DeployTool.eventAction.DefinedActions import TraceActions
-from DeployTool.eventAction.DefinedSolot import TraceSolot
-from DeployTool.eventAction.Utils import ObjRepository
+from frameUI.CreateControls import TraceControlsUI
+from frameUI.CreateTextUI import TraceCreateTextUI
+from eventAction.DefinedActions import TraceActions
+from eventAction.DefinedSolot import TraceSolot
+from eventAction.Utils import ObjRepository
 # 引入图标资源文件
-from DeployTool.frameUI import resoure_rc
+from frameUI import resoure_rc
 
 class TraceMainWidget(TraceControlsUI, TraceCreateTextUI):
     # 初始化窗口
@@ -83,11 +83,13 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI):
         # 是否抽历史库checkbox绑定信号槽
         self.input_6.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'his'))
         # 是否抽工艺参数checkbox绑定信号槽
-        self.input_24.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'pp'))
+        self.input_72.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'pp'))
         # 是否启用单点登录绑定信号槽
         self.input_49.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'login'))
         # 是否启用Nifi登录绑定信号槽
         self.input_57.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'nifiLogin'))
+        # 工艺参数是否支持网络访问checkbox绑定信号槽
+        self.input_24.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'ppNet'))
 
         # 获取业务库，联动
         # 业务库测试按钮绑定信号槽

@@ -4,13 +4,13 @@
 
 __author__='zhaicao'
 
-from DeployTool.eventAction.DefinedActions import TraceActions
-from DeployTool.eventAction.Utils import  Util
+from eventAction.DefinedActions import TraceActions
+from eventAction.Utils import  Util
 
 class TraceSolot(object):
     def __init__(self):
         self._action = TraceActions()
-        pass
+
     # 更改Next按钮显示的槽函数
     def buttonChange(self, tabWidgetObj, btnObj):
         if (tabWidgetObj.currentIndex() > (tabWidgetObj.count() - 2)):
@@ -56,7 +56,7 @@ class TraceSolot(object):
                 manifestItems = self._action.getManifestConfValue(manifestItems, objsDict)
                 # 保存部署配置文件
                 if not self._action.saveConfItemsFile(mainWidgetObj, deployItems, '请选择部署配置文件保存路径', 'YML Files(*.yml)',
-                                                      'tracedeploy.yml'):
+                                                      'EXTRA VARIABLES.yml'):
                     return
                 Util.mesRemine(mainWidgetObj, '部署配置文件保存成功，请选择工厂定制文件保存路径')
                 # 保存工厂定制文件

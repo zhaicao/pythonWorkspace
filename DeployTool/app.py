@@ -5,16 +5,11 @@ __author__='zhaicao'
 
 import sys
 from PyQt5 import QtWidgets
-from DeployTool.frameUI.mainUI import TraceMainWidget
-from DeployTool.designerUI.home import Ui_mainWidget
+from frameUI.mainUI import TraceMainWidget
 # 主函数导入pymssql相关模块，否则pyinstaller打包报错
 import _mssql
 import uuid
 import decimal
-
-# D:\Python\pythonWorkspace\DeployTool>pyinstaller -F --path "D:\Python\Python36\L
-# ib\site-packages\PyQt5\Qt\bin" -p D:\Python\pythonWorkspace -w --distpath releas
-# e app.py
 
 
 #对QWidget重写方法

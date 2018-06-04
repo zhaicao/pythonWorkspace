@@ -40,7 +40,8 @@ class TraceItems(object):
             'input_22': {'objType': QtWidgets.QLineEdit, 'confItem': 'DAS_Database_Password'},
             'input_23': {'objType': QtWidgets.QLineEdit, 'confItem': 'DAS_Database_Name'},
             # 工艺参数Group
-            'input_24': {'objType': QtWidgets.QCheckBox, 'confItem': 'processParameter'},
+            'input_72': {'objType': QtWidgets.QCheckBox, 'confItem': 'processParameter'},
+            'input_24': {'objType': QtWidgets.QCheckBox, 'confItem': 'processParameterNetDir'},
             'input_25': {'objType': QtWidgets.QLineEdit, 'confItem': 'PPDBFile_path'},
             'input_26': {'objType': QtWidgets.QLineEdit, 'confItem': 'PPDBFile_dir'},
             'input_27': {'objType': QtWidgets.QLineEdit, 'confItem': 'PPDBFile_username'},

@@ -5,7 +5,7 @@
 __author__='zhaicao'
 
 from PyQt5 import QtWidgets
-from DeployTool.eventAction.Utils import Util,MSSQL
+from eventAction.Utils import Util, MSSQL
 import copy
 
 class TraceActions(object):
@@ -48,12 +48,14 @@ class TraceActions(object):
         if(group == 'his' ):
             nameList = ('input_7', 'input_8', 'input_9', 'input_10', 'input_11', 'getDBBtn_2')
         elif( group == 'pp' ):
-            nameList = ('input_25', 'input_26', 'input_27', 'input_28', 'input_29', 'input_30', 'input_31', 'input_32',
-                        'input_33', 'input_34', 'input_35', 'input_36', 'input_37', 'input_38')
+            nameList = ('input_24', 'input_25', 'input_26', 'input_27', 'input_28', 'input_29', 'input_30', 'input_31', 'input_32',
+                        'input_33', 'input_34', 'input_35', 'input_36', 'input_37', 'input_38', 'input_53')
         elif( group == 'login' ):
             nameList = ('input_50', 'input_51', 'input_52')
         elif (group == 'nifiLogin'):
             nameList = ('input_58', 'input_59')
+        elif (group == 'ppNet'):
+            nameList = ('input_25', 'input_26', 'input_27', 'input_28')
         else:
             nameList = ()
         for name in nameList:
@@ -77,14 +79,17 @@ class TraceActions(object):
 
     # 检查工艺参数
     def saveConfStep_2(self, objDict):
-        if ( objDict.getObjTextByName('input_24') ):
-            item = ['input_25', 'input_26', 'input_27', 'input_28',
-                    'input_29', 'input_30', 'input_31', 'input_32', 'input_33', 'input_34', 'input_35',
-                    'input_36', 'input_37', 'input_38']
-            for i in item:
-                text = objDict.getObjTextByName(i)
-                if text.strip() == '':
-                    return False
+        ppEnable, ppNetEnable = objDict.getObjTextByName('input_72'), objDict.getObjTextByName('input_24')
+        item = []
+        if ( ppNetEnable and ppEnable):
+            item.extend(['input_25', 'input_26', 'input_27', 'input_28'])
+        if ( ppEnable ):
+            item.extend(['input_29', 'input_30', 'input_31', 'input_32', 'input_33', 'input_34', 'input_35',
+                    'input_36', 'input_37', 'input_38'])
+        for i in item:
+            text = objDict.getObjTextByName(i)
+            if text.strip() == '':
+                return False
         return True
 
     # 检查部署配置
@@ -100,15 +105,19 @@ class TraceActions(object):
 
     # 检查系统配置
     def saveConfStep_4(self, objDict):
-        item = ['input_48', 'input_53', 'input_54','input_55', 'input_56']
+        item = ['input_48', 'input_54','input_55', 'input_56']
         loginItem = ['input_50', 'input_51', 'input_52']
         nifiLoginItem = ['input_59', 'input_58']
+        ppItem = ['input_53']
         # 判断单点登录是否启用
         if (objDict.getObjTextByName('input_49')):
             item.extend(loginItem)
         # 判断nifi登录是否启用
         if (objDict.getObjTextByName('input_57')):
             item.extend(nifiLoginItem)
+        # 判断工艺参数是否启用
+        if (objDict.getObjTextByName('input_24')):
+            item.extend(ppItem)
 
         for i in item:
             text = objDict.getObjTextByName(i)
@@ -138,27 +147,42 @@ class TraceActions(object):
         controls.pop('getDBBtn_1')
         controls.pop('getDBBtn_2')
         exceptControls = []
-        if (not objDict.getObjTextByName('input_6')):
+        hisEnable, ppEnable, ppNetEnable, loginEnable, EtlLoginEnable = objDict.getObjTextByName('input_6'), \
+                                                                        objDict.getObjTextByName('input_72'),\
+                                                                        objDict.getObjTextByName('input_24'),\
+                                                                        objDict.getObjTextByName('input_49'),\
+                                                                        objDict.getObjTextByName('input_57')
+        # 判断是否存在不需要的项，统计加到exceptControls中
+        if (not hisEnable):
             exceptControls.extend(['input_7', 'input_8', 'input_9', 'input_10', 'input_11'])
-        if (not objDict.getObjTextByName('input_24')):
-            exceptControls.extend(['input_25', 'input_26', 'input_27', 'input_28', 'input_29', 'input_30', 'input_31',
-                                   'input_32', 'input_33', 'input_34', 'input_35', 'input_36', 'input_37', 'input_38'])
-        if (not objDict.getObjTextByName('input_49')):
+        if (not ppEnable):
+            exceptControls.extend(['input_24', 'input_25', 'input_26', 'input_27', 'input_28', 'input_29', 'input_30', 'input_31',
+                                   'input_32', 'input_33', 'input_34', 'input_35', 'input_36', 'input_37', 'input_38', 'input_53'])
+        if (not loginEnable):
             exceptControls.extend(['input_50', 'input_51', 'input_52'])
-        if (not objDict.getObjTextByName('input_57')):
+        if (not EtlLoginEnable):
             exceptControls.extend(['input_58', 'input_59'])
+        if (not ppNetEnable and not ppEnable):
+            exceptControls.extend(['input_25', 'input_26','input_27','input_28'])
 
         for i, k in controls.items():
             obj = objDict.getObjByName(i)
             if (i not in exceptControls):
                 text = objDict.getTextByObj(obj)
+                # 判断是输入项or选择项
                 if (not isinstance(text, bool)):
                     if text.strip() == '' or text == '请选择业务库' or text == '请选择历史库':
                         return False
                     else:
+                        # 为工艺参数、抽取频率加单位
+                        if( i == 'input_37' or i == 'input_38'):
+                            text +='MB'
+                        if( i == 'input_56' ):
+                            text +=' min'
                         controls[i]['value'] = text
                 else:
-                    controls[i]['value'] = text
+                    # True 和 False转小写
+                    controls[i]['value'] = str.lower(str(text))
             else:
                 controls[i]['value'] = ''
         return list(controls.values())
@@ -168,5 +192,5 @@ class TraceActions(object):
     def getManifestConfValue(self, confDict, objDict):
         controls = copy.copy(confDict)
         for i in controls:
-            controls[i]['value'] = objDict.getObjBoolByName(i)
+            controls[i]['value'] = str.lower(str(objDict.getObjBoolByName(i)))
         return list(controls.values())

@@ -100,7 +100,7 @@ class Util(object):
         f = open(filepath, 'w')
         try:
             for i in fileData:
-                f.write('%s=%s' % (str(i['confItem']), str.lower(str(i['value']))) + '\n')
+                f.write('%s=%s' % (str(i['confItem']), str(i['value'])) + '\n')
         except Exception as e:
             print(e)
             return False
