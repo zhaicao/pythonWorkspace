@@ -137,6 +137,8 @@ class TraceCreateTextUI(TraceItems):
         self.input_67.setItemText(1, _translate("mainWidget", "过滤"))
         self.input_67.setItemText(0, _translate("mainWidget", "不过滤"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabStep_5), _translate("mainWidget", "Step5.工厂定制"))
+        self.copyDepConf.setText(_translate("mainWidget", "复制配置"))
+        self.copyManConf.setText(_translate("mainWidget", "复制定制"))
         self.confirmBtn.setText(_translate("mainWidget", "下一步"))
         self.cancelBtn.setText(_translate("mainWidget", "退出"))
 
@@ -240,5 +242,8 @@ class TraceCreateTextUI(TraceItems):
         self.help_51.setToolTip('<b>视频监控</b>指追溯分析系统是否需要视频监控的功能')
         self.help_52.setToolTip('<b>断链</b>指追溯分析系统是否需要断链的功能')
         self.help_53.setToolTip('<b>过滤万能工单</b>指追溯分析系统对测试用的万能功能数据进行过滤')
+
+        self.copyDepConf.setToolTip('复制部署配置(Step1~4)内容到系统剪贴板')
+        self.copyManConf.setToolTip('复制工厂定制(Step5)内容到系统剪贴板')
 
 

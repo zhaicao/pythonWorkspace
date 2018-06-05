@@ -5,9 +5,10 @@
 __author__='zhaicao'
 
 import pymssql
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtCore import Qt
 import winreg
+import os
 
 # SqlServer访问类
 class MSSQL:
@@ -100,7 +101,7 @@ class Util(object):
         f = open(filepath, 'w')
         try:
             for i in fileData:
-                f.write('%s=%s' % (str(i['confItem']), str(i['value'])) + '\n')
+                f.write('%s: %s' % (str(i['confItem']), str(i['value'])) + '\n')
         except Exception as e:
             print(e)
             return False
@@ -108,9 +109,43 @@ class Util(object):
             f.close()
         return True
 
+    # 配置dict转str
+    @classmethod
+    def listToStr(cls, confList):
+        reStr = ''
+        for i in confList:
+            reStr += '%s: %s' % (str(i['confItem']), str(i['value'])) + '\n'
+        return reStr
     # 获得Win桌面路径
     @classmethod
     def getWinDesktop(cls):
         key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, \
                           r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', )
         return winreg.QueryValueEx(key, "Desktop")[0]
+
+    # 复制文本至剪贴板
+    @classmethod
+    def copyClipboardText(self, Text):
+        clipboard = QtWidgets.QApplication.clipboard()
+        clipboard.setText(str(Text))
+
+    # 复制图像至剪贴板
+    @classmethod
+    def copyClipboardImage(self, image):
+        clipboard = QtWidgets.QApplication.clipboard()
+        clipboard.setPixmap(QtGui.QPixmap(os.path.join(
+        os.path.dirname(__file__), image)))
+
+    # 复制HTML至剪贴板
+    @classmethod
+    def copyHtml(self, html):
+        mimeData = QtCore.QMimeData()
+        mimeData.setHtml(html)
+        clipboard = QtWidgets.QApplication.clipboard()
+        clipboard.setMimeData(mimeData)
+
+
+if __name__ == '__main__':
+    a = "python"
+    Util().setClipboardText(a)
+    print(Util.getClipboardText())

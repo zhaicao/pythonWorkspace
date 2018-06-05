@@ -3,7 +3,7 @@
 # 定义控件信号所有的槽函数
 
 __author__='zhaicao'
-
+from PyQt5.QtWidgets import QApplication
 from eventAction.DefinedActions import TraceActions
 from eventAction.Utils import  Util
 
@@ -12,16 +12,18 @@ class TraceSolot(object):
         self._action = TraceActions()
 
     # 更改Next按钮显示的槽函数
-    def buttonChange(self, tabWidgetObj, btnObj):
+    def buttonChange(self, tabWidgetObj, comfirmBtn, depBtn, manBtn):
         if (tabWidgetObj.currentIndex() > (tabWidgetObj.count() - 2)):
-            btnObj.setText('保存')
+            depBtn.show()
+            manBtn.show()
+            comfirmBtn.setText('保存')
         else:
-            btnObj.setText('下一步')
+            depBtn.hide()
+            manBtn.hide()
+            comfirmBtn.setText('下一步')
 
     # 下一步切换tab的槽函数
-    def nextClicked(self, mainWidgetObj, tabWidgetObj, btnObj, deployItems, manifestItems, objsDict):
-        # 改变按钮显示
-        self.buttonChange(tabWidgetObj, btnObj)
+    def nextClicked(self, mainWidgetObj, tabWidgetObj, btnObj, depBtn, manBtn, deployItems, manifestItems, objsDict):
         pos = tabWidgetObj.currentIndex()
         tabCount = tabWidgetObj.count()
         if (pos < (tabCount - 1)):
@@ -45,22 +47,45 @@ class TraceSolot(object):
                     return
             else:
                 print('配置完成')
+            # 改变按钮显示
+            self.buttonChange(tabWidgetObj, btnObj, depBtn, manBtn)
             # 切换下一个tab
             tabWidgetObj.setCurrentIndex(tabWidgetObj.currentIndex() + 1)
         else:
-            # 保存检查部署配置文件
-            deployItems = self._action.getDeployConfValue(deployItems, objsDict)
-            if (not deployItems):
+            # 保存检查部署配置文件并获得部署配置的List
+            deployList = self._action.getDeployConfValue(deployItems, objsDict)
+            if (not deployList):
                 Util.mesRemine(mainWidgetObj, '请完善配置项')
             else:
-                manifestItems = self._action.getManifestConfValue(manifestItems, objsDict)
+                # 获得工厂定制的配置List
+                manifestList = self._action.getManifestConfValue(manifestItems, deployItems, objsDict)
                 # 保存部署配置文件
-                if not self._action.saveConfItemsFile(mainWidgetObj, deployItems, '请选择部署配置文件保存路径', 'YML Files(*.yml)',
+                if not self._action.saveConfItemsFile(mainWidgetObj, deployList, '请选择部署配置文件保存路径', 'YML Files(*.yml)',
                                                       'EXTRA VARIABLES.yml'):
                     return
                 Util.mesRemine(mainWidgetObj, '部署配置文件保存成功，请选择工厂定制文件保存路径')
                 # 保存工厂定制文件
-                if not self._action.saveConfItemsFile(mainWidgetObj, manifestItems, '请选择工厂定制文件保存路径',
+                if not self._action.saveConfItemsFile(mainWidgetObj, manifestList, '请选择工厂定制文件保存路径',
                                                       'PROPERTIES Files(*.properties)', 'manifest.properties'):
                     return
                 Util.mesRemine(mainWidgetObj, '保存成功')
+
+
+    # 复制到剪贴板
+    def copyConfClipboard(self, mainWidgetObj, type, deployItems, manifestItems, objsDict):
+        if type == 'deploy':
+            deployItems = self._action.getDeployConfValue(deployItems, objsDict)
+            if (not deployItems):
+                Util.mesRemine(mainWidgetObj, '请完善部署配置项')
+                return
+            else:
+                Util.copyClipboardText(Util.listToStr(deployItems))
+                Util.mesRemine(mainWidgetObj, '复制成功')
+        elif type == 'manifest':
+            manifestItems = self._action.getManifestConfValue(manifestItems, deployItems, objsDict)
+            # 获得配置写入到系统剪贴板中
+            Util.copyClipboardText(Util.listToStr(manifestItems))
+            Util.mesRemine(mainWidgetObj, '复制成功')
+        else:
+            print('复制类型不存在')
+

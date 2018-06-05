@@ -116,7 +116,7 @@ class TraceActions(object):
         if (objDict.getObjTextByName('input_57')):
             item.extend(nifiLoginItem)
         # 判断工艺参数是否启用
-        if (objDict.getObjTextByName('input_24')):
+        if (objDict.getObjTextByName('input_72')):
             item.extend(ppItem)
 
         for i in item:
@@ -146,7 +146,7 @@ class TraceActions(object):
         controls = copy.copy(confDict)
         controls.pop('getDBBtn_1')
         controls.pop('getDBBtn_2')
-        exceptControls = []
+        exceptItems = []
         hisEnable, ppEnable, ppNetEnable, loginEnable, EtlLoginEnable = objDict.getObjTextByName('input_6'), \
                                                                         objDict.getObjTextByName('input_72'),\
                                                                         objDict.getObjTextByName('input_24'),\
@@ -154,20 +154,19 @@ class TraceActions(object):
                                                                         objDict.getObjTextByName('input_57')
         # 判断是否存在不需要的项，统计加到exceptControls中
         if (not hisEnable):
-            exceptControls.extend(['input_7', 'input_8', 'input_9', 'input_10', 'input_11'])
+            exceptItems.extend(['input_7', 'input_8', 'input_9', 'input_10', 'input_11'])
         if (not ppEnable):
-            exceptControls.extend(['input_24', 'input_25', 'input_26', 'input_27', 'input_28', 'input_29', 'input_30', 'input_31',
+            exceptItems.extend(['input_24', 'input_25', 'input_26', 'input_27', 'input_28', 'input_29', 'input_30', 'input_31',
                                    'input_32', 'input_33', 'input_34', 'input_35', 'input_36', 'input_37', 'input_38', 'input_53'])
         if (not loginEnable):
-            exceptControls.extend(['input_50', 'input_51', 'input_52'])
+            exceptItems.extend(['input_50', 'input_51', 'input_52'])
         if (not EtlLoginEnable):
-            exceptControls.extend(['input_58', 'input_59'])
-        if (not ppNetEnable and not ppEnable):
-            exceptControls.extend(['input_25', 'input_26','input_27','input_28'])
-
+            exceptItems.extend(['input_58', 'input_59'])
+        if (not ppNetEnable and ppEnable):
+            exceptItems.extend(['input_25', 'input_26','input_27','input_28'])
         for i, k in controls.items():
             obj = objDict.getObjByName(i)
-            if (i not in exceptControls):
+            if (i not in exceptItems):
                 text = objDict.getTextByObj(obj)
                 # 判断是输入项or选择项
                 if (not isinstance(text, bool)):
@@ -189,8 +188,14 @@ class TraceActions(object):
 
 
     # 获得所有工厂定制配置项
-    def getManifestConfValue(self, confDict, objDict):
-        controls = copy.copy(confDict)
+    def getManifestConfValue(self, maniConfDict, depConfDict, objDict):
+        controls = copy.deepcopy(maniConfDict)
+        controls['input_72'] = depConfDict['input_72']
+        controls['input_49'] = depConfDict['input_49']
         for i in controls:
-            controls[i]['value'] = str.lower(str(objDict.getObjBoolByName(i)))
+            if i == 'input_72' or i == 'input_49':
+                controls[i]['value'] = str.lower(str(objDict.getObjTextByName(i)))
+            else:
+                controls[i]['value'] = str.lower(str(objDict.getObjBoolByName(i)))
+
         return list(controls.values())

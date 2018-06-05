@@ -14,8 +14,8 @@
    <string>追溯分析系统部署工具</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resoure.qrc">
-    <normaloff>:/icon/logo.png</normaloff>:/icon/logo.png</iconset>
+   <iconset>
+    <normaloff>C:/Users/slave/Desktop/logo.png</normaloff>C:/Users/slave/Desktop/logo.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
@@ -79,7 +79,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -128,7 +128,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -147,7 +147,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -279,7 +279,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -298,7 +298,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -327,7 +327,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -376,7 +376,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -439,7 +439,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -485,7 +485,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -504,7 +504,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -603,7 +603,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -668,7 +668,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -687,7 +687,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -736,7 +736,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -770,11 +770,59 @@
         <attribute name="title">
          <string>Step2.工艺参数</string>
         </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_4" stretch="4,6">
+        <layout class="QVBoxLayout" name="verticalLayout_8" stretch="1,4,6">
+         <item>
+          <widget class="QGroupBox" name="groupBox">
+           <property name="title">
+            <string>工艺参数</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_15">
+            <item>
+             <layout class="QGridLayout" name="gridLayout_11" columnstretch="1,0,0">
+              <property name="leftMargin">
+               <number>10</number>
+              </property>
+              <property name="rightMargin">
+               <number>10</number>
+              </property>
+              <item row="0" column="0" colspan="2">
+               <widget class="QCheckBox" name="input_72">
+                <property name="text">
+                 <string>是否启用工艺参数</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="help_57">
+                <property name="maximumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
          <item>
           <widget class="QGroupBox" name="group_14">
            <property name="title">
-            <string>工艺参数</string>
+            <string>工艺参数网络访问</string>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_14">
             <item>
@@ -807,7 +855,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -846,7 +894,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -875,7 +923,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -897,7 +945,7 @@
               <item row="0" column="0" colspan="4">
                <widget class="QCheckBox" name="input_24">
                 <property name="text">
-                 <string>是否启用工艺参数</string>
+                 <string>是否工艺参数网络访问</string>
                 </property>
                 <property name="checked">
                  <bool>true</bool>
@@ -916,7 +964,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1007,7 +1055,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1049,7 +1097,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1078,7 +1126,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1149,7 +1197,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1168,7 +1216,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1187,7 +1235,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1232,7 +1280,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1271,7 +1319,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1300,7 +1348,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1347,7 +1395,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1395,7 +1443,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1424,7 +1472,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1462,7 +1510,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1510,7 +1558,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1539,7 +1587,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1597,7 +1645,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1635,7 +1683,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1677,7 +1725,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1699,7 +1747,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1741,7 +1789,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1799,7 +1847,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1847,7 +1895,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1866,7 +1914,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1908,7 +1956,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1940,7 +1988,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1959,7 +2007,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -1978,7 +2026,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -2143,7 +2191,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -2192,7 +2240,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -2211,7 +2259,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -2230,7 +2278,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -2249,7 +2297,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -2292,7 +2340,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -2335,7 +2383,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -2354,7 +2402,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 <pixmap>C:/Users/slave/Desktop/help.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -2373,7 +2421,7 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout" stretch="4,1,1">
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="4,0,0,1,1">
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
@@ -2386,6 +2434,20 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="text">
+        <string>复制部署配置</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="text">
+        <string>复制工厂定制</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_2">
@@ -2405,8 +2467,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="resoure.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

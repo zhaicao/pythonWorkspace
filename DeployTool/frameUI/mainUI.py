@@ -21,7 +21,7 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI):
         logoIcon.addPixmap(QtGui.QPixmap(":/icon/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         self.helpIcon = QtGui.QPixmap(":/icon/help.png")
 
-        mainWidget.setWindowTitle("追溯分析系统部署工具")
+        mainWidget.setWindowTitle("追溯分析系统部署工具 v1.0")
         mainWidget.setObjectName("mainWidget")
         mainWidget.resize(500, 640)
         mainWidget.setWindowIcon(logoIcon)
@@ -42,6 +42,16 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI):
         self.horizontalLayout.setObjectName("horizontalLayout")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
+        # 复制部署配置
+        self.copyDepConf = QtWidgets.QPushButton(mainWidget)
+        self.copyDepConf.setObjectName("copyDepConf")
+        self.horizontalLayout.addWidget(self.copyDepConf)
+        self.copyDepConf.hide()
+        # 复制工厂定制
+        self.copyManConf = QtWidgets.QPushButton(mainWidget)
+        self.copyManConf.setObjectName("copyManConf")
+        self.horizontalLayout.addWidget(self.copyManConf)
+        self.copyManConf.hide()
         # Next&finish按钮
         self.confirmBtn = QtWidgets.QPushButton(mainWidget)
         self.confirmBtn.setObjectName("confirmBtn")
@@ -52,8 +62,8 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI):
         self.horizontalLayout.addWidget(self.cancelBtn)
 
         self.horizontalLayout.setStretch(0, 4)
-        self.horizontalLayout.setStretch(1, 1)
-        self.horizontalLayout.setStretch(2, 1)
+        self.horizontalLayout.setStretch(3, 1)
+        self.horizontalLayout.setStretch(4, 1)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
 
         self.tabWidget.setCurrentIndex(0)
@@ -75,9 +85,13 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI):
     # 控件信号
     def connectSignal(self, mainWidget):
         # 绑定切换页签的信号槽
-        self.tabWidget.currentChanged.connect(lambda: self._solot.buttonChange(self.tabWidget, self.confirmBtn))
+        self.tabWidget.currentChanged.connect(lambda: self._solot.buttonChange(self.tabWidget, self.confirmBtn, self.copyDepConf, self.copyManConf))
         # 定义Next按钮信号槽
-        self.confirmBtn.clicked.connect(lambda: self._solot.nextClicked(mainWidget, self.tabWidget, self.confirmBtn, self.deployConfItem, self.manifestConfItem, self._objsDict))
+        self.confirmBtn.clicked.connect(lambda: self._solot.nextClicked(mainWidget, self.tabWidget, self.confirmBtn, self.copyDepConf, self.copyManConf, self.deployConfItem, self.manifestConfItem, self._objsDict))
+        # 定义复制部署按钮信号槽
+        self.copyDepConf.clicked.connect(lambda: self._solot.copyConfClipboard(mainWidget, 'deploy', self.deployConfItem, self.manifestConfItem, self._objsDict))
+        # 定义复制定制按钮信号槽
+        self.copyManConf.clicked.connect(lambda: self._solot.copyConfClipboard(mainWidget, 'manifest', self.deployConfItem, self.manifestConfItem, self._objsDict))
         # Cancel按钮信号绑定退出槽函数
         self.cancelBtn.clicked.connect(mainWidget.close)
         # 是否抽历史库checkbox绑定信号槽
