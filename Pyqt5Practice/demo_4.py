@@ -16,7 +16,6 @@ class simple(QWidget):
 
     def closeEvent(self, event):
         reply = QMessageBox.question(self, '提示', '确定要退出吗？', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-
         if reply == QMessageBox.Yes:
             event.accept()
         else:
@@ -45,5 +44,5 @@ class simple1(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    w = simple1()
+    w = simple()
     sys.exit(app.exec_())
