@@ -26,7 +26,7 @@ class TraceActions(object):
                 reslist = ms.ExecQuery(
                     "SELECT name FROM  master..sysdatabases WHERE name NOT IN ( 'master', 'model', 'msdb', 'tempdb', 'northwind','pubs','ReportServer','ReportServerTempDB')")
             except:
-                Util.mesRemine(objDict.getWidgetObj(), '数据库连接信息不正确')
+                Util.mesInfomation(objDict.getWidgetObj(), '数据库连接信息不正确')
             if (reslist):
                 dbCb.clear()
                 for i in reslist:
@@ -135,7 +135,7 @@ class TraceActions(object):
 
         if (deployFile[0]):
             if( not Util.writeFile(deployFile[0], configItem) ):
-                Util.mesRemine(widgetObj, '配置文件写入异常')
+                Util.mesInfomation(widgetObj, '配置文件写入异常')
                 return False
             return True
         else:

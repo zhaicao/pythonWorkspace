@@ -87,13 +87,20 @@ class ObjRepository(object):
 
 # 基础公用类
 class Util(object):
-    # 提示消息
+    # 提示确认消息，自定义消息框
     @classmethod
-    def mesRemine(cls, widgetObj, message, title = '提示'):
-        QtWidgets.QMessageBox.information(widgetObj,
-                                      title,
-                                      message,
-                                      QtWidgets.QMessageBox.Yes)
+    def mesInfomation(self, widgetObj, message,title = '提示', *args):
+        mesbox = QtWidgets.QMessageBox(widgetObj)
+        mesbox.setWindowTitle(title)
+        mesbox.setText(message)
+        # 判断按钮，有则加入按钮
+        if len(args) == 0:
+            mesbox.addButton('好', QtWidgets.QMessageBox.ActionRole)
+        else:
+            for i in args:
+                mesbox.addButton(i, QtWidgets.QMessageBox.ActionRole)
+        mesbox.exec_()
+        return mesbox
 
     # classmethod
     @classmethod

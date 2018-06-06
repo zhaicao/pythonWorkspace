@@ -30,20 +30,20 @@ class TraceSolot(object):
             # 数据库下一步Check
             if (pos == 0):
                 if not self._action.saveConfStep_1(objsDict):
-                    Util.mesRemine(mainWidgetObj, '输入\选择项不能为空，请输入')
+                    Util.mesInfomation(mainWidgetObj, '输入\选择项不能为空，请输入')
                     return
             # 工艺参数下一步Check
             elif (pos == 1):
                 if not self._action.saveConfStep_2(objsDict):
-                    Util.mesRemine(mainWidgetObj, '输入项不能为空，请输入')
+                    Util.mesInfomation(mainWidgetObj, '输入项不能为空，请输入')
                     return
             elif (pos == 2):
                 if not self._action.saveConfStep_3(objsDict):
-                    Util.mesRemine(mainWidgetObj, '输入项不能为空，请输入')
+                    Util.mesInfomation(mainWidgetObj, '输入项不能为空，请输入')
                     return
             elif (pos == 3):
                 if not self._action.saveConfStep_4(objsDict):
-                    Util.mesRemine(mainWidgetObj, '输入项不能为空，请输入')
+                    Util.mesInfomation(mainWidgetObj, '输入项不能为空，请输入')
                     return
             else:
                 print('配置完成')
@@ -55,7 +55,7 @@ class TraceSolot(object):
             # 保存检查部署配置文件并获得部署配置的List
             deployList = self._action.getDeployConfValue(deployItems, objsDict)
             if (not deployList):
-                Util.mesRemine(mainWidgetObj, '请完善配置项')
+                Util.mesInfomation(mainWidgetObj, '请完善配置项')
             else:
                 # 获得工厂定制的配置List
                 manifestList = self._action.getManifestConfValue(manifestItems, deployItems, objsDict)
@@ -63,12 +63,12 @@ class TraceSolot(object):
                 if not self._action.saveConfItemsFile(mainWidgetObj, deployList, '请选择部署配置文件保存路径', 'YML Files(*.yml)',
                                                       'EXTRA VARIABLES.yml'):
                     return
-                Util.mesRemine(mainWidgetObj, '部署配置文件保存成功，请选择工厂定制文件保存路径')
+                Util.mesInfomation(mainWidgetObj, '部署配置文件保存成功，请选择工厂定制文件保存路径')
                 # 保存工厂定制文件
                 if not self._action.saveConfItemsFile(mainWidgetObj, manifestList, '请选择工厂定制文件保存路径',
                                                       'PROPERTIES Files(*.properties)', 'manifest.properties'):
                     return
-                Util.mesRemine(mainWidgetObj, '保存成功')
+                Util.mesInfomation(mainWidgetObj, '保存成功')
 
 
     # 复制到剪贴板
@@ -76,16 +76,16 @@ class TraceSolot(object):
         if type == 'deploy':
             deployItems = self._action.getDeployConfValue(deployItems, objsDict)
             if (not deployItems):
-                Util.mesRemine(mainWidgetObj, '请完善部署配置项')
+                Util.mesInfomation(mainWidgetObj, '请完善部署配置项')
                 return
             else:
                 Util.copyClipboardText(Util.listToStr(deployItems))
-                Util.mesRemine(mainWidgetObj, '复制成功')
+                Util.mesInfomation(mainWidgetObj, '复制成功')
         elif type == 'manifest':
             manifestItems = self._action.getManifestConfValue(manifestItems, deployItems, objsDict)
             # 获得配置写入到系统剪贴板中
             Util.copyClipboardText(Util.listToStr(manifestItems))
-            Util.mesRemine(mainWidgetObj, '复制成功')
+            Util.mesInfomation(mainWidgetObj, '复制成功')
         else:
             print('复制类型不存在')
 

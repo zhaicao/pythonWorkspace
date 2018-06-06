@@ -6,6 +6,7 @@ __author__='zhaicao'
 import sys
 from PyQt5 import QtWidgets
 from frameUI.mainUI import TraceMainWidget
+from Utils import Util
 # 主函数导入pymssql相关模块，否则pyinstaller打包报错
 import _mssql
 import uuid
@@ -18,8 +19,8 @@ class QWidget(QtWidgets.QWidget):
             super().__init__()
 
     def closeEvent(self, event):
-        reply = QtWidgets.QMessageBox.question(self, '提示', '确定要退出吗？', QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No, QtWidgets.QMessageBox.No)
-        if reply == QtWidgets.QMessageBox.Yes:
+        reply = Util.mesInfomation(self, '确定要退出吗？', '提示', '是', '否')
+        if reply.clickedButton().text() == '是':
             event.accept()
         else:
             event.ignore()
