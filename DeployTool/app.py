@@ -6,7 +6,7 @@ __author__='zhaicao'
 import sys
 from PyQt5 import QtWidgets
 from frameUI.mainUI import TraceMainWidget
-from Utils import Util
+from eventAction.Utils import Util
 # 主函数导入pymssql相关模块，否则pyinstaller打包报错
 import _mssql
 import uuid
