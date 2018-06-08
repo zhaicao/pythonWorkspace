@@ -13,7 +13,7 @@ class Ui_mainWidget(object):
         mainWidget.setObjectName("mainWidget")
         mainWidget.resize(500, 640)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("C:/Users/slave/Desktop/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/icon/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         mainWidget.setWindowIcon(icon)
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(mainWidget)
         self.verticalLayout_2.setObjectName("verticalLayout_2")

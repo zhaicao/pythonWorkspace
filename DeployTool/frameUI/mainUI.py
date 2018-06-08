@@ -4,6 +4,7 @@
 
 __author__='zhaicao'
 
+import time
 from PyQt5 import QtCore, QtGui, QtWidgets
 from frameUI.CreateControls import TraceControlsUI
 from frameUI.CreateTextUI import TraceCreateTextUI
@@ -80,6 +81,11 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI):
         self._action = TraceActions()
         # 初始化槽函数
         self._solot = TraceSolot()
+        # 实例化线程
+        self.work_1 = WorkThread(data = self._objsDict, type = 'Btn_1')
+        self.work_1.trigger.connect(self.triggerSlot)
+        # 实例化线程
+        #self.work_2 = WorkThread(data = self._objsDict,type = 'Btn_2')
 
 
     # 控件信号
@@ -107,7 +113,8 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI):
 
         # 获取业务库，联动
         # 业务库测试按钮绑定信号槽
-        self.getDBBtn_1.clicked.connect(lambda: self._action.getComboBoxDB(self._objsDict, 'bus'))
+        #self.getDBBtn_1.clicked.connect(lambda: self._action.getComboBoxDB(self._objsDict, 'bus'))
+        self.getDBBtn_1.clicked.connect(lambda: self.work_1.start())
 
         # 输入框修改初始化下拉框数据
         self.input_1.textChanged.connect(lambda: self._action.initComboBoxDB(self._objsDict, 'bus'))
@@ -124,3 +131,24 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI):
         self.input_8.textChanged.connect(lambda: self._action.initComboBoxDB(self._objsDict, 'his'))
         self.input_9.textChanged.connect(lambda: self._action.initComboBoxDB(self._objsDict, 'his'))
         self.input_10.textChanged.connect(lambda: self._action.initComboBoxDB(self._objsDict, 'his'))
+
+
+    def triggerSlot(self):
+        print('slot')
+        print('over')
+
+
+# 定义线程
+class WorkThread(QtCore.QThread):
+    trigger = QtCore.pyqtSignal()
+    def __init__(self, data, type, parent=None):
+        super().__init__()
+        self.type = type
+        self.data = data
+
+    def run(self):
+        print(self.type)
+        # 等待5秒后，给触发信号，并传递test
+        re = TraceActions().getComboBoxDB(self.data, 'bus')
+        print(type(re))
+        self.trigger.emit()

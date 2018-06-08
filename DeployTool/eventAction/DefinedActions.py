@@ -12,6 +12,7 @@ class TraceActions(object):
 
     # 获得数据库的类方法,可使用@classmethod修饰
     def getComboBoxDB(self, objDict, group):
+        print('group:', group)
 
         ip = objDict.getObjTextByName('input_1') if (group == 'bus') else objDict.getObjTextByName('input_7')
         port = objDict.getObjTextByName('input_2') if (group == 'bus') else objDict.getObjTextByName('input_8')
@@ -26,11 +27,8 @@ class TraceActions(object):
                 reslist = ms.ExecQuery(
                     "SELECT name FROM  master..sysdatabases WHERE name NOT IN ( 'master', 'model', 'msdb', 'tempdb', 'northwind','pubs','ReportServer','ReportServerTempDB')")
             except:
-                Util.mesInfomation(objDict.getWidgetObj(), '数据库连接信息不正确')
-            if (reslist):
-                dbCb.clear()
-                for i in reslist:
-                    dbCb.addItem(i[0])
+                return False
+            return reslist
 
     # 清空下拉框选择
     # 通过group判断业务库、历史库
