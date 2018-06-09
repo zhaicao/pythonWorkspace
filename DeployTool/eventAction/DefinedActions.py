@@ -11,7 +11,7 @@ import copy
 class TraceActions(object):
 
     # 获得数据库的类方法,可使用@classmethod修饰
-    def getComboBoxDB(self, dbInfo):
+    def getDBList(self, dbInfo):
 
         if (dbInfo['ip'] and dbInfo['port'] and dbInfo['user'] and dbInfo['pwd']):
             try:

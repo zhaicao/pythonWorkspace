@@ -20,7 +20,7 @@ class TraceGetDBThread(QtCore.QThread):
 
     # 执行线程
     def run(self):
-        result = TraceActions().getComboBoxDB(self.dbInfo)
+        result = TraceActions().getDBList(self.dbInfo)
         # 执行完返回信号
         self.trigger.emit(result, self.cbObj, self.WidgetObj)
         self.quit()
