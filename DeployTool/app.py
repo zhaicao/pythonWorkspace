@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 # 程序入口
 
@@ -28,7 +29,7 @@ class QWidget(QtWidgets.QWidget):
 
 if __name__ == '__main__':
         app = QtWidgets.QApplication(sys.argv)
-        #定义为重写后的QWidget
+        #实例化重写后的QWidget
         w = QWidget()
         ui = TraceMainWidget()
         ui.setupUi(w)

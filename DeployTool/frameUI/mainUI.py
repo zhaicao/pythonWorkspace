@@ -81,23 +81,27 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI):
         self._action = TraceActions()
         # 初始化槽函数
         self._solot = TraceSolot()
-        # 实例化线程
-        self.work_1 = WorkThread(data = self._objsDict, type = 'Btn_1')
-        self.work_1.trigger.connect(self.triggerSlot)
-        # 实例化线程
-        #self.work_2 = WorkThread(data = self._objsDict,type = 'Btn_2')
+
 
 
     # 控件信号
     def connectSignal(self, mainWidget):
         # 绑定切换页签的信号槽
-        self.tabWidget.currentChanged.connect(lambda: self._solot.buttonChange(self.tabWidget, self.confirmBtn, self.copyDepConf, self.copyManConf))
+        self.tabWidget.currentChanged.connect(
+            lambda: self._solot.buttonChange(self.tabWidget, self.confirmBtn, self.copyDepConf, self.copyManConf))
         # 定义Next按钮信号槽
-        self.confirmBtn.clicked.connect(lambda: self._solot.nextClicked(mainWidget, self.tabWidget, self.confirmBtn, self.copyDepConf, self.copyManConf, self.deployConfItem, self.manifestConfItem, self._objsDict))
+        self.confirmBtn.clicked.connect(
+            lambda: self._solot.nextClicked(mainWidget, self.tabWidget, self.confirmBtn, self.copyDepConf,
+                                            self.copyManConf, self.deployConfItem, self.manifestConfItem,
+                                            self._objsDict))
         # 定义复制部署按钮信号槽
-        self.copyDepConf.clicked.connect(lambda: self._solot.copyConfClipboard(mainWidget, 'deploy', self.deployConfItem, self.manifestConfItem, self._objsDict))
+        self.copyDepConf.clicked.connect(
+            lambda: self._solot.copyConfClipboard(mainWidget, 'deploy', self.deployConfItem, self.manifestConfItem,
+                                                  self._objsDict))
         # 定义复制定制按钮信号槽
-        self.copyManConf.clicked.connect(lambda: self._solot.copyConfClipboard(mainWidget, 'manifest', self.deployConfItem, self.manifestConfItem, self._objsDict))
+        self.copyManConf.clicked.connect(
+            lambda: self._solot.copyConfClipboard(mainWidget, 'manifest', self.deployConfItem, self.manifestConfItem,
+                                                  self._objsDict))
         # Cancel按钮信号绑定退出槽函数
         self.cancelBtn.clicked.connect(mainWidget.close)
         # 是否抽历史库checkbox绑定信号槽
@@ -110,45 +114,33 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI):
         self.input_57.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'nifiLogin'))
         # 工艺参数是否支持网络访问checkbox绑定信号槽
         self.input_24.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'ppNet'))
-
         # 获取业务库，联动
         # 业务库测试按钮绑定信号槽
-        #self.getDBBtn_1.clicked.connect(lambda: self._action.getComboBoxDB(self._objsDict, 'bus'))
-        self.getDBBtn_1.clicked.connect(lambda: self.work_1.start())
-
+        self.getDBBtn_1.clicked.connect(lambda: self._solot.setDBNameList(mainWidget,
+                                                                          {
+                                                                              'ip': self.input_1.text(),
+                                                                              'port': self.input_2.text(),
+                                                                              'user': self.input_3.text(),
+                                                                              'pwd': self.input_4.text(),
+                                                                          },
+                                                                          self.input_5))
         # 输入框修改初始化下拉框数据
-        self.input_1.textChanged.connect(lambda: self._action.initComboBoxDB(self._objsDict, 'bus'))
-        self.input_2.textChanged.connect(lambda: self._action.initComboBoxDB(self._objsDict, 'bus'))
-        self.input_3.textChanged.connect(lambda: self._action.initComboBoxDB(self._objsDict, 'bus'))
-        self.input_4.textChanged.connect(lambda: self._action.initComboBoxDB(self._objsDict, 'bus'))
-
+        self.input_1.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_5, '请选择业务库'))
+        self.input_2.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_5, '请选择业务库'))
+        self.input_3.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_5, '请选择业务库'))
+        self.input_4.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_5, '请选择业务库'))
         # 获取历史库，联动
         # 历史库测试绑定信号槽
-        self.getDBBtn_2.clicked.connect(lambda: self._action.getComboBoxDB(self._objsDict, 'his'))
-
+        self.getDBBtn_2.clicked.connect(lambda: self._solot.setDBNameList(mainWidget,
+                                                                          {
+                                                                              'ip': self.input_7.text(),
+                                                                              'port': self.input_8.text(),
+                                                                              'user': self.input_9.text(),
+                                                                              'pwd': self.input_10.text(),
+                                                                          },
+                                                                          self.input_11))
         # 输入框修改初始化下拉框数据
-        self.input_7.textChanged.connect(lambda: self._action.initComboBoxDB(self._objsDict, 'his'))
-        self.input_8.textChanged.connect(lambda: self._action.initComboBoxDB(self._objsDict, 'his'))
-        self.input_9.textChanged.connect(lambda: self._action.initComboBoxDB(self._objsDict, 'his'))
-        self.input_10.textChanged.connect(lambda: self._action.initComboBoxDB(self._objsDict, 'his'))
-
-
-    def triggerSlot(self):
-        print('slot')
-        print('over')
-
-
-# 定义线程
-class WorkThread(QtCore.QThread):
-    trigger = QtCore.pyqtSignal()
-    def __init__(self, data, type, parent=None):
-        super().__init__()
-        self.type = type
-        self.data = data
-
-    def run(self):
-        print(self.type)
-        # 等待5秒后，给触发信号，并传递test
-        re = TraceActions().getComboBoxDB(self.data, 'bus')
-        print(type(re))
-        self.trigger.emit()
+        self.input_7.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_11, '请选择历史库'))
+        self.input_8.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_11, '请选择历史库'))
+        self.input_9.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_11, '请选择历史库'))
+        self.input_10.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_11, '请选择历史库'))

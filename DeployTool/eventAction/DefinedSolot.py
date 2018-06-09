@@ -3,9 +3,11 @@
 # 定义控件信号所有的槽函数
 
 __author__='zhaicao'
-from PyQt5.QtWidgets import QApplication
+
 from eventAction.DefinedActions import TraceActions
 from eventAction.Utils import  Util
+from eventAction.DefinedThread import TraceGetDBThread
+
 
 class TraceSolot(object):
     def __init__(self):
@@ -88,4 +90,15 @@ class TraceSolot(object):
             Util.mesInfomation(mainWidgetObj, '复制成功')
         else:
             print('复制类型不存在')
+
+
+    # 设置下拉框数据库
+    def setDBNameList(self, mainWidgetObj, dbInfo, cbObj):
+        # 实例化线程
+        self.getDbThread = TraceGetDBThread(WidgetObj=mainWidgetObj, dbInfo=dbInfo, cbObj=cbObj)
+        # 线程执行完毕绑定信号槽
+        self.getDbThread.trigger.connect(self._action.setComboBoxDB)
+        # 开始线程
+        self.getDbThread.start()
+
 
