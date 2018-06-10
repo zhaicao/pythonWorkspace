@@ -30,7 +30,7 @@ class TraceActions(object):
         if dataList[0] == 'Error':
             Util.mesInfomation(WidgetObj, '数据库信息不正确')
         elif dataList[0] == 'None':
-            cbObj.clear()
+            Util.mesInfomation(WidgetObj, '请完善数据库连接信息')
         else:
             cbObj.clear()
             for i in dataList:
