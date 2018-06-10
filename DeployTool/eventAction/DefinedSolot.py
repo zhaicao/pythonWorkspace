@@ -101,4 +101,3 @@ class TraceSolot(object):
         # 开始线程
         self.getDbThread.start()
 
-

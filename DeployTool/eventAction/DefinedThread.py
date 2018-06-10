@@ -23,4 +23,3 @@ class TraceGetDBThread(QtCore.QThread):
         result = TraceActions().getDBList(self.dbInfo)
         # 执行完返回信号
         self.trigger.emit(result, self.cbObj, self.WidgetObj)
-        self.quit()

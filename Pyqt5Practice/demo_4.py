@@ -15,19 +15,11 @@ class simple(QWidget):
         self.show()
 
     def closeEvent(self, event):
-        mesbox = QMessageBox(self)
-        mesbox.setWindowTitle('提示')
-        okBtn = mesbox.addButton('是', QMessageBox.AcceptRole)
-        noBtn = mesbox.addButton('否', QMessageBox.RejectRole)
-        mesbox.setText('确定要退出吗？')
-        mesbox.exec_()
-        #reply = QMessageBox.question(self, '提示', '确定要退出吗？', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-        # reply = QMessageBox.information(self, '提示', '确定要退出吗？')
-        # okBtn = QPushButton('是',self)
-        # noBtn = QPushButton('否',self)
-        #     event.accept()
-        # else:
-        #     event.ignore()
+        reply = QMessageBox.question(self, '提示', '确定要退出吗？', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
 
 class simple1(QWidget):
     def __init__(self):
