@@ -140,8 +140,7 @@ class Util(object):
     @classmethod
     def copyClipboardImage(self, image):
         clipboard = QtWidgets.QApplication.clipboard()
-        clipboard.setPixmap(QtGui.QPixmap(os.path.join(
-        os.path.dirname(__file__), image)))
+        clipboard.setPixmap(QtGui.QPixmap(os.path.join(os.path.dirname(__file__), image)))
 
     # 复制HTML至剪贴板
     @classmethod
