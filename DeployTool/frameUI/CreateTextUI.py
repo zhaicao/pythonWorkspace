@@ -170,13 +170,13 @@ class TraceCreateTextUI(TraceItems):
         # 业务库Group
         self.help_1.setToolTip('<b>业务数据库</b>的IP地址及端口，端口默认1433')
         self.help_2.setToolTip('<b>业务数据库</b>的登录账号和密码')
-        self.help_3.setToolTip('点击<b>测试</b>可自动获得数据库列表，若网络不稳定或其他问题，将有3秒左右延迟响应。在列表中选择需要抽取的业务库名')
+        self.help_3.setToolTip('点击<b>测试</b>可自动获得数据库列表，若网络不稳定或其他问题，将有一定的延迟响应。在列表中选择需要抽取的业务库名')
         # 历史库Group
         self.help_4.setToolTip('<b>历史数据库</b>一般指mes_history，存放历史设备事件、状态等数据。'
                                '新上线的环境一般无历史数据，若开启抽取，则需进行配置')
         self.help_5.setToolTip('<b>历史数据库</b>的IP地址及端口，端口默认1433')
         self.help_6.setToolTip('<b>历史数据库</b>的登录账号和密码')
-        self.help_7.setToolTip('点击<b>测试</b>可自动获得数据库列表，若网络不稳定或其他问题，将有3秒左右延迟响应。在列表中选择需要抽取的历史库名')
+        self.help_7.setToolTip('点击<b>测试</b>可自动获得数据库列表，若网络不稳定或其他问题，将有一定的延迟响应。在列表中选择需要抽取的历史库名')
         # BI库Group
         self.help_8.setToolTip('<b>BI数据库</b>的IP地址及端口，端口默认1433')
         self.help_9.setToolTip('<b>BI数据库</b>的登录账号和密码')
