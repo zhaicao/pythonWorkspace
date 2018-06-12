@@ -4,6 +4,7 @@ __author__ = 'zhaicao'
 import sys
 from PyQt5.QtWidgets import QWidget, QApplication, QVBoxLayout, QLCDNumber, QSlider, QPushButton, QMainWindow
 from PyQt5.QtCore import Qt, QObject, pyqtSignal
+from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 
 
 class simple(QWidget):
@@ -77,8 +78,9 @@ class simple_3(QMainWindow):
 #自定义信号
 class Communicate(QObject):
     #定义不带参数的信号
-    closeApp = pyqtSignal()
-
+    mySignal_1 = pyqtSignal()
+    mySignal_2 = pyqtSignal(int)
+    mySignal_3 = pyqtSignal(int, str)
 
 class simple_4(QMainWindow):
     def __init__(self):
@@ -88,16 +90,29 @@ class simple_4(QMainWindow):
     def initUI(self):
         self.c = Communicate()
         #绑定信号和槽函数
-        self.c.closeApp.connect(self.close)
+        self.c.mySignal_1.connect(self.signalCall_1)
+        self.c.mySignal_2.connect(self.signalCall_2)
+        self.c.mySignal_3.connect(self.signalCall_3)
 
         self.setGeometry(300, 300, 300, 200)
         self.setWindowTitle('Event Handler')
         self.show()
 
+    def signalCall_1(self):
+        print('signalCall_1')
+
+    def signalCall_2(self, intVal):
+        print('signalCall_2', intVal)
+
+    def signalCall_3(self, intVal, strVal):
+        print('signalCall_3', intVal, strVal)
+
     #定义鼠标点击事件
     def mousePressEvent(self, event):
         #发射自定义的信号，通过emit发射信号
-        self.c.closeApp.emit()
+        self.c.mySignal_1.emit()
+        self.c.mySignal_2.emit(1)
+        self.c.mySignal_3.emit(2, 'mySignal_3')
 
 
 if __name__ == '__main__':

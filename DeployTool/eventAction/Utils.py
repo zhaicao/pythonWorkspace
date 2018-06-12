@@ -104,11 +104,11 @@ class Util(object):
 
     # classmethod
     @classmethod
-    def writeFile(cls, filepath, fileData):
+    def writeFile(cls, filepath, fileData, connector=':'):
         f = open(filepath, 'w')
         try:
             for i in fileData:
-                f.write('%s: %s' % (str(i['confItem']), str(i['value'])) + '\n')
+                f.write('%s%s %s' % (str(i['confItem']), str(connector), str(i['value'])) + '\n')
         except Exception as e:
             print(e)
             return False
@@ -118,10 +118,10 @@ class Util(object):
 
     # 配置dict转str
     @classmethod
-    def listToStr(cls, confList):
+    def listToStr(cls, confList, connector=':'):
         reStr = ''
         for i in confList:
-            reStr += '%s: %s' % (str(i['confItem']), str(i['value'])) + '\n'
+            reStr += '%s%s %s' % (str(i['confItem']), str(connector), str(i['value'])) + '\n'
         return reStr
     # 获得Win桌面路径
     @classmethod

@@ -130,14 +130,14 @@ class TraceActions(object):
 
 
     # 保存部署配置文件
-    def saveConfItemsFile(self, widgetObj, configItem, title, fileType, defaultFilename, defaultPath = Util.getWinDesktop()):
+    def saveConfItemsFile(self, widgetObj, configItem, title, fileType, defaultFilename, connector = ":", defaultPath = Util.getWinDesktop()):
         deployFile = QtWidgets.QFileDialog.getSaveFileName(widgetObj,
                                                            title,
                                                            defaultPath + '\\' + defaultFilename,
                                                            fileType)
 
         if (deployFile[0]):
-            if( not Util.writeFile(deployFile[0], configItem) ):
+            if( not Util.writeFile(deployFile[0], configItem, connector) ):
                 Util.mesInfomation(widgetObj, '配置文件写入异常')
                 return False
             return True

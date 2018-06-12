@@ -68,7 +68,7 @@ class TraceSolot(object):
                 Util.mesInfomation(mainWidgetObj, '部署配置文件保存成功，请选择工厂定制文件保存路径')
                 # 保存工厂定制文件
                 if not self._action.saveConfItemsFile(mainWidgetObj, manifestList, '请选择工厂定制文件保存路径',
-                                                      'PROPERTIES Files(*.properties)', 'manifest.properties'):
+                                                      'PROPERTIES Files(*.properties)', 'manifest.properties', '='):
                     return
                 Util.mesInfomation(mainWidgetObj, '保存成功')
 
@@ -86,7 +86,7 @@ class TraceSolot(object):
         elif type == 'manifest':
             manifestItems = self._action.getManifestConfValue(manifestItems, deployItems, objsDict)
             # 获得配置写入到系统剪贴板中
-            Util.copyClipboardText(Util.listToStr(manifestItems))
+            Util.copyClipboardText(Util.listToStr(manifestItems, '='))
             Util.mesInfomation(mainWidgetObj, '复制成功')
         else:
             print('复制类型不存在')
