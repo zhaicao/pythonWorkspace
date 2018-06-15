@@ -49,16 +49,16 @@ class TraceActions(object):
         sender = obj.sender()
         state = sender.isChecked()
         if(group == 'his' ):
-            nameList = ('input_7', 'input_8', 'input_9', 'input_10', 'input_11', 'getDBBtn_2')
+            nameList = ('dep_input_7', 'dep_input_8', 'dep_input_9', 'dep_input_10', 'dep_input_11', 'getDBBtn_2')
         elif( group == 'pp' ):
-            nameList = ('input_24', 'input_25', 'input_26', 'input_27', 'input_28', 'input_29', 'input_30', 'input_31', 'input_32',
-                        'input_33', 'input_34', 'input_35', 'input_36', 'input_37', 'input_38', 'input_53')
+            nameList = ('dep_input_25', 'dep_input_26', 'dep_input_27', 'dep_input_28', 'dep_input_29', 'dep_input_30', 'dep_input_31', 'dep_input_32',
+                        'dep_input_33', 'dep_input_34', 'dep_input_49')
         elif( group == 'login' ):
-            nameList = ('input_50', 'input_51', 'input_52')
+            nameList = ('dep_input_46', 'dep_input_47', 'dep_input_48')
         elif (group == 'nifiLogin'):
-            nameList = ('input_58', 'input_59')
+            nameList = ('dep_input_54', 'dep_input_55')
         elif (group == 'ppNet'):
-            nameList = ('input_25', 'input_26', 'input_27', 'input_28')
+            nameList = ('dep_input_26', 'dep_input_27', 'dep_input_28', 'dep_input_29')
         else:
             nameList = ()
         for name in nameList:
@@ -66,12 +66,12 @@ class TraceActions(object):
 
     # 检查数据库配置
     def saveConfStep_1(self, objDict):
-        item = ['input_1', 'input_2', 'input_3', 'input_4', 'input_5',
-                'input_12', 'input_13', 'input_14', 'input_15', 'input_16', 'input_17', 'input_18',
-                'input_19', 'input_20', 'input_21', 'input_22', 'input_23']
-        hisItem = ['input_7', 'input_8', 'input_9', 'input_10', 'input_11']
+        item = ['dep_input_1', 'dep_input_2', 'dep_input_3', 'dep_input_4', 'dep_input_5',
+                'dep_input_12', 'dep_input_13', 'dep_input_14', 'dep_input_15', 'dep_input_16', 'dep_input_17', 'dep_input_18',
+                'dep_input_19', 'dep_input_20', 'dep_input_21', 'dep_input_22', 'dep_input_23']
+        hisItem = ['dep_input_7', 'dep_input_8', 'dep_input_9', 'dep_input_10', 'dep_input_11']
         # 判断历史库是否启用
-        if (objDict.getObjTextByName('input_6')):
+        if (objDict.getObjTextByName('dep_input_6')):
             item.extend(hisItem)
 
         for i in item:
@@ -82,13 +82,12 @@ class TraceActions(object):
 
     # 检查工艺参数
     def saveConfStep_2(self, objDict):
-        ppEnable, ppNetEnable = objDict.getObjTextByName('input_72'), objDict.getObjTextByName('input_24')
+        ppEnable, ppNetEnable = objDict.getObjTextByName('dep_input_24'), objDict.getObjTextByName('dep_input_25')
         item = []
         if ( ppNetEnable and ppEnable):
-            item.extend(['input_25', 'input_26', 'input_27', 'input_28'])
+            item.extend(['dep_input_26', 'dep_input_27', 'dep_input_28', 'dep_input_29'])
         if ( ppEnable ):
-            item.extend(['input_29', 'input_30', 'input_31', 'input_32', 'input_33', 'input_34', 'input_35',
-                    'input_36', 'input_37', 'input_38'])
+            item.extend(['dep_input_30', 'dep_input_31', 'dep_input_32', 'dep_input_33', 'dep_input_34'])
         for i in item:
             text = objDict.getObjTextByName(i)
             if text.strip() == '':
@@ -97,9 +96,9 @@ class TraceActions(object):
 
     # 检查部署配置
     def saveConfStep_3(self, objDict):
-        item = ['input_39', 'input_40', 'input_41',
-                'input_42', 'input_43', 'input_44',
-                'input_45', 'input_46', 'input_47']
+        item = ['dep_input_35', 'dep_input_36', 'dep_input_37',
+                'dep_input_38', 'dep_input_39', 'dep_input_40',
+                'dep_input_41', 'dep_input_42', 'dep_input_43']
         for i in item:
             text = objDict.getObjTextByName(i)
             if text.strip() == '':
@@ -108,18 +107,18 @@ class TraceActions(object):
 
     # 检查系统配置
     def saveConfStep_4(self, objDict):
-        item = ['input_48', 'input_54','input_55', 'input_56']
-        loginItem = ['input_50', 'input_51', 'input_52']
-        nifiLoginItem = ['input_59', 'input_58']
-        ppItem = ['input_53']
+        item = ['dep_input_44', 'dep_input_50','dep_input_51', 'dep_input_52']
+        loginItem = ['dep_input_46', 'dep_input_47', 'dep_input_48']
+        nifiLoginItem = ['dep_input_54', 'dep_input_55']
+        ppItem = ['dep_input_49']
         # 判断单点登录是否启用
-        if (objDict.getObjTextByName('input_49')):
+        if (objDict.getObjTextByName('dep_input_45')):
             item.extend(loginItem)
         # 判断nifi登录是否启用
-        if (objDict.getObjTextByName('input_57')):
+        if (objDict.getObjTextByName('dep_input_53')):
             item.extend(nifiLoginItem)
         # 判断工艺参数是否启用
-        if (objDict.getObjTextByName('input_72')):
+        if (objDict.getObjTextByName('dep_input_24')):
             item.extend(ppItem)
 
         for i in item:
@@ -150,23 +149,23 @@ class TraceActions(object):
         controls.pop('getDBBtn_1')
         controls.pop('getDBBtn_2')
         exceptItems = []
-        hisEnable, ppEnable, ppNetEnable, loginEnable, EtlLoginEnable = objDict.getObjTextByName('input_6'), \
-                                                                        objDict.getObjTextByName('input_72'),\
-                                                                        objDict.getObjTextByName('input_24'),\
-                                                                        objDict.getObjTextByName('input_49'),\
-                                                                        objDict.getObjTextByName('input_57')
+        hisEnable, ppEnable, ppNetEnable, loginEnable, EtlLoginEnable = objDict.getObjTextByName('dep_input_6'), \
+                                                                        objDict.getObjTextByName('dep_input_24'),\
+                                                                        objDict.getObjTextByName('dep_input_25'),\
+                                                                        objDict.getObjTextByName('dep_input_45'),\
+                                                                        objDict.getObjTextByName('dep_input_53')
         # 判断是否存在不需要的项，统计加到exceptControls中
         if (not hisEnable):
-            exceptItems.extend(['input_7', 'input_8', 'input_9', 'input_10', 'input_11'])
+            exceptItems.extend(['dep_input_7', 'dep_input_8', 'dep_input_9', 'dep_input_10', 'dep_input_11'])
         if (not ppEnable):
-            exceptItems.extend(['input_24', 'input_25', 'input_26', 'input_27', 'input_28', 'input_29', 'input_30', 'input_31',
-                                   'input_32', 'input_33', 'input_34', 'input_35', 'input_36', 'input_37', 'input_38', 'input_53'])
+            exceptItems.extend(['dep_input_25', 'dep_input_26', 'dep_input_27', 'dep_input_28', 'dep_input_29', 'dep_input_30', 'dep_input_31', 'dep_input_32',
+                                   'dep_input_33', 'dep_input_34', 'dep_input_49'])
         if (not loginEnable):
-            exceptItems.extend(['input_50', 'input_51', 'input_52'])
+            exceptItems.extend(['dep_input_46', 'dep_input_47', 'dep_input_48'])
         if (not EtlLoginEnable):
-            exceptItems.extend(['input_58', 'input_59'])
+            exceptItems.extend(['dep_input_54', 'dep_input_55'])
         if (not ppNetEnable and ppEnable):
-            exceptItems.extend(['input_25', 'input_26','input_27','input_28'])
+            exceptItems.extend(['dep_input_26', 'dep_input_27','dep_input_28','dep_input_29'])
         for i, k in controls.items():
             obj = objDict.getObjByName(i)
             if (i not in exceptItems):
@@ -176,10 +175,8 @@ class TraceActions(object):
                     if text.strip() == '' or text == '请选择业务库' or text == '请选择历史库':
                         return False
                     else:
-                        # 为工艺参数、抽取频率加单位
-                        if( i == 'input_37' or i == 'input_38'):
-                            text +='MB'
-                        if( i == 'input_56' ):
+                        # 抽取频率加单位
+                        if( i == 'dep_input_56' ):
                             text +=' min'
                         controls[i]['value'] = text
                 else:
@@ -193,10 +190,10 @@ class TraceActions(object):
     # 获得所有工厂定制配置项
     def getManifestConfValue(self, maniConfDict, depConfDict, objDict):
         controls = copy.deepcopy(maniConfDict)
-        controls['input_72'] = depConfDict['input_72']
-        controls['input_49'] = depConfDict['input_49']
+        controls['dep_input_24'] = depConfDict['dep_input_24']
+        controls['dep_input_45'] = depConfDict['dep_input_45']
         for i in controls:
-            if i == 'input_72' or i == 'input_49':
+            if i == 'dep_input_24' or i == 'dep_input_45':
                 controls[i]['value'] = str.lower(str(objDict.getObjTextByName(i)))
             else:
                 controls[i]['value'] = str.lower(str(objDict.getObjBoolByName(i)))

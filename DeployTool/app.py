@@ -15,7 +15,7 @@ import decimal
 
 
 #对QWidget重写方法
-class QWidget(QtWidgets.QWidget):
+class QMainWindow(QtWidgets.QMainWindow):
     def __init__(self):
             super().__init__()
 
@@ -30,8 +30,8 @@ class QWidget(QtWidgets.QWidget):
 if __name__ == '__main__':
         app = QtWidgets.QApplication(sys.argv)
         #实例化重写后的QWidget
-        w = QWidget()
+        m = QMainWindow()
         ui = TraceMainWidget()
-        ui.setupUi(w)
-        w.show()
+        ui.setupUi(m)
+        m.show()
         sys.exit(app.exec_())

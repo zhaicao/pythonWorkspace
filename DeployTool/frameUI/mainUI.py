@@ -1,146 +1,146 @@
 # -*- coding: utf-8 -*-
 
-# 窗体主函数
-
 __author__='zhaicao'
 
-import time
 from PyQt5 import QtCore, QtGui, QtWidgets
 from frameUI.CreateControls import TraceControlsUI
 from frameUI.CreateTextUI import TraceCreateTextUI
+from frameUI.MainData import TraceObjItems
 from eventAction.DefinedActions import TraceActions
 from eventAction.DefinedSolot import TraceSolot
 from eventAction.Utils import ObjRepository
-# 引入图标资源文件
 from frameUI import resoure_rc
 
-class TraceMainWidget(TraceControlsUI, TraceCreateTextUI):
-    # 初始化窗口
-    def setupUi(self, mainWidget):
-        #定义Logo和帮助图标
-        logoIcon = QtGui.QIcon()
-        logoIcon.addPixmap(QtGui.QPixmap(":/icon/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        self.helpIcon = QtGui.QPixmap(":/icon/help.png")
-
-        mainWidget.setWindowTitle("追溯分析系统部署工具 v1.0")
-        mainWidget.setObjectName("mainWidget")
-        mainWidget.resize(500, 640)
-        mainWidget.setWindowIcon(logoIcon)
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(mainWidget)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.verticalLayout = QtWidgets.QVBoxLayout()
+class TraceMainWidget(TraceControlsUI, TraceCreateTextUI, TraceObjItems):
+    def setupUi(self, MainWindow):
+        # 主窗口设置
+        MainWindow.setWindowTitle("追溯分析部署配置工具")
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(500, 660)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icon/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
+        MainWindow.setStyleSheet(".QGroupBox {border-radius: 3px;border: 1px solid #BFBFBF;}")
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
+        self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
+        self.stackedWidget.setObjectName("stackedWidget")
+        self.verticalLayout.addWidget(self.stackedWidget)
+        MainWindow.setCentralWidget(self.centralwidget)
+        # 设置菜单
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 500, 23))
+        self.menubar.setObjectName("menubar")
+        # 部署菜单
+        self.menuDeploy = QtWidgets.QMenu(self.menubar)
+        self.menuDeploy.setObjectName("menuDeploy")
+        # 更新菜单
+        self.menuUpdate = QtWidgets.QMenu(self.menubar)
+        self.menuUpdate.setObjectName("menuUpdate")
+        MainWindow.setMenuBar(self.menubar)
+        # 部署菜单子菜单
+        self.firstDeploy = QtWidgets.QAction(MainWindow)
+        self.firstDeploy.setObjectName("firstDeploy")
+        self.menuDeploy.addAction(self.firstDeploy)
+        # 升级菜单子菜单
+        self.updateDB = QtWidgets.QAction(MainWindow)
+        self.updateDB.setObjectName("updateDB")
+        self.menuUpdate.addAction(self.updateDB)
 
-        self.tabWidget = QtWidgets.QTabWidget(mainWidget)
-        self.tabWidget.setObjectName("tabWidget")
+        self.updateNifi = QtWidgets.QAction(MainWindow)
+        self.updateNifi.setObjectName("updateNifi")
+        self.menuUpdate.addAction(self.updateNifi)
 
-        #调用父类生成tabWidget中的控件
-        super().createTabControls(self.tabWidget)
+        self.menubar.addAction(self.menuDeploy.menuAction())
+        self.menubar.addAction(self.menuUpdate.menuAction())
+        # 生成控件
+        super().initControls(self.stackedWidget)
 
-        self.verticalLayout.addWidget(self.tabWidget)
-        self.verticalLayout_2.addLayout(self.verticalLayout)
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem)
-        # 复制部署配置
-        self.copyDepConf = QtWidgets.QPushButton(mainWidget)
-        self.copyDepConf.setObjectName("copyDepConf")
-        self.horizontalLayout.addWidget(self.copyDepConf)
-        self.copyDepConf.hide()
-        # 复制工厂定制
-        self.copyManConf = QtWidgets.QPushButton(mainWidget)
-        self.copyManConf.setObjectName("copyManConf")
-        self.horizontalLayout.addWidget(self.copyManConf)
-        self.copyManConf.hide()
-        # Next&finish按钮
-        self.confirmBtn = QtWidgets.QPushButton(mainWidget)
-        self.confirmBtn.setObjectName("confirmBtn")
-        self.horizontalLayout.addWidget(self.confirmBtn)
-        # 取消按钮
-        self.cancelBtn = QtWidgets.QPushButton(mainWidget)
-        self.cancelBtn.setObjectName("cancelBtn")
-        self.horizontalLayout.addWidget(self.cancelBtn)
-
-        self.horizontalLayout.setStretch(0, 4)
-        self.horizontalLayout.setStretch(3, 1)
-        self.horizontalLayout.setStretch(4, 1)
-        self.verticalLayout_2.addLayout(self.horizontalLayout)
-
+        self.stackedWidget.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(mainWidget)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        # 生成控件文字显示
+        super().initControlTexts()
+        # 生成控件名和对象关联dict
+        super().initObjItems()
 
-        # 初始化控件文字、帮助提示和默认值
-        super().createTabTexts()
         # 初始化控件信号槽
-        self.connectSignal(mainWidget)
-
+        self.connectSignal(MainWindow)
         # 初始化控件库
-        self._objsDict = ObjRepository(mainWidget, self.deployConfItem, self.manifestConfItem)
+        self._objsDict = ObjRepository(MainWindow, self.deployConfItem, self.manifestConfItem)
         # 初始化事件
         self._action = TraceActions()
         # 初始化槽函数
         self._solot = TraceSolot()
 
+        self.firstDeploy.triggered.connect(lambda: self.changePage(0))
+        self.updateDB.triggered.connect(lambda: self.changePage(1))
+        self.updateNifi.triggered.connect(lambda: self.changePage(2))
 
+    def changePage(self, index):
+            self.stackedWidget.setCurrentIndex(index)
 
     # 控件信号
     def connectSignal(self, mainWidget):
         # 绑定切换页签的信号槽
         self.tabWidget.currentChanged.connect(
-            lambda: self._solot.buttonChange(self.tabWidget, self.confirmBtn, self.copyDepConf, self.copyManConf))
+            lambda: self._solot.buttonChange(self.tabWidget, self.dep_confirmBtn, self.dep_copyDepBtn, self.dep_copyManBtn))
         # 定义Next按钮信号槽
-        self.confirmBtn.clicked.connect(
-            lambda: self._solot.nextClicked(mainWidget, self.tabWidget, self.confirmBtn, self.copyDepConf,
-                                            self.copyManConf, self.deployConfItem, self.manifestConfItem,
+        self.dep_confirmBtn.clicked.connect(
+            lambda: self._solot.nextClicked(mainWidget, self.tabWidget, self.dep_confirmBtn, self.dep_copyDepBtn,
+                                            self.dep_copyManBtn, self.deployConfItem, self.manifestConfItem,
                                             self._objsDict))
         # 定义复制部署按钮信号槽
-        self.copyDepConf.clicked.connect(
+        self.dep_copyDepBtn.clicked.connect(
             lambda: self._solot.copyConfClipboard(mainWidget, 'deploy', self.deployConfItem, self.manifestConfItem,
                                                   self._objsDict))
         # 定义复制定制按钮信号槽
-        self.copyManConf.clicked.connect(
+        self.dep_copyManBtn.clicked.connect(
             lambda: self._solot.copyConfClipboard(mainWidget, 'manifest', self.deployConfItem, self.manifestConfItem,
                                                   self._objsDict))
         # Cancel按钮信号绑定退出槽函数
-        self.cancelBtn.clicked.connect(mainWidget.close)
+        self.dep_cancelBtn.clicked.connect(mainWidget.close)
         # 是否抽历史库checkbox绑定信号槽
-        self.input_6.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'his'))
+        self.dep_input_6.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'his'))
         # 是否抽工艺参数checkbox绑定信号槽
-        self.input_72.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'pp'))
-        # 是否启用单点登录绑定信号槽
-        self.input_49.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'login'))
-        # 是否启用Nifi登录绑定信号槽
-        self.input_57.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'nifiLogin'))
+        self.dep_input_24.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'pp'))
         # 工艺参数是否支持网络访问checkbox绑定信号槽
-        self.input_24.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'ppNet'))
+        self.dep_input_25.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'ppNet'))
+        # 是否启用单点登录绑定信号槽
+        self.dep_input_45.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'login'))
+        # 是否启用Nifi登录绑定信号槽
+        self.dep_input_53.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'nifiLogin'))
+
         # 获取业务库，联动
         # 业务库测试按钮绑定信号槽
         self.getDBBtn_1.clicked.connect(lambda: self._solot.setDBNameList(mainWidget,
                                                                           {
-                                                                              'ip': self.input_1.text(),
-                                                                              'port': self.input_2.text(),
-                                                                              'user': self.input_3.text(),
-                                                                              'pwd': self.input_4.text(),
+                                                                              'ip': self.dep_input_1.text(),
+                                                                              'port': self.dep_input_2.text(),
+                                                                              'user': self.dep_input_3.text(),
+                                                                              'pwd': self.dep_input_4.text(),
                                                                           },
-                                                                          self.input_5))
+                                                                          self.dep_input_5))
         # 输入框修改初始化下拉框数据
-        self.input_1.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_5, '请选择业务库'))
-        self.input_2.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_5, '请选择业务库'))
-        self.input_3.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_5, '请选择业务库'))
-        self.input_4.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_5, '请选择业务库'))
+        self.dep_input_1.textChanged.connect(lambda: self._action.initComboBoxDB(self.dep_input_5, '请选择业务库'))
+        self.dep_input_2.textChanged.connect(lambda: self._action.initComboBoxDB(self.dep_input_5, '请选择业务库'))
+        self.dep_input_3.textChanged.connect(lambda: self._action.initComboBoxDB(self.dep_input_5, '请选择业务库'))
+        self.dep_input_4.textChanged.connect(lambda: self._action.initComboBoxDB(self.dep_input_5, '请选择业务库'))
         # 获取历史库，联动
         # 历史库测试绑定信号槽
         self.getDBBtn_2.clicked.connect(lambda: self._solot.setDBNameList(mainWidget,
                                                                           {
-                                                                              'ip': self.input_7.text(),
-                                                                              'port': self.input_8.text(),
-                                                                              'user': self.input_9.text(),
-                                                                              'pwd': self.input_10.text(),
+                                                                              'ip': self.dep_input_7.text(),
+                                                                              'port': self.dep_input_8.text(),
+                                                                              'user': self.dep_input_9.text(),
+                                                                              'pwd': self.dep_input_10.text(),
                                                                           },
-                                                                          self.input_11))
+                                                                          self.dep_input_11))
         # 输入框修改初始化下拉框数据
-        self.input_7.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_11, '请选择历史库'))
-        self.input_8.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_11, '请选择历史库'))
-        self.input_9.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_11, '请选择历史库'))
-        self.input_10.textChanged.connect(lambda: self._action.initComboBoxDB(self.input_11, '请选择历史库'))
+        self.dep_input_7.textChanged.connect(lambda: self._action.initComboBoxDB(self.dep_input_11, '请选择历史库'))
+        self.dep_input_8.textChanged.connect(lambda: self._action.initComboBoxDB(self.dep_input_11, '请选择历史库'))
+        self.dep_input_9.textChanged.connect(lambda: self._action.initComboBoxDB(self.dep_input_11, '请选择历史库'))
+        self.dep_input_10.textChanged.connect(lambda: self._action.initComboBoxDB(self.dep_input_11, '请选择历史库'))
