@@ -85,6 +85,11 @@ class ObjRepository(object):
         else:
             return None
 
+    def setObjTextByName(self, objName, text):
+        obj = self.__widgetObj.findChild(self.__objDict[objName]['objType'], objName)
+        if isinstance(obj, QtWidgets.QLineEdit):
+            obj.setText(text)
+
 # 基础公用类
 class Util(object):
     # 提示确认消息，自定义消息框

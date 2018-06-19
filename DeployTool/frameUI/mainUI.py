@@ -66,25 +66,30 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI, TraceObjItems):
         super().initControlTexts()
         # 生成控件名和对象关联dict
         super().initObjItems()
-
-        # 初始化控件信号槽
-        self.connectSignal(MainWindow)
+        # 初始化菜单切换信号槽
+        self.connSignalMenu()
+        # 初始化第一个页面控件信号槽
+        self.connSignalPage_1(MainWindow)
+        # 初始化第两个页面控件信号槽
+        self.connSignalPage_2(MainWindow)
+        # 初始化第三个页面控件信号槽
+        self.connSignalPage_3(MainWindow)
         # 初始化控件库
-        self._objsDict = ObjRepository(MainWindow, self.deployConfItem, self.manifestConfItem)
+        self._objsDict = ObjRepository(MainWindow, self.deployConfItem, self.manifestConfItem, self.dbConfItem, self.nifiConfItem)
         # 初始化事件
         self._action = TraceActions()
         # 初始化槽函数
         self._solot = TraceSolot()
 
-        self.firstDeploy.triggered.connect(lambda: self.changePage(0))
-        self.updateDB.triggered.connect(lambda: self.changePage(1))
-        self.updateNifi.triggered.connect(lambda: self.changePage(2))
 
-    def changePage(self, index):
-            self.stackedWidget.setCurrentIndex(index)
+    # 公共信号
+    def connSignalMenu(self):
+        self.firstDeploy.triggered.connect(lambda: self._solot.changeMenuPage(self.stackedWidget, 0))
+        self.updateDB.triggered.connect(lambda: self._solot.changeMenuPage(self.stackedWidget, 1))
+        self.updateNifi.triggered.connect(lambda: self._solot.changeMenuPage(self.stackedWidget, 2))
 
     # 控件信号
-    def connectSignal(self, mainWidget):
+    def connSignalPage_1(self, mainWidget):
         # 绑定切换页签的信号槽
         self.tabWidget.currentChanged.connect(
             lambda: self._solot.buttonChange(self.tabWidget, self.dep_confirmBtn, self.dep_copyDepBtn, self.dep_copyManBtn))
@@ -104,15 +109,15 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI, TraceObjItems):
         # Cancel按钮信号绑定退出槽函数
         self.dep_cancelBtn.clicked.connect(mainWidget.close)
         # 是否抽历史库checkbox绑定信号槽
-        self.dep_input_6.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'his'))
+        self.dep_input_6.stateChanged.connect(lambda: self._solot.cbSetEnabledSlot(self._objsDict, 'his'))
         # 是否抽工艺参数checkbox绑定信号槽
-        self.dep_input_24.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'pp'))
+        self.dep_input_24.stateChanged.connect(lambda: self._solot.cbSetEnabledSlot(self._objsDict, 'pp'))
         # 工艺参数是否支持网络访问checkbox绑定信号槽
-        self.dep_input_25.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'ppNet'))
+        self.dep_input_25.stateChanged.connect(lambda: self._solot.cbSetEnabledSlot(self._objsDict, 'ppNet'))
         # 是否启用单点登录绑定信号槽
-        self.dep_input_45.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'login'))
+        self.dep_input_45.stateChanged.connect(lambda: self._solot.cbSetEnabledSlot(self._objsDict, 'login'))
         # 是否启用Nifi登录绑定信号槽
-        self.dep_input_53.stateChanged.connect(lambda: self._action.cbSetEnabledSlot(self._objsDict, 'nifiLogin'))
+        self.dep_input_53.stateChanged.connect(lambda: self._solot.cbSetEnabledSlot(self._objsDict, 'nifiLogin'))
 
         # 获取业务库，联动
         # 业务库测试按钮绑定信号槽
@@ -144,3 +149,82 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI, TraceObjItems):
         self.dep_input_8.textChanged.connect(lambda: self._action.initComboBoxDB(self.dep_input_11, '请选择历史库'))
         self.dep_input_9.textChanged.connect(lambda: self._action.initComboBoxDB(self.dep_input_11, '请选择历史库'))
         self.dep_input_10.textChanged.connect(lambda: self._action.initComboBoxDB(self.dep_input_11, '请选择历史库'))
+
+    # page_2控件信号
+    def connSignalPage_2(self, mainWidget):
+        # 是否抽取工艺参数
+        self.db_input_11.stateChanged.connect(lambda: self._solot.cbSetEnabledSlot(self._objsDict, 'db_pp'))
+        # 升级DB的信号
+        self.db_comfirmBtn.clicked.connect(lambda: self._solot.createFullDB(mainWidget))
+
+    # page_3控件信号
+    def connSignalPage_3(self, mainWidget):
+        # 是否抽取历史库
+        self.nifi_input_11.stateChanged.connect(lambda: self._solot.cbSetEnabledSlot(self._objsDict, 'nifi_history'))
+        # 是否抽取工艺参数
+        self.nifi_input_17.stateChanged.connect(lambda: self._solot.cbSetEnabledSlot(self._objsDict, 'nifi_pp'))
+        # 是否启用登录
+        self.nifi_input_23.stateChanged.connect(lambda: self._solot.cbSetEnabledSlot(self._objsDict, 'nifi_islogin'))
+        # 业务库试绑定信号槽
+        self.getDBBtn_3.clicked.connect(lambda: self._solot.setDBNameList(mainWidget,
+                                                                          {
+                                                                              'ip': self.nifi_input_1.text(),
+                                                                              'port': self.nifi_input_2.text(),
+                                                                              'user': self.nifi_input_3.text(),
+                                                                              'pwd': self.nifi_input_4.text(),
+                                                                          },
+                                                                          self.nifi_input_5))
+        # 业务库输入框修改初始化下拉框数据
+        self.nifi_input_1.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_5, '请选择业务库'))
+        self.nifi_input_2.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_5, '请选择业务库'))
+        self.nifi_input_3.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_5, '请选择业务库'))
+        self.nifi_input_4.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_5, '请选择业务库'))
+
+        # BI库试绑定信号槽
+        self.getDBBtn_4.clicked.connect(lambda: self._solot.setDBNameList(mainWidget,
+                                                                          {
+                                                                              'ip': self.nifi_input_6.text(),
+                                                                              'port': self.nifi_input_7.text(),
+                                                                              'user': self.nifi_input_8.text(),
+                                                                              'pwd': self.nifi_input_9.text(),
+                                                                          },
+                                                                          self.nifi_input_10))
+        # BI库输入框修改初始化下拉框数据
+        self.nifi_input_6.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_10, '请选择BI库'))
+        self.nifi_input_7.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_10, '请选择BI库'))
+        self.nifi_input_8.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_10, '请选择BI库'))
+        self.nifi_input_9.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_10, '请选择BI库'))
+
+        # 历史库试绑定信号槽
+        self.getDBBtn_5.clicked.connect(lambda: self._solot.setDBNameList(mainWidget,
+                                                                          {
+                                                                              'ip': self.nifi_input_12.text(),
+                                                                              'port': self.nifi_input_13.text(),
+                                                                              'user': self.nifi_input_14.text(),
+                                                                              'pwd': self.nifi_input_15.text(),
+                                                                          },
+                                                                          self.nifi_input_16))
+        # 历史库输入框修改初始化下拉框数据
+        self.nifi_input_12.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_16, '请选择历史库'))
+        self.nifi_input_13.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_16, '请选择历史库'))
+        self.nifi_input_14.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_16, '请选择历史库'))
+        self.nifi_input_15.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_16, '请选择历史库'))
+
+        # 工艺参数试绑定信号槽
+        self.getDBBtn_6.clicked.connect(lambda: self._solot.setDBNameList(mainWidget,
+                                                                          {
+                                                                              'ip': self.nifi_input_18.text(),
+                                                                              'port': self.nifi_input_19.text(),
+                                                                              'user': self.nifi_input_20.text(),
+                                                                              'pwd': self.nifi_input_21.text(),
+                                                                          },
+                                                                          self.nifi_input_22))
+        # 工艺参数输入框修改初始化下拉框数据
+        self.nifi_input_18.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_22, '请选择工艺参数库'))
+        self.nifi_input_19.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_22, '请选择工艺参数库'))
+        self.nifi_input_20.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_22, '请选择工艺参数库'))
+        self.nifi_input_21.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_22, '请选择工艺参数库'))
+        # 选择Nifi模板地址
+        self.getFile.clicked.connect(lambda: self._solot.getNifiTemplate(mainWidget, self._objsDict))
+        # 升级Nifi确定按钮信号
+        self.nifi_confirmBtn.clicked.connect(lambda: self._solot.updateNifiTemplate(mainWidget))

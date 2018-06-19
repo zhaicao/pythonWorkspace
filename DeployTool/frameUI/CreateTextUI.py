@@ -209,6 +209,7 @@ class TraceCreateTextUI(object):
         self.firstDeploy.setText(_translate("MainWindow", "首次部署"))
         self.updateDB.setText(_translate("MainWindow", "数据库"))
         self.updateNifi.setText(_translate("MainWindow", "Nifi"))
+        self.getFile.setText(_translate("MainWindow", "..."))
 
 
     #控件默认值

@@ -43,27 +43,6 @@ class TraceActions(object):
         cbObj.clear()
         cbObj.addItem(cbitem)
 
-    # 设置输入框不可读
-    def cbSetEnabledSlot(self, objDict, group):
-        obj = objDict.getWidgetObj()
-        sender = obj.sender()
-        state = sender.isChecked()
-        if(group == 'his' ):
-            nameList = ('dep_input_7', 'dep_input_8', 'dep_input_9', 'dep_input_10', 'dep_input_11', 'getDBBtn_2')
-        elif( group == 'pp' ):
-            nameList = ('dep_input_25', 'dep_input_26', 'dep_input_27', 'dep_input_28', 'dep_input_29', 'dep_input_30', 'dep_input_31', 'dep_input_32',
-                        'dep_input_33', 'dep_input_34', 'dep_input_49')
-        elif( group == 'login' ):
-            nameList = ('dep_input_46', 'dep_input_47', 'dep_input_48')
-        elif (group == 'nifiLogin'):
-            nameList = ('dep_input_54', 'dep_input_55')
-        elif (group == 'ppNet'):
-            nameList = ('dep_input_26', 'dep_input_27', 'dep_input_28', 'dep_input_29')
-        else:
-            nameList = ()
-        for name in nameList:
-            objDict.setObjEnabled(name, state)
-
     # 检查数据库配置
     def saveConfStep_1(self, objDict):
         item = ['dep_input_1', 'dep_input_2', 'dep_input_3', 'dep_input_4', 'dep_input_5',
@@ -142,6 +121,15 @@ class TraceActions(object):
             return True
         else:
             return False
+
+    # 读取文件路径
+    def getFileFullPath(self, widgetObj, title, fileType, defaultPath = Util.getWinDesktop()):
+        file = QtWidgets.QFileDialog.getOpenFileName(widgetObj,
+                                                     title,
+                                                     defaultPath,
+                                                     fileType)
+
+        return file[0]
 
     # 保存并检查所有的部署配置项到dict中
     def getDeployConfValue(self, confDict, objDict):

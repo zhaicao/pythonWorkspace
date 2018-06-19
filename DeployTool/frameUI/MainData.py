@@ -95,3 +95,57 @@ class TraceObjItems(object):
             'dep_input_62': {'objType': QtWidgets.QComboBox, 'confItem': 'das.custom.linkRepair'},
             'dep_input_63': {'objType': QtWidgets.QComboBox, 'confItem': 'das.custom.isAutoOrderFiltered'}
         }
+        # 数据库Page的配置项
+        self.dbConfItem = {
+            'db_input_1': {'objType': QtWidgets.QLineEdit},
+            'db_input_2': {'objType': QtWidgets.QLineEdit},
+            'db_input_3': {'objType': QtWidgets.QLineEdit},
+            'db_input_4': {'objType': QtWidgets.QLineEdit},
+            'db_input_5': {'objType': QtWidgets.QLineEdit},
+            'db_input_6': {'objType': QtWidgets.QLineEdit},
+            'db_input_7': {'objType': QtWidgets.QLineEdit},
+            'db_input_8': {'objType': QtWidgets.QLineEdit},
+            'db_input_9': {'objType': QtWidgets.QLineEdit},
+            'db_input_10': {'objType': QtWidgets.QLineEdit},
+            'db_input_11': {'objType': QtWidgets.QCheckBox},
+            'db_input_12': {'objType': QtWidgets.QLineEdit},
+            'db_input_13': {'objType': QtWidgets.QLineEdit},
+            'db_input_14': {'objType': QtWidgets.QLineEdit},
+            'db_input_15': {'objType': QtWidgets.QLineEdit},
+            'db_input_16': {'objType': QtWidgets.QLineEdit}
+        }
+        # 定义工厂定制控件类型和名称对应的字典
+        self.nifiConfItem = {
+            'nifi_input_1': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_2': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_3': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_4': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_5': {'objType': QtWidgets.QLineEdit},
+            'getDBBtn_3': {'objType': QtWidgets.QPushButton},
+            'nifi_input_6': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_7': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_8': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_9': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_10': {'objType': QtWidgets.QLineEdit},
+            'getDBBtn_4': {'objType': QtWidgets.QPushButton},
+            'nifi_input_11': {'objType': QtWidgets.QCheckBox},
+            'nifi_input_12': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_13': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_14': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_15': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_16': {'objType': QtWidgets.QComboBox},
+            'getDBBtn_5': {'objType': QtWidgets.QPushButton},
+            'nifi_input_17': {'objType': QtWidgets.QCheckBox},
+            'nifi_input_18': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_19': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_20': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_21': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_22': {'objType': QtWidgets.QComboBox},
+            'getDBBtn_6': {'objType': QtWidgets.QPushButton},
+            'nifi_input_23': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_24': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_25': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_26': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_27': {'objType': QtWidgets.QLineEdit},
+            'nifi_input_28': {'objType': QtWidgets.QLineEdit}
+        }

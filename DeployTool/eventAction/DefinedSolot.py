@@ -13,6 +13,37 @@ class TraceSolot(object):
     def __init__(self):
         self._action = TraceActions()
 
+    # 设置输入框不可读
+    def cbSetEnabledSlot(self, objDict, group):
+        obj = objDict.getWidgetObj()
+        sender = obj.sender()
+        state = sender.isChecked()
+        if (group == 'his'):
+            nameList = ('dep_input_7', 'dep_input_8', 'dep_input_9', 'dep_input_10', 'dep_input_11', 'getDBBtn_2')
+        elif (group == 'pp'):
+            nameList = (
+                'dep_input_25', 'dep_input_26', 'dep_input_27', 'dep_input_28', 'dep_input_29', 'dep_input_30',
+                'dep_input_31', 'dep_input_32',
+                'dep_input_33', 'dep_input_34', 'dep_input_49')
+        elif (group == 'login'):
+            nameList = ('dep_input_46', 'dep_input_47', 'dep_input_48')
+        elif (group == 'nifiLogin'):
+            nameList = ('dep_input_54', 'dep_input_55')
+        elif (group == 'ppNet'):
+            nameList = ('dep_input_26', 'dep_input_27', 'dep_input_28', 'dep_input_29')
+        elif (group == 'db_pp'):
+            nameList = ('db_input_12', 'db_input_13', 'db_input_14', 'db_input_15', 'db_input_16')
+        elif (group == 'nifi_history'):
+            nameList = ('nifi_input_12', 'nifi_input_13', 'nifi_input_14', 'nifi_input_15', 'nifi_input_16', 'getDBBtn_5')
+        elif (group == 'nifi_pp'):
+            nameList = ('nifi_input_18', 'nifi_input_19', 'nifi_input_20', 'nifi_input_21', 'nifi_input_22', 'getDBBtn_6')
+        elif (group == 'nifi_islogin'):
+            nameList = ('nifi_input_26', 'nifi_input_27')
+        else:
+            nameList = ()
+        for name in nameList:
+            objDict.setObjEnabled(name, state)
+
     # 更改Next按钮显示的槽函数
     def buttonChange(self, tabWidgetObj, comfirmBtn, depBtn, manBtn):
         if (tabWidgetObj.currentIndex() > (tabWidgetObj.count() - 2)):
@@ -100,4 +131,22 @@ class TraceSolot(object):
         self.getDbThread.trigger.connect(self._action.setComboBoxDB)
         # 开始线程
         self.getDbThread.start()
+
+    # 切换菜单页面
+    def changeMenuPage(self, sWidgetObj, index):
+        sWidgetObj.setCurrentIndex(index)
+
+    # 获取Nifi模板
+    def getNifiTemplate(self, mainWidgetObj, objsDict):
+        file = self._action.getFileFullPath(mainWidgetObj, 'Nifi抽取模板', 'Xml Files(*.xml)')
+        if file:
+            objsDict.setObjTextByName('nifi_input_28', file)
+
+    # 建立完整的追溯库
+    def createFullDB(self, mainWidgetObj):
+        Util.mesInfomation(mainWidgetObj, 'DB')
+
+    # 更新NIfi模板
+    def updateNifiTemplate(self, mainWidgetObj):
+        Util.mesInfomation(mainWidgetObj, 'Nifi')
 
