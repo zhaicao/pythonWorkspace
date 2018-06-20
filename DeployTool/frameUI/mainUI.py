@@ -227,4 +227,4 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI, TraceObjItems):
         # 选择Nifi模板地址
         self.getFile.clicked.connect(lambda: self._solot.getNifiTemplate(mainWidget, self._objsDict))
         # 升级Nifi确定按钮信号
-        self.nifi_confirmBtn.clicked.connect(lambda: self._solot.updateNifiTemplate(mainWidget))
+        self.nifi_confirmBtn.clicked.connect(lambda: self._solot.updateNifiTemplate(mainWidget, self.nifiConfItem, self._objsDict))

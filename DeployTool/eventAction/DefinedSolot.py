@@ -147,6 +147,14 @@ class TraceSolot(object):
         Util.mesInfomation(mainWidgetObj, 'DB')
 
     # 更新NIfi模板
-    def updateNifiTemplate(self, mainWidgetObj):
-        Util.mesInfomation(mainWidgetObj, 'Nifi')
+    def updateNifiTemplate(self, mainWidgetObj, nifiConfItems, objsDict):
+        nifiList = self._action.getNifiConfValue(nifiConfItems, objsDict)
+        if not nifiList:
+            Util.mesInfomation(mainWidgetObj, '请完善输入\选择项')
+        else:
+            if self._action.updateNifiTemplate(nifiList):
+                Util.mesInfomation(mainWidgetObj, 'Nifi抽取模板更新成功')
+            else:
+                Util.mesInfomation(mainWidgetObj, '更新失败')
+
 

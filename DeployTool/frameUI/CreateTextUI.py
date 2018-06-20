@@ -233,7 +233,6 @@ class TraceCreateTextUI(object):
         self.nifi_input_7.setText(_translate("MainWindow", "1433"))
         self.nifi_input_13.setText(_translate("MainWindow", "1433"))
         self.nifi_input_19.setText(_translate("MainWindow", "1433"))
-        self.nifi_input_25.setText(_translate("MainWindow", "1433"))
 
 
     #帮助显示

@@ -9,6 +9,8 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtCore import Qt
 import winreg
 import os
+import sys
+import webbrowser
 
 # SqlServer访问类
 class MSSQL:
@@ -65,6 +67,7 @@ class ObjRepository(object):
         else:
             return None
 
+    # 获得下拉框bool类型的值，仅支持两个选择的下拉框
     def getObjBoolByName(self, objName):
         obj = self.__widgetObj.findChild(self.__objDict[objName]['objType'], objName)
         return bool(obj.currentIndex())
@@ -154,6 +157,50 @@ class Util(object):
         mimeData.setHtml(html)
         clipboard = QtWidgets.QApplication.clipboard()
         clipboard.setMimeData(mimeData)
+
+    # 打开指定页面
+    # path为空则使用默认浏览器
+    # 若找不到应用浏览器，则打开默认浏览器
+    @classmethod
+    def openUrl(self, url, path=None):
+        if path:
+            chromePath = r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+            if os.path.exists(chromePath):
+                webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chromePath))
+                webbrowser.get('chrome').open(url, new=1, autoraise=True)
+            else:
+                webbrowser.open(url, new=1, autoraise=True)
+        else:
+            webbrowser.open(url, new=1, autoraise=True)
+
+        if path == None:
+            webbrowser.open(url, new=1, autoraise=True)
+        else:
+            chromePath = r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+            if os.path.exists(chromePath):
+                webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chromePath))
+                webbrowser.get('chrome').open(url, new=1, autoraise=True)
+            else:
+                webbrowser.open(url, new=1, autoraise=True)
+
+    # 相对路径转绝对路径
+    # 参数paths: 绝对路径的目录，多参数
+    # 返回绝对路径
+    @classmethod
+    def getAbsPath(self, *paths):
+        if getattr(sys, 'frozen', False):
+            dir = os.path.dirname(sys.executable)
+        elif __file__:
+            dir = os.path.dirname(__file__)
+        return os.path.join(dir, *paths)
+
+    # 日志记录
+    @classmethod
+    def log(self, context):
+        import codecs
+        with codecs.open(self.getAbsPath('log.txt'), 'a', 'gbk') as file:
+            file.write(context)
+            file.write('\n')
 
 
 if __name__ == '__main__':

@@ -7,6 +7,7 @@ __author__='zhaicao'
 from PyQt5 import QtWidgets
 from eventAction.Utils import Util, MSSQL
 import copy
+from Nifi import Nifi
 
 class TraceActions(object):
 
@@ -43,6 +44,19 @@ class TraceActions(object):
         cbObj.clear()
         cbObj.addItem(cbitem)
 
+    # MainData格式的数据转换成key、value格式的dict
+    # exceptKeys是源dict的key，不需要的keys
+    # 仅对有confItem的key的进行转换
+    def mainDataToDict(self, confItemsDict, *exceptKeys):
+        sourceDict = copy.deepcopy(confItemsDict)
+        targetDict = {}
+        for e in exceptKeys:
+            sourceDict.pop(e)
+        for i in list(sourceDict.values()):
+            if 'confItem' in i :
+                targetDict[i['confItem']] = i['value']
+        return targetDict
+
     # 检查数据库配置
     def saveConfStep_1(self, objDict):
         item = ['dep_input_1', 'dep_input_2', 'dep_input_3', 'dep_input_4', 'dep_input_5',
@@ -55,7 +69,7 @@ class TraceActions(object):
 
         for i in item:
             text = objDict.getObjTextByName(i)
-            if text.strip() == '' or text == '请选择业务库' or text == '请选择历史库':
+            if text.strip() in ['', '请选择业务库', '请选择历史库'] :
                 return False
         return True
 
@@ -134,9 +148,7 @@ class TraceActions(object):
     # 保存并检查所有的部署配置项到dict中
     def getDeployConfValue(self, confDict, objDict):
         controls = copy.copy(confDict)
-        controls.pop('getDBBtn_1')
-        controls.pop('getDBBtn_2')
-        exceptItems = []
+        exceptItems = ['getDBBtn_1', 'getDBBtn_2']
         hisEnable, ppEnable, ppNetEnable, loginEnable, EtlLoginEnable = objDict.getObjTextByName('dep_input_6'), \
                                                                         objDict.getObjTextByName('dep_input_24'),\
                                                                         objDict.getObjTextByName('dep_input_25'),\
@@ -160,7 +172,7 @@ class TraceActions(object):
                 text = objDict.getTextByObj(obj)
                 # 判断是输入项or选择项
                 if (not isinstance(text, bool)):
-                    if text.strip() == '' or text == '请选择业务库' or text == '请选择历史库':
+                    if text.strip() in ['', '请选择业务库', '请选择历史库']:
                         return False
                     else:
                         # 抽取频率加单位
@@ -187,3 +199,40 @@ class TraceActions(object):
                 controls[i]['value'] = str.lower(str(objDict.getObjBoolByName(i)))
 
         return list(controls.values())
+
+    # 获得Nifi配置参数并检查
+    # 返回dict格式的Nifi配置
+    def getNifiConfValue(self, nifiConfItems, objDict):
+        controls = copy.copy(nifiConfItems)
+        exceptItems = ['getDBBtn_3', 'getDBBtn_4', 'getDBBtn_5', 'getDBBtn_6', 'getFile']
+        hisEnable, ppEnable, loginEnable = objDict.getObjTextByName('nifi_input_11'), \
+                                           objDict.getObjTextByName('nifi_input_17'), \
+                                           objDict.getObjTextByName('nifi_input_23')
+        if (not hisEnable):
+            exceptItems.extend(['nifi_input_12', 'nifi_input_13', 'nifi_input_14', 'nifi_input_15', 'nifi_input_16'])
+        if (not ppEnable):
+            exceptItems.extend(['nifi_input_18', 'nifi_input_19', 'nifi_input_20', 'nifi_input_21', 'nifi_input_22'])
+        if (not loginEnable):
+            exceptItems.extend(['nifi_input_26', 'nifi_input_27'])
+        for i, k in controls.items():
+            obj = objDict.getObjByName(i)
+            if (i not in exceptItems):
+                text = objDict.getTextByObj(obj)
+                if (not isinstance(text, bool)):
+                    if text.strip() in ['', '请选择业务库', '请选择BI库', '请选择历史库', '请选择工艺参数库']:
+                        return False
+                    else:
+                        controls[i]['value'] = text
+                else:
+                    # True 和 False转小写
+                    controls[i]['value'] = str.lower(str(text))
+            else:
+                controls[i]['value'] = ''
+        return self.mainDataToDict(controls)
+
+    # 更新Nifi模板
+    def updateNifiTemplate(self, nifiConfItems):
+        nifi = Nifi()
+        return nifi.reDeploymTemplate(nifiConfItems)
+
+
