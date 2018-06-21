@@ -6,8 +6,8 @@ __author__='zhaicao'
 
 from PyQt5 import QtWidgets
 from eventAction.Utils import Util, MSSQL
+from eventAction.Nifi import Nifi
 import copy
-from Nifi import Nifi
 
 class TraceActions(object):
 
@@ -176,7 +176,7 @@ class TraceActions(object):
                         return False
                     else:
                         # 抽取频率加单位
-                        if( i == 'dep_input_56' ):
+                        if( i == 'dep_input_52' ):
                             text +=' min'
                         controls[i]['value'] = text
                 else:
@@ -184,7 +184,7 @@ class TraceActions(object):
                     controls[i]['value'] = str.lower(str(text))
             else:
                 controls[i]['value'] = ''
-        return list(controls.values())
+        return self.mainDataToDict(controls)
 
 
     # 获得所有工厂定制配置项
@@ -198,7 +198,7 @@ class TraceActions(object):
             else:
                 controls[i]['value'] = str.lower(str(objDict.getObjBoolByName(i)))
 
-        return list(controls.values())
+        return self.mainDataToDict(controls)
 
     # 获得Nifi配置参数并检查
     # 返回dict格式的Nifi配置
@@ -231,8 +231,10 @@ class TraceActions(object):
         return self.mainDataToDict(controls)
 
     # 更新Nifi模板
-    def updateNifiTemplate(self, nifiConfItems):
-        nifi = Nifi()
-        return nifi.reDeploymTemplate(nifiConfItems)
+    def updateNifiTemplate(self, nifiConfItems, widgetObj):
+        nifi = Nifi(nifiConfItems)
+        nifi.getScheduleAndSource()
+        return nifi.instanceTemplate(widgetObj) and nifi.setTransactionAuth(widgetObj) and nifi.setIsExtractHis(widgetObj) and nifi.setBiIncrementScheduleAndExtractSource(widgetObj)
+
 
 

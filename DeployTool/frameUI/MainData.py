@@ -97,22 +97,24 @@ class TraceObjItems(object):
         }
         # 数据库Page的配置项
         self.dbConfItem = {
-            'db_input_1': {'objType': QtWidgets.QLineEdit},
+            'db_input_1': {'objType': QtWidgets.QCheckBox},
             'db_input_2': {'objType': QtWidgets.QLineEdit},
             'db_input_3': {'objType': QtWidgets.QLineEdit},
             'db_input_4': {'objType': QtWidgets.QLineEdit},
             'db_input_5': {'objType': QtWidgets.QLineEdit},
             'db_input_6': {'objType': QtWidgets.QLineEdit},
-            'db_input_7': {'objType': QtWidgets.QLineEdit},
+            'db_input_7': {'objType': QtWidgets.QCheckBox},
             'db_input_8': {'objType': QtWidgets.QLineEdit},
             'db_input_9': {'objType': QtWidgets.QLineEdit},
             'db_input_10': {'objType': QtWidgets.QLineEdit},
-            'db_input_11': {'objType': QtWidgets.QCheckBox},
+            'db_input_11': {'objType': QtWidgets.QLineEdit},
             'db_input_12': {'objType': QtWidgets.QLineEdit},
-            'db_input_13': {'objType': QtWidgets.QLineEdit},
+            'db_input_13': {'objType': QtWidgets.QCheckBox},
             'db_input_14': {'objType': QtWidgets.QLineEdit},
             'db_input_15': {'objType': QtWidgets.QLineEdit},
-            'db_input_16': {'objType': QtWidgets.QLineEdit}
+            'db_input_16': {'objType': QtWidgets.QLineEdit},
+            'db_input_17': {'objType': QtWidgets.QLineEdit},
+            'db_input_18': {'objType': QtWidgets.QLineEdit}
         }
         # 定义工厂定制控件类型和名称对应的字典
         self.nifiConfItem = {

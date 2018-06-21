@@ -4,9 +4,10 @@
 
 __author__='zhaicao'
 
+from PyQt5 import QtCore
 from eventAction.DefinedActions import TraceActions
 from eventAction.Utils import  Util
-from eventAction.DefinedThread import TraceGetDBThread
+from eventAction.ThreadAction import DBThread, NifiThread
 
 
 class TraceSolot(object):
@@ -31,8 +32,12 @@ class TraceSolot(object):
             nameList = ('dep_input_54', 'dep_input_55')
         elif (group == 'ppNet'):
             nameList = ('dep_input_26', 'dep_input_27', 'dep_input_28', 'dep_input_29')
+        elif (group == 'db_das'):
+            nameList = ('db_input_2', 'db_input_3', 'db_input_4', 'db_input_5', 'db_input_6')
+        elif (group == 'db_bi'):
+            nameList = ('db_input_8', 'db_input_9', 'db_input_10', 'db_input_11', 'db_input_12')
         elif (group == 'db_pp'):
-            nameList = ('db_input_12', 'db_input_13', 'db_input_14', 'db_input_15', 'db_input_16')
+            nameList = ('db_input_14', 'db_input_15', 'db_input_16', 'db_input_17', 'db_input_18')
         elif (group == 'nifi_history'):
             nameList = ('nifi_input_12', 'nifi_input_13', 'nifi_input_14', 'nifi_input_15', 'nifi_input_16', 'getDBBtn_5')
         elif (group == 'nifi_pp'):
@@ -112,25 +117,34 @@ class TraceSolot(object):
                 Util.mesInfomation(mainWidgetObj, '请完善部署配置项')
                 return
             else:
-                Util.copyClipboardText(Util.listToStr(deployItems))
+                Util.copyClipboardText(Util.dictTransforStr(deployItems))
                 Util.mesInfomation(mainWidgetObj, '复制成功')
         elif type == 'manifest':
             manifestItems = self._action.getManifestConfValue(manifestItems, deployItems, objsDict)
             # 获得配置写入到系统剪贴板中
-            Util.copyClipboardText(Util.listToStr(manifestItems, '='))
+            Util.copyClipboardText(Util.dictTransforStr(manifestItems, '='))
             Util.mesInfomation(mainWidgetObj, '复制成功')
         else:
             print('复制类型不存在')
 
 
-    # 设置下拉框数据库
+    # 设置下拉框数据库(多线程)
     def setDBNameList(self, mainWidgetObj, dbInfo, cbObj):
-        # 实例化线程
-        self.getDbThread = TraceGetDBThread(WidgetObj=mainWidgetObj, dbInfo=dbInfo, cbObj=cbObj)
-        # 线程执行完毕绑定信号槽
-        self.getDbThread.trigger.connect(self._action.setComboBoxDB)
-        # 开始线程
-        self.getDbThread.start()
+        # 获得信号源按钮对象
+        sender = mainWidgetObj.sender()
+        # 实例化QThread
+        self.thread = QtCore.QThread()
+        # 实例化查询数据库对象
+        self.db = DBThread(WidgetObj=mainWidgetObj, dbInfo=dbInfo, cbObj=cbObj, btnObj=sender)
+        # DBThread加载到线程中
+        self.db.moveToThread(self.thread)
+        # 绑定自定义信号，完成数据库获取和停止线程
+        self.db.finishDBListSignal.connect(self._action.setComboBoxDB)
+        self.db.stopThreadSignal.connect(self.thread.quit)
+        # 绑定线程执行的槽函数
+        self.thread.started.connect(self.db.getDBList)
+        # 执行线程
+        self.thread.start()
 
     # 切换菜单页面
     def changeMenuPage(self, sWidgetObj, index):
@@ -142,19 +156,38 @@ class TraceSolot(object):
         if file:
             objsDict.setObjTextByName('nifi_input_28', file)
 
-    # 建立完整的追溯库
+    # 升级数据库槽函数
     def createFullDB(self, mainWidgetObj):
-        Util.mesInfomation(mainWidgetObj, 'DB')
+        Util.mesInfomation(mainWidgetObj, '数据库升级功能开发中，敬请期待')
 
-    # 更新NIfi模板
+    # 更新NIfi模板槽函数
     def updateNifiTemplate(self, mainWidgetObj, nifiConfItems, objsDict):
         nifiList = self._action.getNifiConfValue(nifiConfItems, objsDict)
         if not nifiList:
             Util.mesInfomation(mainWidgetObj, '请完善输入\选择项')
         else:
-            if self._action.updateNifiTemplate(nifiList):
-                Util.mesInfomation(mainWidgetObj, 'Nifi抽取模板更新成功')
-            else:
-                Util.mesInfomation(mainWidgetObj, '更新失败')
+            # 获得信号源按钮对象
+            sender = mainWidgetObj.sender()
+            # 实例化QThread
+            self.thread = QtCore.QThread()
+            # 实例化查询数据库对象
+            self.nifi = NifiThread(WidgetObj=mainWidgetObj, nifiConfList=nifiList, btnObj=sender)
+            # DBThread加载到线程中
+            self.nifi.moveToThread(self.thread)
+            # 绑定自定义信号，完成、停止线程
+            self.nifi.finishSignal.connect(self.finishedNifi)
+            self.nifi.stopThreadSignal.connect(self.thread.quit)
+            # 绑定线程执行的槽函数
+            self.thread.started.connect(self.nifi.updateNifiTemplate)
+            # 执行线程
+            self.thread.start()
+
+    # Nifi更新完成提示函数
+    def finishedNifi(self, WidgetObj, re):
+        if re:
+            Util.mesInfomation(WidgetObj, '更新完成')
+        else:
+            Util.mesInfomation(WidgetObj, '更新失败')
+
 
 

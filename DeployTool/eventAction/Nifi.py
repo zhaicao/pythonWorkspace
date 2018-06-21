@@ -10,7 +10,7 @@ import ssl
 import json
 import lxml.etree as etree
 from requests_toolbelt.multipart.encoder import MultipartEncoder
-import copy
+from eventAction.Utils import Util
 
 
 # 封装Nifi常用的api
@@ -335,7 +335,16 @@ class NifiApi(object):
         return json.loads(response.read())
 
 
+
+# Nifi操作类
 class Nifi(object):
+    def __init__(self, nifiConf):
+        self.nifiConf = nifiConf
+        # 根据权限拼接URL
+        if self.nifiConf['nifi.auth'] == 'false':
+            self.nifiConf['nifi.host'] = 'http://' + self.nifiConf['nifi.host'] + ':' + self.nifiConf['nifi.port']
+        else:
+            self.nifiConf['nifi.host'] = 'https://' + self.nifiConf['nifi.host'] + ':' + self.nifiConf['nifi.port']
     # 返回Nifi状态
     # 参数：无
     # 返回值：Run:运行中，Stop：停止
@@ -365,23 +374,18 @@ class Nifi(object):
                 timer += 1
         return True
 
-    # 重新部署模板
-    def reDeploymTemplate(self, nifiConf):
-        # 根据权限拼接URL
-        if nifiConf['nifi.auth'] == 'false':
-            nifiConf['nifi.host'] = 'http://' + nifiConf['nifi.host'] + ':' + nifiConf['nifi.port']
-        else:
-            nifiConf['nifi.host'] = 'https://' + nifiConf['nifi.host'] + ':' + nifiConf['nifi.port']
+    # 更新实例化模板
+    def instanceTemplate(self, widgetObj):
 
-        dbConf = self.getDBConf(nifiConf)
+        dbConf = self.getDBConf(self.nifiConf)
 
         # 判断Nifi是否启动
-        if not self.startNifi(nifiConf['nifi.host'], 600):
-            print('NIfi未启动')
+        if not self.startNifi(self.nifiConf['nifi.host'], 600):
+            Util.mesInfomation(widgetObj, 'NIfi未启动')
             return False
 
         # 初始化nifi，获得基础信息
-        nifi = NifiApi(nifiConf['nifi.host'], nifiConf['nifi.user'], nifiConf['nifi.pwd'])
+        nifi = NifiApi(self.nifiConf['nifi.host'], self.nifiConf['nifi.user'], self.nifiConf['nifi.pwd'])
         groupInfo = nifi.getProcessGroups('root')
         uuid = groupInfo['processGroupFlow']['breadcrumb']['breadcrumb']['id']
 
@@ -391,7 +395,7 @@ class Nifi(object):
                 nifi.updateProcessGroupState(group['status']['aggregateSnapshot']['id'], 'STOPPED')
                 nifi.delProcessGroup(group['status']['aggregateSnapshot']['id'], group['revision']['version'])
         except:
-            print('删除Groups异常')
+            Util.mesInfomation(widgetObj, '删除Groups异常')
             return False
 
         try:
@@ -399,11 +403,12 @@ class Nifi(object):
             for template in nifi.getTemplates():
                 nifi.deleteTemplates(template['id'])
         except:
-            print('删除Templates异常')
+            Util.mesInfomation(widgetObj, '删除Templates异常')
             return False
 
         # 根据模板路径上传模板
-        if not nifi.uploadTemplate(nifiConf['nifi.template'], uuid):
+        if not nifi.uploadTemplate(self.nifiConf['nifi.template'], uuid):
+            Util.mesInfomation(widgetObj, '上传Templates异常')
             return False
 
         try:
@@ -416,7 +421,7 @@ class Nifi(object):
             for conServices in nifi.getAllConServices(uuid)['controllerServices']:
                 nifi.delConServices(conServices['component']['id'], conServices['revision']['version'])
         except:
-            print('删除Controller Service异常')
+            Util.mesInfomation(widgetObj, '删除Controller Service异常')
             return False
 
         try:
@@ -424,7 +429,7 @@ class Nifi(object):
             for template in nifi.getTemplates():
                 nifi.instantiateTemplate(uuid, template['id'])
         except:
-            print('实例化Template异常')
+            Util.mesInfomation(widgetObj, '实例化Template异常')
             return False
 
         try:
@@ -436,15 +441,15 @@ class Nifi(object):
                                           data=dbConf[conServers['component']['name']]
                                           )
         except:
-            print('更新Controller Service异常')
+            Util.mesInfomation(widgetObj, '更新Controller Service异常')
             return False
 
         try:
             # 启用全部连接池控制器
             for conServers in nifi.getAllConServices(uuid)['controllerServices']:
-                if conServers['component']['name'] == u'HistoryConnectionPool' and nifiConf['HistoryConnectionPool.enable'].lower() != 'true':
+                if conServers['component']['name'] == u'HistoryConnectionPool' and self.nifiConf['HistoryConnectionPool.enable'].lower() != 'true':
                     pass
-                elif conServers['component']['name'] == u'PPConnectionPool' and nifiConf['PPConnectionPool.enable'].lower() != 'true':
+                elif conServers['component']['name'] == u'PPConnectionPool' and self.nifiConf['PPConnectionPool.enable'].lower() != 'true':
                     pass
                 else:
                     nifi.updateConService(conserviceId=conServers['component']['id'],
@@ -452,28 +457,107 @@ class Nifi(object):
                                     state='ENABLED'
                                     )
         except:
-            print('启用Controller Service异常')
+            Util.mesInfomation(widgetObj, '启用Controller Service异常')
             return False
         return True
 
+    # 设置增量抽取时间间隔时间 和 提取数据源id和名称
+     # 返回值：True：成功，False：失败
+    def setBiIncrementScheduleAndExtractSource(self, widgetObj):
+        api = NifiApi(self.nifiConf['nifi.host'], self.nifiConf['nifi.user'], self.nifiConf['nifi.pwd'])
 
-# 获得数据库基础配置
-    # 参数：confPath - 配置文件路径
+        path = ['*', '*', u'Ods Group', u'Extract']
+        sourceProIds = api.getProcessorIdsByPath(path)
+        data = {"extract-source-id": self.nifiConf['bi.sourceid'], "extract-source-name": self.nifiConf['bi.sourcename']}
+
+        path = [u'2.增量抽取流程', u'通用ETL增量抽取流程', u'Ods Group', u'Extract Data']
+        incProId = api.getProcessorId(path)
+        try:
+            for proid in sourceProIds:
+                api.updateProcessorConf(proid, "Extract Data", "properties", data,
+                                            api.getProcessorInfo(proid)['revision']['version'])
+            if incProId and self.nifiConf['bi.schedule']:
+                api.updateProcessorConf(incProId, "Extract Data", "schedulingPeriod", self.nifiConf['bi.schedule'],
+                                            api.getProcessorInfo(incProId)['revision']['version'])
+        except:
+            Util.mesInfomation(widgetObj, '更新增量抽取时间失败')
+            return False
+        return True
+
+    # 设置事务的账号密码
+    # 成功返回True，失败返回False
+    def setTransactionAuth(self, widgetObj):
+        api = NifiApi(self.nifiConf['nifi.host'], self.nifiConf['nifi.user'], self.nifiConf['nifi.pwd'])
+        data = {'nifi-user-name': self.nifiConf['nifi.user'],
+                'nifi-user-password': self.nifiConf['nifi.pwd']}
+        path = [
+                [u'1.第一次抽取流程', u'TransactionManager'],
+                [u'2.增量抽取流程', u'TransactionManager']
+        ]
+        try:
+            for i in path:
+                proid = api.getProcessorId(i)
+                if proid:
+                    api.updateProcessorConf(proid, "TransactionManager", "properties",data,
+                                            api.getProcessorInfo(proid)['revision']['version'])
+        except:
+            Util.mesInfomation(widgetObj, '设置事务账号失败')
+            return False
+        return True
+
+    # 设置是否抽取历史库
+    # 返回值：True：成功，False：失败
+    def setIsExtractHis(self, widgetObj):
+        path = [u'2.增量抽取流程', u'通用ETL增量抽取流程', u'Ods Group', u'Extract Data']
+        api = NifiApi(self.nifiConf['nifi.host'], self.nifiConf['nifi.user'], self.nifiConf['nifi.pwd'])
+        proId = api.getProcessorId(path)
+        rootId = api.getProcessGroups('root')['processGroupFlow']['breadcrumb']['breadcrumb']['id']
+        data = {'history-dbcp-service': None}
+        try:
+            if self.nifiConf['HistoryConnectionPool.enable'].lower() == 'true':
+                for i in api.getAllConServices(rootId)['controllerServices']:
+                    if i['component']['name'] == u'HistoryConnectionPool':
+                        data['history-dbcp-service'] = i['component']['id']
+            if proId:
+                api.updateProcessorConf(proId, "Extract Data", "properties", data,
+                                            api.getProcessorInfo(proId)['revision']['version'])
+        except:
+            Util.mesInfomation(widgetObj, '设置抽取历史库失败')
+            return False
+        return True
+
+    # 设置Variables(未使用)
+    # 返回值：True成功，False失败
+    def setVariables(self):
+        api = NifiApi(self.nifiConf['nifi.host'], self.nifiConf['nifi.user'], self.nifiConf['nifi.pwd'])
+        rootGroupId = api.getProcessGroups('root')['processGroupFlow']['breadcrumb']['breadcrumb']['id']
+        try:
+            api.setVariables(rootGroupId, 'ppDir', self.nifiConf[''])
+        except:
+            return False
+        return True
+
+    # 获得并赋值nifiConf的值
+    def getScheduleAndSource(self):
+        api = NifiApi(self.nifiConf['nifi.host'], self.nifiConf['nifi.user'], self.nifiConf['nifi.pwd'])
+        path = [u'2.增量抽取流程', u'通用ETL增量抽取流程', u'Ods Group', u'Extract Data']
+        proId = api.getProcessorId(path)
+        info = api.getProcessorInfo(proId)
+        self.nifiConf['bi.schedule'] = info['component']['config']['schedulingPeriod']
+        self.nifiConf['bi.sourceid'] = info['component']['config']['properties']['extract-source-id']
+        self.nifiConf['bi.sourcename'] = info['component']['config']['properties']['extract-source-name']
+
+
+    # 组装Controller Service配置参数
     def getDBConf(self, confPath):
         _dbConf = {'SqlConnectionPool': None, 'BIConnectionPool': None, 'PPConnectionPool': None,
                    'HistoryConnectionPool': None}
-        try:
-            for index in _dbConf:
-                _dbConf[index] = {
+        for index in _dbConf:
+            _dbConf[index] = {
                     'Database Connection URL': 'jdbc:sqlserver://' + confPath[index + '.host'] + ':' + confPath[index + '.port'] + ';database=' + confPath[index + '.db'],
                     'database-driver-locations': '../conf/custom_lib/mssql-jdbc-6.2.2.jre8.jar',
                     'Database User': confPath[index + '.user'],
                     'Password': confPath[index + '.pwd'],
                     'Validation-query': 'SELECT 1'
-                }
-        except:
-            print('数据库配置文件读取异常')
+            }
         return _dbConf
-
-if __name__=='__main__':
-    pass

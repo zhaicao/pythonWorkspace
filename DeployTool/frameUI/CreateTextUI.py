@@ -25,13 +25,13 @@ class TraceCreateTextUI(object):
         self.labelText_1.setText(_translate("MainWindow", "地址"))
         self.dep_input_5.setItemText(0, _translate("MainWindow", "请选择业务库"))
 
-        self.getDBBtn_1.setText(_translate("MainWindow", "测试"))
+        self.getDBBtn_1.setText(_translate("MainWindow", "连接"))
         self.dep_group_2.setTitle(_translate("MainWindow", "历史库"))
         self.labelText_10.setText(_translate("MainWindow", "数据库"))
 
         self.dep_input_11.setItemText(0, _translate("MainWindow", "请选择历史库"))
         self.dep_input_6.setText(_translate("MainWindow", "是否抽取历史库"))
-        self.getDBBtn_2.setText(_translate("MainWindow", "测试"))
+        self.getDBBtn_2.setText(_translate("MainWindow", "连接"))
         self.labelText_6.setText(_translate("MainWindow", "地址"))
         self.labelText_8.setText(_translate("MainWindow", "账号"))
         self.labelText_7.setText(_translate("MainWindow", "端口"))
@@ -135,19 +135,21 @@ class TraceCreateTextUI(object):
         self.dep_confirmBtn.setText(_translate("MainWindow", "下一步"))
         self.dep_cancelBtn.setText(_translate("MainWindow", "退出"))
         self.db_group_1.setTitle(_translate("MainWindow", "系统库"))
+        self.labelText_60.setText(_translate("MainWindow", "端口"))
         self.labelText_59.setText(_translate("MainWindow", "地址"))
         self.labelText_61.setText(_translate("MainWindow", "账号"))
-        self.labelText_60.setText(_translate("MainWindow", "端口"))
         self.labelText_62.setText(_translate("MainWindow", "密码"))
-
         self.labelText_63.setText(_translate("MainWindow", "数据库"))
+
+        self.db_input_1.setText(_translate("MainWindow", "是否升级系统库"))
         self.db_group_2.setTitle(_translate("MainWindow", "BI库"))
         self.labelText_64.setText(_translate("MainWindow", "地址"))
         self.labelText_66.setText(_translate("MainWindow", "账号"))
-        self.labelText_65.setText(_translate("MainWindow", "端口"))
         self.labelText_67.setText(_translate("MainWindow", "密码"))
-
         self.labelText_68.setText(_translate("MainWindow", "数据库"))
+
+        self.labelText_65.setText(_translate("MainWindow", "端口"))
+        self.db_input_7.setText(_translate("MainWindow", "是否升级BI库"))
         self.db_group_3.setTitle(_translate("MainWindow", "工艺参数库"))
 
         self.labelText_73.setText(_translate("MainWindow", "数据库"))
@@ -155,7 +157,7 @@ class TraceCreateTextUI(object):
         self.labelText_72.setText(_translate("MainWindow", "密码"))
         self.labelText_70.setText(_translate("MainWindow", "端口"))
         self.labelText_71.setText(_translate("MainWindow", "账号"))
-        self.db_input_11.setText(_translate("MainWindow", "是否抽取工艺参数"))
+        self.db_input_13.setText(_translate("MainWindow", "是否升级工艺参数"))
         self.db_comfirmBtn.setText(_translate("MainWindow", "更新数据库"))
         self.nifi_group_1.setTitle(_translate("MainWindow", "业务库"))
         self.labelText_74.setText(_translate("MainWindow", "地址"))
@@ -165,7 +167,7 @@ class TraceCreateTextUI(object):
 
         self.labelText_78.setText(_translate("MainWindow", "数据库"))
         self.nifi_input_5.setItemText(0, _translate("MainWindow", "请选择业务库"))
-        self.getDBBtn_3.setText(_translate("MainWindow", "测试"))
+        self.getDBBtn_3.setText(_translate("MainWindow", "连接"))
         self.nifi_group_2.setTitle(_translate("MainWindow", "BI库"))
         self.labelText_79.setText(_translate("MainWindow", "地址"))
         self.labelText_81.setText(_translate("MainWindow", "账号"))
@@ -174,11 +176,11 @@ class TraceCreateTextUI(object):
 
         self.labelText_83.setText(_translate("MainWindow", "数据库"))
         self.nifi_input_10.setItemText(0, _translate("MainWindow", "请选择BI库"))
-        self.getDBBtn_4.setText(_translate("MainWindow", "测试"))
+        self.getDBBtn_4.setText(_translate("MainWindow", "连接"))
         self.nifi_group_3.setTitle(_translate("MainWindow", "历史库"))
         self.labelText_88.setText(_translate("MainWindow", "数据库"))
         self.nifi_input_16.setItemText(0, _translate("MainWindow", "请选择历史库"))
-        self.getDBBtn_5.setText(_translate("MainWindow", "测试"))
+        self.getDBBtn_5.setText(_translate("MainWindow", "连接"))
         self.labelText_85.setText(_translate("MainWindow", "端口"))
         self.labelText_86.setText(_translate("MainWindow", "账号"))
         self.labelText_87.setText(_translate("MainWindow", "密码"))
@@ -189,7 +191,7 @@ class TraceCreateTextUI(object):
         self.nifi_input_22.setItemText(0, _translate("MainWindow", "请选择工艺参数库"))
         self.labelText_93.setText(_translate("MainWindow", "数据库"))
 
-        self.getDBBtn_6.setText(_translate("MainWindow", "测试"))
+        self.getDBBtn_6.setText(_translate("MainWindow", "连接"))
         self.labelText_92.setText(_translate("MainWindow", "密码"))
         self.labelText_91.setText(_translate("MainWindow", "账号"))
         self.labelText_89.setText(_translate("MainWindow", "地址"))
@@ -226,9 +228,9 @@ class TraceCreateTextUI(object):
         self.dep_input_50.setText(_translate("MainWindow", "9001"))
         self.dep_input_51.setText(_translate("MainWindow", "2048"))
         self.dep_input_52.setText(_translate("MainWindow", "60"))
-        self.db_input_2.setText(_translate("MainWindow", "1433"))
-        self.db_input_7.setText(_translate("MainWindow", "1433"))
-        self.db_input_13.setText(_translate("MainWindow", "1433"))
+        self.db_input_3.setText(_translate("MainWindow", "1433"))
+        self.db_input_9.setText(_translate("MainWindow", "1433"))
+        self.db_input_15.setText(_translate("MainWindow", "1433"))
         self.nifi_input_2.setText(_translate("MainWindow", "1433"))
         self.nifi_input_7.setText(_translate("MainWindow", "1433"))
         self.nifi_input_13.setText(_translate("MainWindow", "1433"))
@@ -241,13 +243,13 @@ class TraceCreateTextUI(object):
         # 业务库Group
         self.help_1.setToolTip('<b>业务数据库</b>的IP地址及端口，端口默认1433')
         self.help_2.setToolTip('<b>业务数据库</b>的登录账号和密码')
-        self.help_3.setToolTip('点击<b>测试</b>可自动获得数据库列表，若网络不稳定或其他问题，将有一定的延迟响应。在列表中选择需要抽取的业务库名')
+        self.help_3.setToolTip('点击<b>连接</b>可自动获得数据库列表，若网络不稳定或其他问题，将有一定的延迟响应。在列表中选择需要抽取的业务库名')
         # 历史库Group
         self.help_4.setToolTip('<b>历史数据库</b>一般指mes_history，存放历史设备事件、状态等数据。'
                                '新上线的环境一般无历史数据，若开启抽取，则需进行配置')
         self.help_5.setToolTip('<b>历史数据库</b>的IP地址及端口，端口默认1433')
         self.help_6.setToolTip('<b>历史数据库</b>的登录账号和密码')
-        self.help_7.setToolTip('点击<b>测试</b>可自动获得数据库列表，若网络不稳定或其他问题，将有一定的延迟响应。在列表中选择需要抽取的历史库名')
+        self.help_7.setToolTip('点击<b>连接</b>可自动获得数据库列表，若网络不稳定或其他问题，将有一定的延迟响应。在列表中选择需要抽取的历史库名')
         # BI库Group
         self.help_8.setToolTip('<b>BI数据库</b>的IP地址及端口，端口默认1433')
         self.help_9.setToolTip('<b>BI数据库</b>的登录账号和密码')
@@ -311,9 +313,11 @@ class TraceCreateTextUI(object):
         self.help_48.setToolTip('<b>FGB</b>指追溯分析系统是否需要FGB功能')
         self.help_49.setToolTip('<b>视频监控</b>指追溯分析系统是否需要视频监控的功能')
         self.help_50.setToolTip('<b>断链</b>指追溯分析系统是否需要断链的功能')
-        self.help_51.setToolTip('<b>过滤万能工单</b>指追溯分析系统对测试用的万能功能数据进行过滤')
+        self.help_51.setToolTip('<b>过滤万能工单</b>指追溯分析系统对连接用的万能功能数据进行过滤')
 
         self.dep_copyDepBtn.setToolTip('复制部署配置(Step1~4)内容到系统剪贴板')
         self.dep_copyManBtn.setToolTip('复制工厂定制(Step5)内容到系统剪贴板')
+
+        self.getFile.setToolTip('选择抽取模板')
 
 

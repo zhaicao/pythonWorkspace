@@ -14,7 +14,7 @@ from frameUI import resoure_rc
 class TraceMainWidget(TraceControlsUI, TraceCreateTextUI, TraceObjItems):
     def setupUi(self, MainWindow):
         # 主窗口设置
-        MainWindow.setWindowTitle("追溯分析部署配置工具")
+        MainWindow.setWindowTitle("追溯分析部署配置工具 V2.0.5")
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(500, 660)
         icon = QtGui.QIcon()
@@ -152,8 +152,12 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI, TraceObjItems):
 
     # page_2控件信号
     def connSignalPage_2(self, mainWidget):
-        # 是否抽取工艺参数
-        self.db_input_11.stateChanged.connect(lambda: self._solot.cbSetEnabledSlot(self._objsDict, 'db_pp'))
+        # 是否更新系统库
+        self.db_input_1.stateChanged.connect(lambda: self._solot.cbSetEnabledSlot(self._objsDict, 'db_das'))
+        # 是否更新BI库
+        self.db_input_7.stateChanged.connect(lambda: self._solot.cbSetEnabledSlot(self._objsDict, 'db_bi'))
+        # 是否更新工艺参数
+        self.db_input_13.stateChanged.connect(lambda: self._solot.cbSetEnabledSlot(self._objsDict, 'db_pp'))
         # 升级DB的信号
         self.db_comfirmBtn.clicked.connect(lambda: self._solot.createFullDB(mainWidget))
 
