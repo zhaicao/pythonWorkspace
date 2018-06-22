@@ -338,8 +338,9 @@ class NifiApi(object):
 
 # Nifi操作类
 class Nifi(object):
-    def __init__(self, nifiConf):
+    def __init__(self, nifiConf, widgetObj = None):
         self.nifiConf = nifiConf
+        self.widgetObj = widgetObj
         # 根据权限拼接URL
         if self.nifiConf['nifi.auth'] == 'false':
             self.nifiConf['nifi.host'] = 'http://' + self.nifiConf['nifi.host'] + ':' + self.nifiConf['nifi.port']
@@ -375,13 +376,14 @@ class Nifi(object):
         return True
 
     # 更新实例化模板
-    def instanceTemplate(self, widgetObj):
+    def instanceTemplate(self):
 
         dbConf = self.getDBConf(self.nifiConf)
 
         # 判断Nifi是否启动
         if not self.startNifi(self.nifiConf['nifi.host'], 600):
-            Util.mesInfomation(widgetObj, 'NIfi未启动')
+            if self.widgetObj:
+                Util.mesInfomation(self.widgetObj, 'NIfi未启动')
             return False
 
         # 初始化nifi，获得基础信息
@@ -395,7 +397,8 @@ class Nifi(object):
                 nifi.updateProcessGroupState(group['status']['aggregateSnapshot']['id'], 'STOPPED')
                 nifi.delProcessGroup(group['status']['aggregateSnapshot']['id'], group['revision']['version'])
         except:
-            Util.mesInfomation(widgetObj, '删除Groups异常')
+            if self.widgetObj:
+                Util.mesInfomation(self.widgetObj, '删除Groups异常')
             return False
 
         try:
@@ -403,12 +406,14 @@ class Nifi(object):
             for template in nifi.getTemplates():
                 nifi.deleteTemplates(template['id'])
         except:
-            Util.mesInfomation(widgetObj, '删除Templates异常')
+            if self.widgetObj:
+                Util.mesInfomation(self.widgetObj, '删除Templates异常')
             return False
 
         # 根据模板路径上传模板
         if not nifi.uploadTemplate(self.nifiConf['nifi.template'], uuid):
-            Util.mesInfomation(widgetObj, '上传Templates异常')
+            if self.widgetObj:
+                Util.mesInfomation(self.widgetObj, '上传Templates异常')
             return False
 
         try:
@@ -421,7 +426,8 @@ class Nifi(object):
             for conServices in nifi.getAllConServices(uuid)['controllerServices']:
                 nifi.delConServices(conServices['component']['id'], conServices['revision']['version'])
         except:
-            Util.mesInfomation(widgetObj, '删除Controller Service异常')
+            if self.widgetObj:
+                Util.mesInfomation(self.widgetObj, '删除Controller Service异常')
             return False
 
         try:
@@ -429,7 +435,8 @@ class Nifi(object):
             for template in nifi.getTemplates():
                 nifi.instantiateTemplate(uuid, template['id'])
         except:
-            Util.mesInfomation(widgetObj, '实例化Template异常')
+            if self.widgetObj:
+                Util.mesInfomation(self.widgetObj, '实例化Template异常')
             return False
 
         try:
@@ -441,7 +448,8 @@ class Nifi(object):
                                           data=dbConf[conServers['component']['name']]
                                           )
         except:
-            Util.mesInfomation(widgetObj, '更新Controller Service异常')
+            if self.widgetObj:
+                Util.mesInfomation(self.widgetObj, '更新Controller Service异常')
             return False
 
         try:
@@ -457,13 +465,14 @@ class Nifi(object):
                                     state='ENABLED'
                                     )
         except:
-            Util.mesInfomation(widgetObj, '启用Controller Service异常')
+            if self.widgetObj:
+                Util.mesInfomation(self.widgetObj, '启用Controller Service异常')
             return False
         return True
 
     # 设置增量抽取时间间隔时间 和 提取数据源id和名称
      # 返回值：True：成功，False：失败
-    def setBiIncrementScheduleAndExtractSource(self, widgetObj):
+    def setBiIncrementScheduleAndExtractSource(self):
         api = NifiApi(self.nifiConf['nifi.host'], self.nifiConf['nifi.user'], self.nifiConf['nifi.pwd'])
 
         path = ['*', '*', u'Ods Group', u'Extract']
@@ -480,13 +489,14 @@ class Nifi(object):
                 api.updateProcessorConf(incProId, "Extract Data", "schedulingPeriod", self.nifiConf['bi.schedule'],
                                             api.getProcessorInfo(incProId)['revision']['version'])
         except:
-            Util.mesInfomation(widgetObj, '更新增量抽取时间失败')
+            if self.widgetObj:
+                Util.mesInfomation(self.widgetObj, '更新增量抽取时间失败')
             return False
         return True
 
     # 设置事务的账号密码
     # 成功返回True，失败返回False
-    def setTransactionAuth(self, widgetObj):
+    def setTransactionAuth(self):
         api = NifiApi(self.nifiConf['nifi.host'], self.nifiConf['nifi.user'], self.nifiConf['nifi.pwd'])
         data = {'nifi-user-name': self.nifiConf['nifi.user'],
                 'nifi-user-password': self.nifiConf['nifi.pwd']}
@@ -501,13 +511,14 @@ class Nifi(object):
                     api.updateProcessorConf(proid, "TransactionManager", "properties",data,
                                             api.getProcessorInfo(proid)['revision']['version'])
         except:
-            Util.mesInfomation(widgetObj, '设置事务账号失败')
+            if self.widgetObj:
+                Util.mesInfomation(self.widgetObj, '设置事务账号失败')
             return False
         return True
 
     # 设置是否抽取历史库
     # 返回值：True：成功，False：失败
-    def setIsExtractHis(self, widgetObj):
+    def setIsExtractHis(self):
         path = [u'2.增量抽取流程', u'通用ETL增量抽取流程', u'Ods Group', u'Extract Data']
         api = NifiApi(self.nifiConf['nifi.host'], self.nifiConf['nifi.user'], self.nifiConf['nifi.pwd'])
         proId = api.getProcessorId(path)
@@ -522,7 +533,8 @@ class Nifi(object):
                 api.updateProcessorConf(proId, "Extract Data", "properties", data,
                                             api.getProcessorInfo(proId)['revision']['version'])
         except:
-            Util.mesInfomation(widgetObj, '设置抽取历史库失败')
+            if self.widgetObj:
+                Util.mesInfomation(self.widgetObj, '设置抽取历史库失败')
             return False
         return True
 

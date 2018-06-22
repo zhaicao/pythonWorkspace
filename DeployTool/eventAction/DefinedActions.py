@@ -232,9 +232,10 @@ class TraceActions(object):
 
     # 更新Nifi模板
     def updateNifiTemplate(self, nifiConfItems, widgetObj):
-        nifi = Nifi(nifiConfItems)
+        nifi = Nifi(nifiConfItems, widgetObj)
+        # 获得之前设置的抽取频率及sourceid、name
         nifi.getScheduleAndSource()
-        return nifi.instanceTemplate(widgetObj) and nifi.setTransactionAuth(widgetObj) and nifi.setIsExtractHis(widgetObj) and nifi.setBiIncrementScheduleAndExtractSource(widgetObj)
+        return nifi.instanceTemplate() and nifi.setTransactionAuth() and nifi.setIsExtractHis() and nifi.setBiIncrementScheduleAndExtractSource()
 
 
 

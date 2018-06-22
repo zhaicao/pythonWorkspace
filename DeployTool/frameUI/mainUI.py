@@ -14,7 +14,7 @@ from frameUI import resoure_rc
 class TraceMainWidget(TraceControlsUI, TraceCreateTextUI, TraceObjItems):
     def setupUi(self, MainWindow):
         # 主窗口设置
-        MainWindow.setWindowTitle("追溯分析部署配置工具 V2.0.5")
+        MainWindow.setWindowTitle("追溯分析部署配置工具 V2.0.5(Beta)")
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(500, 660)
         icon = QtGui.QIcon()
