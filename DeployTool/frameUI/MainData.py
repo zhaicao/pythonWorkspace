@@ -93,7 +93,9 @@ class TraceObjItems(object):
             'dep_input_60': {'objType': QtWidgets.QComboBox, 'confItem': 'das.custom.fgb'},
             'dep_input_61': {'objType': QtWidgets.QComboBox, 'confItem': 'das.custom.isVideoMonitorEnabled'},
             'dep_input_62': {'objType': QtWidgets.QComboBox, 'confItem': 'das.custom.linkRepair'},
-            'dep_input_63': {'objType': QtWidgets.QComboBox, 'confItem': 'das.custom.isAutoOrderFiltered'}
+            'dep_input_63': {'objType': QtWidgets.QComboBox, 'confItem': 'das.custom.isAutoOrderFiltered'},
+            'dep_input_64': {'objType': QtWidgets.QComboBox, 'confItem': 'das.custom.fpy'},
+            'dep_input_65': {'objType': QtWidgets.QComboBox, 'confItem': 'das.custom.wip'}
         }
         # 数据库Page的配置项
         self.dbConfItem = {

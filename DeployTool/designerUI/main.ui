@@ -37,7 +37,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pageDeploy">
        <property name="styleSheet">
@@ -56,7 +56,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tabStep_1">
            <property name="styleSheet">
@@ -1996,366 +1996,451 @@
               <property name="title">
                <string>定制配置</string>
               </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_29">
-               <item>
-                <layout class="QGridLayout" name="gridLayout_28" columnstretch="0,0,0">
-                 <property name="leftMargin">
-                  <number>10</number>
+              <layout class="QGridLayout" name="gridLayout_9">
+               <property name="leftMargin">
+                <number>10</number>
+               </property>
+               <property name="topMargin">
+                <number>10</number>
+               </property>
+               <property name="rightMargin">
+                <number>50</number>
+               </property>
+               <property name="bottomMargin">
+                <number>10</number>
+               </property>
+               <item row="8" column="0">
+                <widget class="QLabel" name="labelText_99">
+                 <property name="text">
+                  <string>直通率</string>
                  </property>
-                 <property name="topMargin">
-                  <number>10</number>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
                  </property>
-                 <property name="rightMargin">
-                  <number>50</number>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QComboBox" name="dep_input_60">
+                 <item>
+                  <property name="text">
+                   <string>停用</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>启用</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="7" column="2">
+                <widget class="QLabel" name="help_51">
+                 <property name="maximumSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
                  </property>
-                 <property name="bottomMargin">
-                  <number>10</number>
+                 <property name="text">
+                  <string/>
                  </property>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="labelText_51">
-                   <property name="text">
-                    <string>重构版本</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
+                 <property name="pixmap">
+                  <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="0">
+                <widget class="QLabel" name="labelText_100">
+                 <property name="text">
+                  <string>在制品</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QLabel" name="help_47">
+                 <property name="maximumSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="labelText_56">
+                 <property name="text">
+                  <string>视频监控</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="0">
+                <widget class="QLabel" name="labelText_58">
+                 <property name="text">
+                  <string>过滤万能工单</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="1">
+                <widget class="QComboBox" name="dep_input_63">
+                 <item>
+                  <property name="text">
+                   <string>过滤</string>
+                  </property>
                  </item>
-                 <item row="3" column="1">
-                  <widget class="QComboBox" name="dep_input_59">
-                   <item>
-                    <property name="text">
-                     <string>停用</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>启用</string>
-                    </property>
-                   </item>
-                  </widget>
+                 <item>
+                  <property name="text">
+                   <string>不过滤</string>
+                  </property>
                  </item>
-                 <item row="4" column="1">
-                  <widget class="QComboBox" name="dep_input_60">
-                   <item>
-                    <property name="text">
-                     <string>停用</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>启用</string>
-                    </property>
-                   </item>
-                  </widget>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QComboBox" name="dep_input_59">
+                 <item>
+                  <property name="text">
+                   <string>停用</string>
+                  </property>
                  </item>
-                 <item row="2" column="1">
-                  <widget class="QComboBox" name="dep_input_58">
-                   <item>
-                    <property name="text">
-                     <string>停用</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>启用</string>
-                    </property>
-                   </item>
-                  </widget>
+                 <item>
+                  <property name="text">
+                   <string>启用</string>
+                  </property>
                  </item>
-                 <item row="1" column="1">
-                  <widget class="QComboBox" name="dep_input_57">
-                   <item>
-                    <property name="text">
-                     <string>停用</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>启用</string>
-                    </property>
-                   </item>
-                  </widget>
+                </widget>
+               </item>
+               <item row="4" column="2">
+                <widget class="QLabel" name="help_48">
+                 <property name="maximumSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QComboBox" name="dep_input_61">
+                 <item>
+                  <property name="text">
+                   <string>停用</string>
+                  </property>
                  </item>
-                 <item row="6" column="1">
-                  <widget class="QComboBox" name="dep_input_62">
-                   <item>
-                    <property name="text">
-                     <string>停用</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>启用</string>
-                    </property>
-                   </item>
-                  </widget>
+                 <item>
+                  <property name="text">
+                   <string>启用</string>
+                  </property>
                  </item>
-                 <item row="6" column="0">
-                  <widget class="QLabel" name="labelText_57">
-                   <property name="text">
-                    <string>断链</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <widget class="QComboBox" name="dep_input_62">
+                 <item>
+                  <property name="text">
+                   <string>停用</string>
+                  </property>
                  </item>
-                 <item row="5" column="1">
-                  <widget class="QComboBox" name="dep_input_61">
-                   <item>
-                    <property name="text">
-                     <string>停用</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>启用</string>
-                    </property>
-                   </item>
-                  </widget>
+                 <item>
+                  <property name="text">
+                   <string>启用</string>
+                  </property>
                  </item>
-                 <item row="7" column="0">
-                  <widget class="QLabel" name="labelText_58">
-                   <property name="text">
-                    <string>过滤万能工单</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
+                </widget>
+               </item>
+               <item row="8" column="1">
+                <widget class="QComboBox" name="dep_input_64">
+                 <property name="currentIndex">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>停用</string>
+                  </property>
                  </item>
-                 <item row="0" column="2">
-                  <widget class="QLabel" name="help_44">
-                   <property name="maximumSize">
-                    <size>
-                     <width>20</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="pixmap">
-                    <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
-                   </property>
-                   <property name="scaledContents">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
+                 <item>
+                  <property name="text">
+                   <string>启用</string>
+                  </property>
                  </item>
-                 <item row="4" column="0">
-                  <widget class="QLabel" name="labelText_55">
-                   <property name="text">
-                    <string>FGB</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
+                </widget>
+               </item>
+               <item row="6" column="0">
+                <widget class="QLabel" name="labelText_57">
+                 <property name="text">
+                  <string>断链</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="2">
+                <widget class="QLabel" name="help_49">
+                 <property name="maximumSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QComboBox" name="dep_input_58">
+                 <item>
+                  <property name="text">
+                   <string>停用</string>
+                  </property>
                  </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="labelText_52">
-                   <property name="text">
-                    <string>遏制</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
+                 <item>
+                  <property name="text">
+                   <string>启用</string>
+                  </property>
                  </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="labelText_54">
-                   <property name="text">
-                    <string>工具管理</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
+                </widget>
+               </item>
+               <item row="6" column="2">
+                <widget class="QLabel" name="help_50">
+                 <property name="maximumSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="1">
+                <widget class="QComboBox" name="dep_input_65">
+                 <item>
+                  <property name="text">
+                   <string>停用</string>
+                  </property>
                  </item>
-                 <item row="1" column="2">
-                  <widget class="QLabel" name="help_45">
-                   <property name="maximumSize">
-                    <size>
-                     <width>20</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="pixmap">
-                    <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
-                   </property>
-                   <property name="scaledContents">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
+                 <item>
+                  <property name="text">
+                   <string>启用</string>
+                  </property>
                  </item>
-                 <item row="3" column="2">
-                  <widget class="QLabel" name="help_47">
-                   <property name="maximumSize">
-                    <size>
-                     <width>20</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="pixmap">
-                    <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
-                   </property>
-                   <property name="scaledContents">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="labelText_55">
+                 <property name="text">
+                  <string>FGB</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="2">
+                <widget class="QLabel" name="help_52">
+                 <property name="maximumSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QLabel" name="help_46">
+                 <property name="maximumSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="labelText_54">
+                 <property name="text">
+                  <string>工具管理</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="2">
+                <widget class="QLabel" name="help_53">
+                 <property name="maximumSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="labelText_53">
+                 <property name="text">
+                  <string>设备维护</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QLabel" name="help_45">
+                 <property name="maximumSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="labelText_51">
+                 <property name="text">
+                  <string>重构版本</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QLabel" name="help_44">
+                 <property name="maximumSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="labelText_52">
+                 <property name="text">
+                  <string>遏制</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="dep_input_57">
+                 <item>
+                  <property name="text">
+                   <string>停用</string>
+                  </property>
                  </item>
-                 <item row="4" column="2">
-                  <widget class="QLabel" name="help_48">
-                   <property name="maximumSize">
-                    <size>
-                     <width>20</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="pixmap">
-                    <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
-                   </property>
-                   <property name="scaledContents">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
+                 <item>
+                  <property name="text">
+                   <string>启用</string>
+                  </property>
                  </item>
-                 <item row="6" column="2">
-                  <widget class="QLabel" name="help_50">
-                   <property name="maximumSize">
-                    <size>
-                     <width>20</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="pixmap">
-                    <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
-                   </property>
-                   <property name="scaledContents">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="dep_input_56">
+                 <item>
+                  <property name="text">
+                   <string>重构后</string>
+                  </property>
                  </item>
-                 <item row="0" column="1">
-                  <widget class="QComboBox" name="dep_input_56">
-                   <item>
-                    <property name="text">
-                     <string>重构后</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>重构前</string>
-                    </property>
-                   </item>
-                  </widget>
+                 <item>
+                  <property name="text">
+                   <string>重构前</string>
+                  </property>
                  </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="labelText_53">
-                   <property name="text">
-                    <string>设备维护</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="2">
-                  <widget class="QLabel" name="help_49">
-                   <property name="maximumSize">
-                    <size>
-                     <width>20</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="pixmap">
-                    <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
-                   </property>
-                   <property name="scaledContents">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="0">
-                  <widget class="QLabel" name="labelText_56">
-                   <property name="text">
-                    <string>视频监控</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="7" column="1">
-                  <widget class="QComboBox" name="dep_input_63">
-                   <item>
-                    <property name="text">
-                     <string>过滤</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>不过滤</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item row="7" column="2">
-                  <widget class="QLabel" name="help_51">
-                   <property name="maximumSize">
-                    <size>
-                     <width>20</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="pixmap">
-                    <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
-                   </property>
-                   <property name="scaledContents">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="2">
-                  <widget class="QLabel" name="help_46">
-                   <property name="maximumSize">
-                    <size>
-                     <width>20</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="pixmap">
-                    <pixmap resource="resoure.qrc">:/icon/help.png</pixmap>
-                   </property>
-                   <property name="scaledContents">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -3406,6 +3491,7 @@
  </widget>
  <resources>
   <include location="resoure.qrc"/>
+  <include location="C:/Users/xll/.designer/backup/resoure.qrc"/>
  </resources>
  <connections/>
 </ui>

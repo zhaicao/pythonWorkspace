@@ -8,7 +8,7 @@ from PyQt5.QtGui import QIcon
 class simple(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.initUI_3()
+        self.initUI_2()
 
     def initUI(self):
         self.statusBar().showMessage('ready')

@@ -302,6 +302,6 @@ class simple_9(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    s = simple_9()
+    s = simple_4()
     sys.exit(app.exec_())
 
