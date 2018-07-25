@@ -554,10 +554,16 @@ class Nifi(object):
         api = NifiApi(self.nifiConf['nifi.host'], self.nifiConf['nifi.user'], self.nifiConf['nifi.pwd'])
         path = [u'2.增量抽取流程', u'通用ETL增量抽取流程', u'Ods Group', u'Extract Data']
         proId = api.getProcessorId(path)
-        info = api.getProcessorInfo(proId)
-        self.nifiConf['bi.schedule'] = info['component']['config']['schedulingPeriod']
-        self.nifiConf['bi.sourceid'] = info['component']['config']['properties']['extract-source-id']
-        self.nifiConf['bi.sourcename'] = info['component']['config']['properties']['extract-source-name']
+        # 判断抽取processer，若不存在给于默认值
+        if proId:
+            info = api.getProcessorInfo(proId)
+            self.nifiConf['bi.schedule'] = info['component']['config']['schedulingPeriod']
+            self.nifiConf['bi.sourceid'] = info['component']['config']['properties']['extract-source-id']
+            self.nifiConf['bi.sourcename'] = info['component']['config']['properties']['extract-source-name']
+        else:
+            self.nifiConf['bi.schedule'] = '60 min'
+            self.nifiConf['bi.sourceid'] = '1'
+            self.nifiConf['bi.sourcename'] = 'source1'
 
 
     # 组装Controller Service配置参数

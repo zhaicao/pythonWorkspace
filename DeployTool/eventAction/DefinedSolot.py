@@ -166,21 +166,23 @@ class TraceSolot(object):
         if not nifiList:
             Util.mesInfomation(mainWidgetObj, '请完善输入\选择项')
         else:
-            # 获得信号源按钮对象
-            sender = mainWidgetObj.sender()
-            # 实例化QThread
-            self.thread = QtCore.QThread()
-            # 实例化查询数据库对象
-            self.nifi = NifiThread(WidgetObj=mainWidgetObj, nifiConfList=nifiList, btnObj=sender)
-            # DBThread加载到线程中
-            self.nifi.moveToThread(self.thread)
-            # 绑定自定义信号，完成、停止线程
-            self.nifi.finishSignal.connect(self.finishedNifi)
-            self.nifi.stopThreadSignal.connect(self.thread.quit)
-            # 绑定线程执行的槽函数
-            self.thread.started.connect(self.nifi.updateNifiTemplate)
-            # 执行线程
-            self.thread.start()
+            reply = Util.mesInfomation(mainWidgetObj, '请确认Nifi中所有Processor的Queued是否为0 ', '确认', '已确认', '未确认')
+            if reply.clickedButton().text() == '已确认':
+                # 获得信号源按钮对象
+                sender = mainWidgetObj.sender()
+                # 实例化QThread
+                self.thread = QtCore.QThread()
+                # 实例化查询数据库对象
+                self.nifi = NifiThread(WidgetObj=mainWidgetObj, nifiConfList=nifiList, btnObj=sender)
+                # DBThread加载到线程中
+                self.nifi.moveToThread(self.thread)
+                # 绑定自定义信号，完成、停止线程
+                self.nifi.finishSignal.connect(self.finishedNifi)
+                self.nifi.stopThreadSignal.connect(self.thread.quit)
+                # 绑定线程执行的槽函数
+                self.thread.started.connect(self.nifi.updateNifiTemplate)
+                # 执行线程
+                self.thread.start()
 
     # Nifi更新完成提示函数
     def finishedNifi(self, WidgetObj, re):

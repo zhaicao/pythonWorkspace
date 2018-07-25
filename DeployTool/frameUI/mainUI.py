@@ -14,7 +14,7 @@ from frameUI import resoure_rc
 class TraceMainWidget(TraceControlsUI, TraceCreateTextUI, TraceObjItems):
     def setupUi(self, MainWindow):
         # 主窗口设置
-        MainWindow.setWindowTitle("追溯分析部署配置工具 V2.0.6")
+        MainWindow.setWindowTitle("追溯分析部署配置工具 V2.0.6(Bate)")
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(500, 660)
         icon = QtGui.QIcon()
@@ -230,5 +230,5 @@ class TraceMainWidget(TraceControlsUI, TraceCreateTextUI, TraceObjItems):
         self.nifi_input_21.textChanged.connect(lambda: self._action.initComboBoxDB(self.nifi_input_22, '请选择工艺参数库'))
         # 选择Nifi模板地址
         self.getFile.clicked.connect(lambda: self._solot.getNifiTemplate(mainWidget, self._objsDict))
-        # 升级Nifi确定按钮信号
+        # 升级Nifi更新按钮信号
         self.nifi_confirmBtn.clicked.connect(lambda: self._solot.updateNifiTemplate(mainWidget, self.nifiConfItem, self._objsDict))
