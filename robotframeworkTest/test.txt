@@ -1,0 +1,17 @@
+*** Settings ***
+*** Variables ***
+${html}     http://www.baidu.com
+${browse}   Chrome
+*** Keywords ***
+Open Login Page
+    log     ${html}
+
+Testparam
+    log     ${browse}
+
+*** Test Cases ***
+case1
+    open login page
+
+case2
+    Testparam
