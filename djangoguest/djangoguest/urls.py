@@ -21,5 +21,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/$', views.index),
     url(r'^login_action/$', views.login_action),
-    url(r'^event_manage/$', views.event_manage)
+    url(r'^event_manage/$', views.event_manage),
+    # 无权限的页面同一到登录页面
+    url(r'^accounts/login/$', views.index)
 ]
