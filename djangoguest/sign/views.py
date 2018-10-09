@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
+from sign.models import Event, Guest
 
 # Create your views here.
 def index(request):
@@ -30,4 +31,5 @@ def event_manage(request):
     # 读取浏览器的cookie
     #username = request.COOKIES.get('user', '')
     username = request.session.get('user', '')
-    return render(request, "event_manage.html", {'user': username})
+    event_list = Event.objects.all()
+    return render(request, "event_manage.html", {'user': username, "events": event_list})
