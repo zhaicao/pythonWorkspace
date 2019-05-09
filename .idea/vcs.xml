@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/HttpRunnerManager" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/xmind2testlink-S" vcs="Git" />
+    <mapping directory="D:\Python\pythonWorkspace\xmind2testlink" vcs="Git" />
   </component>
 </project>
