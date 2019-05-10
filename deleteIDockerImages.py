@@ -1,7 +1,7 @@
 
 __author__='zhaicao '
 
-import requests
+import requests,json
 
 def deleteImage(imageName, tag, registryUrl='10.202.228.30:5000'):
     '''
@@ -21,6 +21,13 @@ def deleteImage(imageName, tag, registryUrl='10.202.228.30:5000'):
     else:
         print('找不到该镜像')
 
+def getTagsByImage(imageName, registryUrl='10.202.228.30:5000'):
+    headers = {"Accept": "application/vnd.docker.distribution.manifest.v2+json"}
+    r = requests.get('http://' + registryUrl + '/v2' + imageName + '/tags/list', headers=headers)
+    print(r.url)
+    print(json.loads(r.text)['tags'])
+
 if __name__ == "__main__":
     # 参数镜像名和tag
-    deleteImage('/maxnerva/alarm', '0.5')
+    deleteImage('/maxnerva/zookeeper', '1.0')
+    #getTagsByImage('/maxnerva/alarm')

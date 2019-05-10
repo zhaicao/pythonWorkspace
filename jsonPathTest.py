@@ -1,0 +1,19 @@
+import json
+import jsonpath
+
+city_json = '[{"createUser": "1", "createDate": "2018-12-12T00:00:14.000+0000", "lastUpdateUser": "1", "lastUpdateDate": "2019-01-18T05:50:15.000+0000", "id": "8dd32932b3ea43f68dceace02c037245", "name": "内置属性", "parentId": "-1", "parentIds": "-1", "typeId": "cb9399303ca474feb9eee9f87af7c3f39", "sortNum": 4, "system": "True", "sublist": "False", "visible": "True", "deleteFlag": "False", "desc": "None", "fieList": "None"}, {"createUser": "da729482a42c406bb95df10e98f7556a", "createDate": "2018-12-20T02:11:26.000+0000", "lastUpdateUser": "1", "lastUpdateDate": "2019-04-11T08:37:34.289+0000", "id": "2758b43286f54980941106de69acd01f", "name": "运维属性", "parentId": "0", "parentIds": "0", "typeId": "cb9399303ca474feb9eee9f87af7c3f39", "sortNum": 1, "system": "False", "sublist": "False", "visible": "True", "deleteFlag": "False", "desc": "None", "fieList": "None"}, {"createUser": "da729482a42c406bb95df10e98f7556a", "createDate": "2018-12-20T02:00:54.000+0000", "lastUpdateUser": "1", "lastUpdateDate": "2019-04-11T08:37:34.279+0000", "id": "b4dfa254562a4a19a2c787e4c13ecf5d", "name": "财务属性", "parentId": "0", "parentIds": "0", "typeId": "cb9399303ca474feb9eee9f87af7c3f39", "sortNum": 2, "system": "False", "sublist": "False", "visible": "True", "deleteFlag": "False", "desc": "None", "fieList": "None"}, {"createUser": "da729482a42c406bb95df10e98f7556a", "createDate": "2018-12-20T02:11:40.000+0000", "lastUpdateUser": "1", "lastUpdateDate": "2019-04-11T08:37:34.230+0000", "id": "aa4d9fb8ca4b40dd9cb91f473d0d0070", "name": "关联属性", "parentId": "0", "parentIds": "0", "typeId": "cb9399303ca474feb9eee9f87af7c3f39", "sortNum": 3, "system": "False", "sublist": "False", "visible": "True", "deleteFlag": "False", "desc": "None", "fieList": "None"}, {"createUser": "da729482a42c406bb95df10e98f7556a", "createDate": "2018-12-20T02:02:00.000+0000", "lastUpdateUser": "1", "lastUpdateDate": "2019-04-11T08:37:34.248+0000", "id": "d3620d601d1f4d688040ce3c13bdd645", "name": "配置属性", "parentId": "0", "parentIds": "0", "typeId": "cb9399303ca474feb9eee9f87af7c3f39", "sortNum": 5, "system": "False", "sublist": "False", "visible": "True", "deleteFlag": "False", "desc": "None", "fieList": "None"}, {"createUser": "1", "createDate": "2019-02-15T05:38:47.000+0000", "lastUpdateUser": "1", "lastUpdateDate": "2019-04-11T08:42:09.398+0000", "id": "e3063ae109a84204af0774382a1f88b1", "name": "55", "parentId": "0", "parentIds": "0", "typeId": "cb9399303ca474feb9eee9f87af7c3f39", "sortNum": 5, "system": "False", "sublist": "False", "visible": "True", "deleteFlag": "False", "desc": "None", "fieList": "None"}, {"createUser": "1", "createDate": "2018-11-12T07:11:33.000+0000", "lastUpdateUser": "1", "lastUpdateDate": "2019-04-11T08:37:34.200+0000", "id": "a93da8a3a9024148aa411b49bc79e32b", "name": "基本属性", "parentId": "0", "parentIds": "0", "typeId": "cb9399303ca474feb9eee9f87af7c3f39", "sortNum": 6, "system": "False", "sublist": "False", "visible": "True", "deleteFlag": "False", "desc": "None", "fieList": "None"}, {"createUser": "1", "createDate": "2019-04-11T09:49:07.569+0000", "lastUpdateUser": "None", "lastUpdateDate": "None", "id": "81d6025d10a549ca8ae2fc70e6c558db", "name": "test", "parentId": "0", "parentIds": "0", "typeId": "cb9399303ca474feb9eee9f87af7c3f39", "sortNum": 45, "system": "False", "sublist": "False", "visible": "True", "deleteFlag": "False", "desc": "None", "fieList": "None"}]'
+
+def getValueByJsonPath(sourceJson, path):
+    '''
+    通过jsonpath语法返回json串中的值
+    :param sourceJson: json字符串
+    :param path: jsonpath
+    :return: 返回结果list
+    '''
+    # json字符串转换为python字典对象
+    json_dict = json.loads(sourceJson)
+    # 获取根节点下的所有name节点的值
+    return jsonpath.jsonpath(json_dict, expr=path)[0]
+
+# 使用方法
+print(getValueByJsonPath(city_json, '$.[?(@.name == "test"]).id'))
