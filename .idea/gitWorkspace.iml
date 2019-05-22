@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/DeployTool" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/djangoguest" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/xmind2testlink" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/wechat_jump" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.6" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

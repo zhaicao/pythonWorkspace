@@ -1,10 +1,7 @@
-# -*- coding: cp936 -*-
 '''
-AprioriËã·¨
-Ben
-2015.09.28
+Aprioriç®—æ³•
+zc
 '''
-#coding:utf-8
 from numpy import *
 
 def loadData():
@@ -23,7 +20,7 @@ def scanD(D,Ck,minSupport):
     ssCnt = {}
     for tid in D:
         for can in Ck:
-            if can.issubset(tid):#ÅĞ¶ÏtidÊÇ·ñÔÚcanÖĞ
+            if can.issubset(tid):#åˆ¤æ–­tidæ˜¯å¦åœ¨canä¸­
                 if not ssCnt.has_key(can):
                     ssCnt[can] = 1
                 else:
@@ -37,12 +34,3 @@ def scanD(D,Ck,minSupport):
             retList.insert(0,key)
         supportData[key] = support
     return retList,supportData
-
-#### test
-
-dataSet = loadData()
-c1 = createC1(dataSet)
-D = map(set,dataSet)
-L1,supportData = scanD(D,c1,0.5)
-print L1
-print supportData
